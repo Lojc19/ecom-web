@@ -166,7 +166,7 @@ const Home = () => {
                 </div>
             </div>
 
-            <div className="p-3 mx-auto w-full md:w-[1236px] md:p-0">
+            <div className="p-3 mx-auto w-full md:w-[1200px] md:p-0">
                 <div className="flex w-full">
                     <h2 className="uppercase font-Montserrat font-bold text-[18px]">sản phẩm mới</h2>
                     <a href="#" className="ml-3 text-[14px] font-Montserrat font-light flex items-center">Xem tất cả <FaChevronRight size={12} className="ml-2"/></a>

@@ -3,7 +3,7 @@ import { CiHeart } from "react-icons/ci";
 
 const ProductItem = () => {
     return (
-        <div className="group w-full h-auto md:w-[300px] md:h-[400px] hover:border p-4">
+        <div className="group w-full h-auto md:w-1/4 md:h-[400px] hover:border p-4">
             <div className="h-full w-full relative">
                 <a
                     href="#"
