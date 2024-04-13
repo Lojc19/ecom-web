@@ -173,7 +173,7 @@ const Home = () => {
                 </div>
                 <div className="border-b-[1px] border-[#ececec] w-full mb-10"></div>
 
-                <div className="w-full md:container md:mx-auto md:flex flex-wrap justify-between">
+                <div className="w-full md:flex md:flex-wrap md:justify-between">
                     <ProductItem/>
                     <ProductItem/>
                     <ProductItem/>
