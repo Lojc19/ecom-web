@@ -1,0 +1,22 @@
+                    {data.map((item, idx) => {
+                        return (
+                            <img
+                                src={item.src}
+                                alt={item.alt}
+                                key={idx}
+                                className={slide == idx ? "w-full h-full": ""}
+                            />
+                        );
+                    })}
+
+
+                                        <FaChevronLeft
+                        onClick={prevSlide}
+                        className="absolute top-1/2 left-0 md:left-[50px] cursor-pointer md:opacity-0 md:group-hover:opacity-100 ease-in-out duration-300"
+                        size={32}
+                    />
+                    <FaChevronRight
+                        onClick={nextSlide}
+                        className="absolute top-1/2 right-0 md:right-[50px] cursor-pointer md:opacity-0 md:group-hover:opacity-100 ease-in-out duration-300"
+                        size={32}
+                    />

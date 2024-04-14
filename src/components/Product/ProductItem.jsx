@@ -40,7 +40,7 @@ const ProductItem = () => {
                     </div>
                 </div>
 
-                <div className="mt-4 opacity-0 group-hover:opacity-100 flex justify-between">
+                <div className="mt-4 opacity-0 group-hover:opacity-100 flex justify-between h-[40px]">
                     <BtnAddtocart />
                     <a className="bg-black border border-black text-[13px] px-4 py-2 uppercase text-white cursor-pointer ml-3">
                         Xem thêm
