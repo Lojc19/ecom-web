@@ -1,7 +1,10 @@
 import BtnAddtocart from "../Button/BtnAddtocart";
 import { CiHeart } from "react-icons/ci";
 
-const ProductItem = () => {
+const ProductItem = ({product, images}) => {
+    // Lấy URL của hình ảnh đầu tiên từ mảng images
+    const imageUrl = images.length > 0 ? images[0].url : './src/assets/imgs/product-test2.jpeg';
+    const imageUrl_second = images.length > 1 ? images[1].url : "./src/assets/imgs/product-test2.jpeg";
     return (
         <div className="group w-full h-auto md:w-1/4 md:h-[400px] hover:border p-4">
             <div className="h-full w-full relative">
@@ -10,12 +13,13 @@ const ProductItem = () => {
                     className="cursor-pointer text-[14px] font-Roboto md:w-9/10"
                 >
                     <img
-                        src="./src/assets/imgs/product-test2.jpeg"
+                        //src="./src/assets/imgs/product-test2.jpeg"
+                        src={imageUrl}
                         alt="Product"
                         className="bg-cover h-1/2 w-ful group-hover:hidden"
                     />
                     <img
-                        src="./src/assets/imgs/product-test.jpeg"
+                        src={imageUrl_second}
                         alt="Product"
                         className="hidden bg-cover h-1/2 w-full group-hover:block"
                     />{" "}
@@ -25,7 +29,7 @@ const ProductItem = () => {
                         href=""
                         className="cursor-pointer text-[14px] font-Roboto md:w-9/10"
                     >
-                        Armchair xoay Jadora màu xanh họa tiết tặng kèm gối
+                        {product.name}
                     </a>
                     <CiHeart className="w-1/10 cursor-pointer" size={24} />
                 </div>

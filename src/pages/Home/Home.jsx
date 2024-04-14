@@ -2,8 +2,30 @@ import BannerCate from "../../components/Home/BannerCate";
 import { FaArrowRight } from "react-icons/fa";
 import { FaChevronRight } from "react-icons/fa";
 import ProductItem from "../../components/Product/ProductItem";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { useAuth } from "../../components/context/auth";
+import { useNavigate } from "react-router-dom";
+import {toast} from "react-toastify";
+
 
 const Home = () => {
+    const navigate = useNavigate();
+    const [auth,setAuth] = useAuth();
+    const [products, setProducts] = useState([]);
+    useEffect(() => {
+        getAllProducts();
+    }, []);
+    //getall products
+    const getAllProducts = async () => {
+        try {
+            const { data } = await axios.get('https://api-nhaxinh.onrender.com/api/product/getAllProduct');
+            setProducts(data.data.product);
+        } catch (error) {
+            console.log(error);
+            toast.error("Someething Went Wrong");
+        }
+     };
     return (
         <section>
             <div className="w-full md:flex justify-between md:h-[600px] p-3 mx-auto">
@@ -174,13 +196,12 @@ const Home = () => {
                 <div className="border-b-[1px] border-[#ececec] w-full mb-10"></div>
 
                 <div className="w-full md:flex md:flex-wrap md:justify-between">
-                    <ProductItem/>
-                    <ProductItem/>
-                    <ProductItem/>
-                    <ProductItem/>
-                    <ProductItem/>
+                    {products?.map((p, index) => (
+                        <>
+                            <ProductItem product={p} images={p.images}/>
+                        </>
+                    ))}
                 </div>
-
             </div>
 
         </section>
