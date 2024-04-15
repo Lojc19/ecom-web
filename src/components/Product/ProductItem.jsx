@@ -24,7 +24,7 @@ const ProductItem = ({product, images}) => {
                         className="hidden bg-cover h-1/2 w-full group-hover:block"
                     />{" "}
                 </a>
-                <div className="mt-2 md:flex">
+                <div className="mt-2 md:flex justify-between">
                     <a
                         href=""
                         className="cursor-pointer text-[14px] font-Roboto md:w-9/10"

@@ -1,15 +1,15 @@
 import './App.css'
-//import ProductDetail from './components/Product/ProductDetail'
+import ProductDetail from './components/Product/ProductDetail'
 //import ProductItem from './components/Product/ProductItem'
 // import Navbar from './components/navbar/Navbar'
 import Home from './pages/Home/Home'
 import { Routes, Route } from "react-router-dom";
-
+import ReviewProduct from './components/Review/ReviewProduct';
 function App() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<ProductDetail />} />
         {/* <Route path="/product/:id" element={<ProductDetails />} />
         <Route path="/search" element={<Search />} />
         <Route path="/cart" element={<CartPage />} />
