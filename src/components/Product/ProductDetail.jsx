@@ -1,5 +1,11 @@
-import React, { useState } from "react";
-import { FaChevronRight, FaChevronLeft } from "react-icons/fa";
+import React, { useState, useEffect } from "react";
+import {
+    FaChevronRight,
+    FaChevronLeft,
+    FaChevronDown,
+    FaChevronUp,
+} from "react-icons/fa";
+import ModalImg from "./ModalImg";
 import { CiHeart } from "react-icons/ci";
 import BtnAddtocart from "../Button/BtnAddtocart";
 import PlusMinusInput from "../Input/PlusMinusInput";
@@ -18,18 +24,48 @@ const ProductDetail = () => {
             src: "https://nhaxinh.com/wp-content/uploads/2024/02/armchair-xoay-jadora-360-do-nhieu-lua-chon-16.jpg",
             alt: "Image 3 for carousel",
         },
+        {
+            src: "https://nhaxinh.com/wp-content/uploads/2024/02/armchair-xoay-jadora-360-do-nhieu-lua-chon-19.jpg",
+            alt: "Image 3 for carousel",
+        },
+        {
+            src: "https://nhaxinh.com/wp-content/uploads/2024/02/armchair-xoay-jadora-360-do-nhieu-lua-chon-4.jpg",
+            alt: "Image 3 for carousel",
+        },
     ];
     const [slide, setSlide] = useState(0);
+    const [imgActive, setImgActive] = useState(0);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const [clickedImgModal, setClickedImgModal] = useState(null);
+
+    useEffect(() => {
+        setImgActive(slide); // cập nhật lại ảnh active
+    }, [slide]);
+
     const nextSlide = () => {
         setSlide(slide === data.length - 1 ? 0 : slide + 1);
-      };
+    };
 
-      const prevSlide = () => {
+    const prevSlide = () => {
         setSlide(slide === 0 ? data.length - 1 : slide - 1);
-      };
+    };
+    const clickSlide = (index) => {
+        setSlide(index);
+        setImgActive(index);
+    };
+
+    const handleClickImage = (index) => {
+        setIsModalOpen(true);
+        setClickedImgModal(index)
+    };
+
+    const closeModal = () => {
+        setIsModalOpen(false);
+    };
     return (
         <>
-            <div className="container flex mx-auto p-3">
+            <div className="container md:max-w-[1280px] flex mx-auto p-3">
                 <a
                     href=""
                     className="cursor-pointer text-[#666666] font-light text-[14px]"
@@ -50,38 +86,73 @@ const ProductDetail = () => {
                 </a>
             </div>
 
-            <div className="p-3 mt-2 h-auto md:flex container justify-between mx-auto">
-                <div className="w-full h-full md:w-[50%] overflow-hidden relative cursor-pointer">
-                    <div className="flex transition-transform ease-in-out duration-500" style={{ transform: `translateX(-${slide * 100}%)` }}>
-                        {data.map((item, idx) => {
+            <div className="p-3 mt-2 h-auto md:flex md:max-w-[1280px] justify-between mx-auto">
+                <div className="w-full h-full md:w-[50%] overflow-hidden relative cursor-pointer group">
+                    <div
+                        className="flex transition-transform ease-in-out duration-500"
+                        style={{ transform: `translateX(-${slide * 100}%)` }}
+                    >
+                        {data.map((item, index) => {
                             return (
                                 <img
                                     src={item.src}
                                     alt={item.alt}
-                                    key={idx}
-                                    className={slide == idx ? "w-full h-full": ""}
+                                    key={index}
+                                    className="w-full h-full bg-cover"
+                                    onClick={() => handleClickImage(index)}                                
                                 />
                             );
                         })}
                     </div>
-                    <div className="absolute inset-0 flex items-center justify-between p-4">
-                        <FaChevronLeft
-                            onClick={prevSlide}
-                            className="cursor-pointer md:opacity-0 hover:opacity-100"
-                            size={32}
-                        />
-                        <FaChevronRight
-                            onClick={nextSlide}
-                            className="cursor-pointer md:opacity-0 hover:opacity-100"
-                            size={32}
-                        />
-                    </div>
+                    <FaChevronLeft
+                        onClick={prevSlide}
+                        className="hidden absolute top-1/2 left-0 transform -translate-y-1/2 md:block cursor-pointer md:opacity-0 group-hover:opacity-100"
+                        size={32}
+                    />
+                    <FaChevronRight
+                        onClick={nextSlide}
+                        className="hidden absolute top-1/2 right-0 transform -translate-y-1/2 md:block cursor-pointer md:opacity-0 group-hover:opacity-100"
+                        size={32}
+                    />
                 </div>
-                <div className="bg-black md:w-[10%] md:order-first">
-                    <div className="flex">
+                <div className="md:p-3 md:w-[10%] md:h-auto md:order-first relative">
+                    <FaChevronUp
+                        onClick={prevSlide}
+                        className="mx-auto mb-2 hidden md:block cursor-pointer"
+                        size={32}
+                    />
+                    <div className="w-full h-full md:h-[400px] overflow-hidden">
+                        <div
+                            className={`flex justify-between flex-wrap transition-transform ease-in-out duration-500 md:flex-col ${
+                                slide === data.length - 2
+                                    ? "md:translate-y-[-20%]"
+                                    : ""
+                            }`}
+                        >
+                            {data.map((item, index) => {
+                                return (
+                                    <img
+                                        src={item.src}
+                                        alt={item.alt}
+                                        key={index}
+                                        className={`cursor-pointer p-1 w-1/4 md:w-full h-[60px] md:h-[90px] md:mb-2 md:opacity-60 hover:opacity-100 ${
+                                            imgActive === index
+                                                ? "border border-slate-400"
+                                                : ""
+                                        }`}
+                                        onClick={() => clickSlide(index)}
+                                    />
+                                );
+                            })}
+                        </div>
                     </div>
+                    <FaChevronDown
+                        onClick={nextSlide}
+                        className="mx-auto mt-2 hidden md:block cursor-pointer"
+                        size={32}
+                    />
                 </div>
-                <div className="w-full h-full md:w-[40%]">
+                <div className="w-full h-full md:w-[40%] md:p-4">
                     <h1 className="text-[30px] font-Montserrat leading-tight font-semibold">
                         Armchair xoay Jadora màu xanh họa tiết tặng kèm gối
                     </h1>
@@ -123,13 +194,23 @@ const ProductDetail = () => {
                         </div>
                         <div className="mt-4 md:w-[65%] md:flex md:h-[45px]">
                             <PlusMinusInput />
-                            <button className="border h-full border-black text-[13px] px-4 py-2 uppercase bg-black text-white cursor-pointer md:mx-4 mr-3">
+                            <button className="border min-w-[140px] h-full border-black text-[13px] px-4 py-2 uppercase bg-black text-white cursor-pointer md:mx-4 mr-3">
                                 Mua ngay
                             </button>
                             <BtnAddtocart />
                         </div>
                     </div>
                 </div>
+            </div>
+            
+            <div>
+                {isModalOpen && (
+                    <ModalImg
+                        data={data}
+                        indexImgClick={clickedImgModal}
+                        onClose={closeModal}
+                    />
+                )}
             </div>
         </>
     );
