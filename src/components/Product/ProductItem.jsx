@@ -1,7 +1,9 @@
 import BtnAddtocart from "../Button/BtnAddtocart";
 import { CiHeart } from "react-icons/ci";
+import { useNavigate } from "react-router-dom";
 
 const ProductItem = ({product, images}) => {
+    const navigate = useNavigate();
     // Lấy URL của hình ảnh đầu tiên từ mảng images
     const imageUrl = images.length > 0 ? images[0].url : './src/assets/imgs/product-test2.jpeg';
     const imageUrl_second = images.length > 1 ? images[1].url : "./src/assets/imgs/product-test2.jpeg";
@@ -46,9 +48,10 @@ const ProductItem = ({product, images}) => {
 
                 <div className="mt-4 opacity-0 group-hover:opacity-100 flex justify-between h-[40px]">
                     <BtnAddtocart />
-                    <a className="bg-black border border-black text-[13px] px-4 py-2 uppercase text-white cursor-pointer ml-3">
+                    <button className="bg-black border border-black text-[13px] px-4 py-2 uppercase text-white cursor-pointer ml-3" 
+                        onClick={() => navigate(`/product/${product._id}`)}>
                         Xem thêm
-                    </a>
+                    </button>
                 </div>
 
                 <span className="absolute inline-block top-0 right-0 bg-red-500 text-white text-sm font-semibold px-2 py-1 rounded">
