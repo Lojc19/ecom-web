@@ -258,9 +258,9 @@ const ProductDetail = () => {
                             <a className="cursor-pointer"> {category.nameCate}, </a>
                             <a className="cursor-pointer"> {room.nameRoom}</a>
                         </div>
-                        <div className="mt-6 md:w-[65%] md:flex md:h-[45px]">
+                        <div className="mt-6 w-full md:flex md:h-[45px]">
                             <PlusMinusInput />
-                            <button className="border min-w-[140px] h-full border-black text-[13px] px-4 py-2 uppercase bg-black text-white cursor-pointer md:mx-4 mr-3">
+                            <button className="border w-auto h-full border-black text-[13px] px-4 py-2 uppercase bg-black text-white cursor-pointer md:mx-4 mr-3">
                                 Mua ngay
                             </button>
                             <BtnAddtocart />
@@ -445,7 +445,7 @@ const ProductDetail = () => {
                 </div>
             </div>
 
-            <div className="w-full mx-auto md:max-w-[1024px]">
+            <div className="w-full mx-auto md:max-w-[1200px]">
                 <h2 className="text-center font-bold font-Montserrat text-[24px]">Có thể bạn sẽ thích</h2>
                 <div className="w-full md:flex md:flex-wrap md:justify-between">
                     {products?.map((p, index) => (
