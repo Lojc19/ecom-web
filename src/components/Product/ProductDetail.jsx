@@ -10,6 +10,10 @@ import { CiHeart } from "react-icons/ci";
 import BtnAddtocart from "../Button/BtnAddtocart";
 import PlusMinusInput from "../Input/PlusMinusInput";
 import ReviewProduct from "../Review/ReviewProduct";
+import { useParams, useNavigate } from "react-router-dom";
+import axios from "axios";
+import ProductItem from "../../components/Product/ProductItem";
+
 
 const ProductDetail = () => {
     const data = [
@@ -39,10 +43,61 @@ const ProductDetail = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [clickedImgModal, setClickedImgModal] = useState(null);
     const [toggleState, setToggleState] = useState(1);
+    const params = useParams();
+    const [product, setProduct] = useState({});
+    const [category, setCategory] = useState({});
+    const [room, setRoom] = useState({});
+    const [dimensions, setdimensions] = useState({});
+    const [materials, setmaterials] = useState({});
+    const [images, setImages] = useState([]);
+    const [products, setProducts] = useState([]);
+
+    useEffect(() => {
+        if (params?.id){
+            getProduct();
+            window.scrollTo({ top: 0, behavior: 'smooth' });   
+        }
+    }, [params?.id]);
 
     useEffect(() => {
         setImgActive(slide); // cập nhật lại ảnh active
     }, [slide]);
+
+    useEffect(() => {
+        getAllProducts();
+    }, []);
+    const getAllProducts = async () => {
+        try {
+            const { data } = await axios.get('https://api-nhaxinh.onrender.com/api/product/getAllProduct');
+            setProducts(data.data.product);
+        } catch (error) {
+            console.log(error);
+            toast.error("Someething Went Wrong");
+        }
+     };
+
+    const getProduct = async () => {
+        console.log("closeModal");
+        try {
+            const { data } = await axios.get(
+                `https://api-nhaxinh.onrender.com/api/product/product-detail/${params.id}`
+            );
+            setProduct(data?.data);
+            setImages(data?.data?.images);
+            setCategory(data?.data?.category);
+            setRoom(data?.data?.room);
+            const specs = data?.data?.specs;
+            if(specs.length > 0) {
+                setdimensions(data?.data?.specs[0]);
+            }
+            if(specs.length > 1) {
+                setmaterials(data?.data?.specs[1])
+            }
+
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
     const toggleTab = (index) => {
         setToggleState(index);
@@ -98,11 +153,11 @@ const ProductDetail = () => {
                         className="flex transition-transform ease-in-out duration-500"
                         style={{ transform: `translateX(-${slide * 100}%)` }}
                     >
-                        {data.map((item, index) => {
+                        {images.map((item, index) => {
                             return (
                                 <img
-                                    src={item.src}
-                                    alt={item.alt}
+                                    src={item.url}
+                                    alt={item._id}
                                     key={index}
                                     className="w-full h-full bg-cover"
                                     onClick={() => handleClickImage(index)}
@@ -135,11 +190,11 @@ const ProductDetail = () => {
                                     : ""
                             }`}
                         >
-                            {data.map((item, index) => {
+                            {images.map((item, index) => {
                                 return (
                                     <img
-                                        src={item.src}
-                                        alt={item.alt}
+                                        src={item.url}
+                                        alt={item._id}
                                         key={index}
                                         className={`cursor-pointer p-1 w-1/4 md:w-full h-[60px] md:h-[90px] md:mb-2 md:opacity-60 hover:opacity-100 ${
                                             imgActive === index
@@ -160,7 +215,8 @@ const ProductDetail = () => {
                 </div>
                 <div className="w-full h-full md:w-[40%] md:p-4">
                     <h1 className="text-[30px] font-Montserrat leading-tight font-semibold">
-                        Armchair xoay Jadora màu xanh họa tiết tặng kèm gối
+                        {/* Armchair xoay Jadora màu xanh họa tiết tặng kèm gối */}
+                        {product.name}
                     </h1>
                     <div className="border-2 w-[50px] mt-3"></div>
                     <div className="flex mt-8">
@@ -169,10 +225,12 @@ const ProductDetail = () => {
                             size={24}
                         />
                         <span className="block text-red-600 right-0 mr-3">
-                            13,515,000đ
+                            {/* 13,515,000đ */}
+                            {product.priceSale}
                         </span>
                         <span className="line-through right-0">
-                            15,515,000đ
+                            {/* 15,515,000đ */}
+                            {product.price}
                         </span>
                     </div>
                     <div className="mt-8">
@@ -180,23 +238,25 @@ const ProductDetail = () => {
                             <div className="mb-6">
                                 <span className="font-bold">Vật liệu: </span>
                                 <span className="border border-slate-200 px-2 py-1">
-                                    Vải bọc, khung gỗ, xoay 360°
+                                    {/* Vải bọc, khung gỗ, xoay 360° */}
+                                    {materials.v}
                                 </span>
                             </div>
                             <div className="mb-6">
                                 <span className="font-bold">Kích thước: </span>
                                 <span className="border border-slate-200 px-2 py-1">
-                                    D800 - R800 - C670 mm
+                                    {/* D800 - R800 - C670 mm */}
+                                    {dimensions.v}
                                 </span>
                             </div>
                         </div>
                         <div className="mt-4">
-                            <span>Mã sản phẩm: 3*113451</span>
+                            <span>Mã sản phẩm: {product.code}</span>
                         </div>
                         <div className="mt-4">
                             <span>Danh mục: </span>
-                            <a className="cursor-pointer">Airmchair, </a>
-                            <a className="cursor-pointer">Phòng khách</a>
+                            <a className="cursor-pointer"> {category.nameCate}, </a>
+                            <a className="cursor-pointer"> {room.nameRoom}</a>
                         </div>
                         <div className="mt-6 md:w-[65%] md:flex md:h-[45px]">
                             <PlusMinusInput />
@@ -290,10 +350,11 @@ const ProductDetail = () => {
                             }`}
                         >
                             <span className="text-[14px] font font-Roboto">
-                                Sản phẩm armchair với kiểu dáng mềm mại và vô
+                                {/* Sản phẩm armchair với kiểu dáng mềm mại và vô
                                 cùng êm ái, đặc biệt có khả năng xoay 360 độ một
                                 cách mượt mà giúp mang đến những giây phút thư
-                                giãn tuyệt vời.
+                                giãn tuyệt vời. */}
+                                {product.description}
                             </span>
                         </div>
                         <div
@@ -387,7 +448,11 @@ const ProductDetail = () => {
             <div className="w-full mx-auto md:max-w-[1024px]">
                 <h2 className="text-center font-bold font-Montserrat text-[24px]">Có thể bạn sẽ thích</h2>
                 <div className="w-full md:flex md:flex-wrap md:justify-between">
-                    {/* <ProductItem/> */}
+                    {products?.map((p, index) => (
+                        <>
+                            <ProductItem product={p} images={p.images}/>
+                        </>
+                    ))}
                 </div>
             </div>
 
