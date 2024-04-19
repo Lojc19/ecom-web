@@ -13,7 +13,7 @@ import ReviewProduct from "../Review/ReviewProduct";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import ProductItem from "../../components/Product/ProductItem";
-
+import Layout from "../../components/Layout/Layout";
 
 const ProductDetail = () => {
     const data = [
@@ -125,7 +125,8 @@ const ProductDetail = () => {
         setIsModalOpen(false);
     };
     return (
-        <>
+        <Layout title={"Product"}>
+            <>
             <div className="container md:max-w-[1280px] flex mx-auto p-3">
                 <a
                     href=""
@@ -466,6 +467,8 @@ const ProductDetail = () => {
                 )}
             </div>
         </>
+        </Layout>
+        
     );
 };
 
