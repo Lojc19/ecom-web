@@ -5,11 +5,11 @@ import {
     FaChevronDown,
     FaChevronUp,
 } from "react-icons/fa";
-import ModalImg from "./ModalImg";
+import ModalImg from "../../components/Product/ModalImg";
 import { CiHeart } from "react-icons/ci";
-import BtnAddtocart from "../Button/BtnAddtocart";
-import PlusMinusInput from "../Input/PlusMinusInput";
-import ReviewProduct from "../Review/ReviewProduct";
+import BtnAddtocart from "../../components/Button/BtnAddtocart";
+import PlusMinusInput from "../../components/Input/PlusMinusInput";
+import ReviewProduct from "../../components/Review/ReviewProduct";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import ProductItem from "../../components/Product/ProductItem";
