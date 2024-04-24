@@ -17,7 +17,7 @@ const ModalImg = (props) => {
     return (
         <>
             <div
-                className="fixed left-0 top-0 bg-black bg-opacity-50 w-screen h-screen opacity-100 p-5"
+                className="fixed left-0 top-0 bg-black bg-opacity-50 w-screen h-screen p-5"
                 onClick={props.onClose}
             >
               <span className="text-white font-Montserrat text-[16px]">{slide+1}/{props.data.length}</span>
@@ -30,7 +30,7 @@ const ModalImg = (props) => {
 
                 <FaArrowRight
                     onClick={nextSlide}
-                    className="bg-black rounded-full md:bg-transparent p-2 absolute top-1/2 right-0 transform -translate-y-1/2 cursor-pointer z-10"
+                    className="bg-black rounded-full md:bg-transparent p-2 absolute top-1/2 right-[10px] transform -translate-y-1/2 cursor-pointer z-10"
                     size={32}
                     color="white"
                 />
