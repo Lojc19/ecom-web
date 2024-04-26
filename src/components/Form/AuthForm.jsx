@@ -1,6 +1,6 @@
 import React from "react";
 
-const AuthForm = () => {
+const AuthForm = ({ handleSubmit, userName, setUserName, password, setPassword }) => {
   return (
     <>
       <div className="flex flex-row p-4">
@@ -12,14 +12,18 @@ const AuthForm = () => {
                     type="text"
                     className="form-control  w-full mr-16 p-4 border-2 border-gray-400"
                     placeholder=""
+                    value={userName}
+                    onChange={(e) => setUserName(e.target.value)}
                 />
             </div>
             <h3 className="text-xl font-semibold my-2 mt-8">Mật khẩu *</h3>
             <div className="flex flex-row w-full">
                 <input
-                    type="text"
+                    type="password"
                     className="form-control  w-full mr-16 p-4 border-2 border-gray-400"
                     placeholder=""
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                 />
             </div>
             <div className="flex flex-row w-full mt-4">
@@ -32,7 +36,11 @@ const AuthForm = () => {
             </div>
             
             <div className="flex flex-row w-full mt-2">
-                <button className="bg-black border border-black text-[20px] px-6 py-2 uppercase text-white cursor-pointer mt-2" >
+                <button className="bg-black border border-black text-[20px] px-6 py-2 uppercase text-white cursor-pointer mt-2"
+                    onClick={()=>{
+                        handleSubmit();
+                    }}
+                >
                     ĐĂNG NHẬP
                 </button>
             </div>
