@@ -4,7 +4,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import Header from "../Header/Header"
 import Footer from "../Footer/Footer"
 import 'react-toastify/dist/ReactToastify.css';
-
+import Navbar from "../Header/Navbar/Navbar"
 const Layout = ({ children, title, description}) => {
     return (
         <div>
