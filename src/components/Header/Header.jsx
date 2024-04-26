@@ -8,6 +8,7 @@ import { useAuth } from "../../context/auth"
 import { useNavigate, useLocation } from "react-router-dom";
 import {toast} from "react-toastify";
 import axios from "axios";
+import Navbar from "../Header/Navbar/Navbar"
 
 
 
@@ -80,7 +81,7 @@ const Header = () => {
                     ) : (
                         <>
                             <button href="" className=" text-[#666666D9] hover:text-black" onClick={()=>{handleLogout()}}>Logout</button>
-                            <button href="" className=" text-[#666666D9] hover:text-black" onClick={()=>{}}><FaRegUser className="inline-block ml-1" size={20}/></button>
+                            <button href="" className=" text-[#666666D9] hover:text-black" onClick={()=>{navigate(`/profile`)}}><FaRegUser className="inline-block ml-1" size={20}/></button>
                         </>
                     )}
                     

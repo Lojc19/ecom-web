@@ -12,7 +12,7 @@ const UserProfile = () => {
     const navigate = useNavigate();
     const [auth,setAuth] = useAuth();
     return (
-        <Layout title={"User Profile"}>
+        <Layout title={"User DashBoard"}>
             <div className="flex flex-row h-auto m-8 mx-24">
                 <div class="basis-1/6 h-100% bg-slate-100">
                     <UserMenu />
