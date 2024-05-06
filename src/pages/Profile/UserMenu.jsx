@@ -11,19 +11,19 @@ const UserMenu = () => {
             </div>
             <div className="flex flex-col">
                         <NavLink
-                            to="/profile"
+                            to={`/dashboard/profile`}
                             className="p-4 text-lg"
                         >
                             Thông tin của tôi
                         </NavLink>
                         <NavLink
-                            to="/orders"
+                            to={`/dashboard/orders`}
                             className="p-4 text-lg"
                         >
                             Đơn hàng
                         </NavLink>
                         <NavLink
-                            to="/wishlist"
+                            to={`/dashboard/wishlist`}
                             className="p-4 text-lg"
                         >
                             Wishlist

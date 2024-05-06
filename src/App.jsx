@@ -8,14 +8,17 @@ import ReviewProduct from './components/Review/ReviewProduct';
 import UserProfile from './pages/Profile/UserDashBoard';
 import UserOrders from './pages/Profile/UserOrders';
 import Wishlist from './pages/Wishlist/Wishlist';
+import PrivateRoute from './components/Auth/Private';
 function App() {
   return (
     <>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/profile" element={<UserProfile />} />
-        <Route path="/orders" element={<UserOrders />} />
-        <Route path="/wishlist" element={<Wishlist />} />
+        <Route path="/dashboard" element={<PrivateRoute />}>
+          <Route path="profile" element={<UserProfile />} />
+          <Route path="orders" element={<UserOrders />} />
+          <Route path="wishlist" element={<Wishlist />} />
+        </Route>
         <Route path="/product/:id" element={<ProductDetail />} />
         {/* <Route path="/search" element={<Search />} />
         <Route path="/cart" element={<CartPage />} />

@@ -16,42 +16,42 @@ const UserWishList = () => {
                 <div>
                     <button className="w-28 h-32 m-4">
                         <img
-                            src="./src/assets/imgs/product-test2.jpeg"
+                            src="../src/assets/imgs/product-test2.jpeg"
                             alt="Product"
                             className="bg-cover h-1/2 w-full group-hover:hidden"
                         />
                     </button>
                     <button className="w-28 h-32 m-4">
                         <img
-                            src="./src/assets/imgs/product-test2.jpeg"
+                            src="../src/assets/imgs/product-test2.jpeg"
                             alt="Product"
                             className="bg-cover h-1/2 w-full group-hover:hidden"
                         />
                     </button>
                     <button className="w-28 h-32 m-4">
                         <img
-                            src="./src/assets/imgs/product-test2.jpeg"
+                            src="../src/assets/imgs/product-test2.jpeg"
                             alt="Product"
                             className="bg-cover h-1/2 w-full group-hover:hidden"
                         />
                     </button>
                     <button className="w-28 h-32 m-4">
                         <img
-                            src="./src/assets/imgs/product-test2.jpeg"
+                            src="../src/assets/imgs/product-test2.jpeg"
                             alt="Product"
                             className="bg-cover h-1/2 w-full group-hover:hidden"
                         />
                     </button>
                     <button className="w-28 h-32 m-4">
                         <img
-                            src="./src/assets/imgs/product-test2.jpeg"
+                            src="../src/assets/imgs/product-test2.jpeg"
                             alt="Product"
                             className="bg-cover h-1/2 w-full group-hover:hidden"
                         />
                     </button>
                     <button className="w-28 h-32 m-4">
                         <img
-                            src="./src/assets/imgs/product-test2.jpeg"
+                            src="../src/assets/imgs/product-test2.jpeg"
                             alt="Product"
                             className="bg-cover h-1/2 w-full group-hover:hidden"
                         />

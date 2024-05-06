@@ -91,7 +91,7 @@ const UserOrders = () => {
                             <div className="w-full h-44 bg-slate-200 m-4 rounded-lg flex flex-row">
                                 <button className="basic 1/6 flex items-center">
                                     <img
-                                    src="./src/assets/imgs/product-test2.jpeg"
+                                    src="../src/assets/imgs/product-test2.jpeg"
                                     //src={imageUrl}
                                     alt="Product"
                                     className="bg-cover h-full w-full group-hover:hidden p-4"
@@ -106,7 +106,7 @@ const UserOrders = () => {
                             <div className="w-full h-44 bg-slate-200 m-4 rounded-lg flex flex-row">
                                 <button className="basic 1/6 flex items-center">
                                     <img
-                                    src="./src/assets/imgs/product-test2.jpeg"
+                                    src="../src/assets/imgs/product-test2.jpeg"
                                     //src={imageUrl}
                                     alt="Product"
                                     className="bg-cover h-full w-full group-hover:hidden p-4"
@@ -121,7 +121,7 @@ const UserOrders = () => {
                             <div className="w-full h-44 bg-slate-200 m-4 rounded-lg flex flex-row">
                                 <button className="basic 1/6 flex items-center">
                                     <img
-                                    src="./src/assets/imgs/product-test2.jpeg"
+                                    src="../src/assets/imgs/product-test2.jpeg"
                                     //src={imageUrl}
                                     alt="Product"
                                     className="bg-cover h-full w-full group-hover:hidden p-4"
@@ -136,7 +136,7 @@ const UserOrders = () => {
                             <div className="w-full h-44 bg-slate-200 m-4 rounded-lg flex flex-row">
                                 <button className="basic 1/6 flex items-center">
                                     <img
-                                    src="./src/assets/imgs/product-test2.jpeg"
+                                    src="../src/assets/imgs/product-test2.jpeg"
                                     //src={imageUrl}
                                     alt="Product"
                                     className="bg-cover h-full w-full group-hover:hidden p-4"
