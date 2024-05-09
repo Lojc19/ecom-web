@@ -28,7 +28,6 @@ const Home = () => {
      };
     return (
         <Layout title={"Home"}>
-                <section>
         <div className="w-full md:flex justify-between md:h-[600px] p-3 mx-auto">
             <div className="w-full md:h-[600px] md:w-1/2 p-3 relative">
                 <a href="">
@@ -204,8 +203,6 @@ const Home = () => {
                 ))}
             </div>
         </div>
-
-    </section>
         </Layout>
     );
 };

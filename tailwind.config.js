@@ -9,6 +9,15 @@ export default {
           fontFamily: {
             Montserrat: ["Montserrat", "sans-serif"],
             Roboto: ["Roboto", "sans-serif"]
+          },
+          keyframes: {
+            navbar: {
+              '0%': { transform: ' translateY(-100%)' },
+              '100%': { transform: 'translateY(0)' },
+            }
+          },
+          animation: {
+            navbar: 'navbar 0.4s ease-in-out',
           }
         },
     },

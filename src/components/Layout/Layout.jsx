@@ -7,17 +7,18 @@ import 'react-toastify/dist/ReactToastify.css';
 import Navbar from "../Header/Navbar/Navbar"
 const Layout = ({ children, title, description}) => {
     return (
-        <div>
-        <Helmet>
-        <title>{title}</title>
-        </Helmet>
-        <Header />
-        <main style={{ minHeight: "70vh" }}>
+        <>
+            <Helmet>
+                <title>{title}</title>
+            </Helmet>
+            <Header />
+            <Navbar/>
+        <main>
             <ToastContainer />
         {children}
         </main>
         <Footer />
-    </div>      
+        </>   
     );
 };
 

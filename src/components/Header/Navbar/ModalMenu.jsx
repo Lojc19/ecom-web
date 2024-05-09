@@ -25,10 +25,10 @@ const ModalMenu = (props) => {
 
     };
     return (
-        <div className="fixed left-0 top-0 bg-black bg-opacity-50 w-screen h-screen p-5" onClick={props.closeMenu}>
+        <div className="fixed left-0 top-0 bg-black bg-opacity-50 w-screen h-screen p-5 z-10" onClick={props.closeMenu}>
             <div className="md:w-[400px] w-[95vw] bg-white absolute h-screen top-0 left-0 py-8 overflow-auto z-10" onClick={clickOnMenu}>
                 <IoIosClose className="absolute cursor-pointer top-[5px] right-[5px]" size={40} onClick={props.closeMenu}/>
-                <ul className="text-base font-normal font-Roboto">
+                <ul className="text-base font-normal font-Roboto mt-5">
                     <li className="px-5 py-1 cursor-pointer h-auto">
                         <div
                             className="flex justify-between items-center"
