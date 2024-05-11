@@ -14,6 +14,8 @@ import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import ProductItem from "../../components/Product/ProductItem";
 import Layout from "../../components/Layout/Layout";
+import { useAuth } from "../../context/auth"
+import {toast} from "react-toastify";
 
 const ProductDetail = () => {
     const data = [
@@ -51,6 +53,9 @@ const ProductDetail = () => {
     const [materials, setmaterials] = useState({});
     const [images, setImages] = useState([]);
     const [products, setProducts] = useState([]);
+    const [count, setCount] = useState(0);
+    const [auth,setAuth] = useAuth()
+
 
     useEffect(() => {
         if (params?.id){
@@ -70,6 +75,32 @@ const ProductDetail = () => {
         try {
             const { data } = await axios.get('https://api-nhaxinh.onrender.com/api/product/getAllProduct');
             setProducts(data.data.product);
+        } catch (error) {
+            console.log(error);
+            toast.error("Someething Went Wrong");
+        }
+     };
+
+    const addToCart = async () => {
+        try {
+            // const { data } = await axios.post('https://api-nhaxinh.onrender.com/api/cart/addtoCart', {
+            //     productId: params?.id
+            // });
+            if(!auth?.user){
+                toast.error("Please Login to Add To Cart");
+            }
+            else{
+                if(count <= 0){
+                    toast.error("Please enter a valid quanity!");
+                }else{
+                    const { data } = await axios.post('https://api-nhaxinh.onrender.com/api/cart/addtoCart', {
+                        productId: params?.id , quantity: count
+                    });
+                    if(data?.status == "success"){
+                        toast.success("Add to Cart Successfully!");
+                    }
+                }
+            }
         } catch (error) {
             console.log(error);
             toast.error("Someething Went Wrong");
@@ -260,8 +291,10 @@ const ProductDetail = () => {
                             <a className="cursor-pointer"> {room.nameRoom}</a>
                         </div>
                         <div className="mt-6 w-full md:flex md:h-[45px]">
-                            <PlusMinusInput />
-                            <button className="border w-auto h-full border-black text-[13px] px-4 py-2 uppercase bg-black text-white cursor-pointer md:mx-4 mr-3">
+                            <PlusMinusInput count={count} setCount={setCount} />
+                            <button className="border w-auto h-full border-black text-[13px] px-4 py-2 uppercase bg-black text-white cursor-pointer md:mx-4 mr-3" 
+                                onClick={addToCart}
+                            >
                                 Mua ngay
                             </button>
                             <BtnAddtocart />

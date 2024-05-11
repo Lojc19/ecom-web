@@ -73,7 +73,7 @@ const Header = () => {
                 <div className="hidden md:flex justify-between gap-5">
                     <a href=""><IoLocationOutline size={22}/></a>
                     <a href=""><IoHeartOutline size={22}/></a>
-                    <a href=""><IoCartOutline size={22}/></a>
+                    <a href="/cart"><IoCartOutline size={22}/></a>
                     {!auth?.user ? (
                         <>
                         <button href="" className=" text-[#666666D9] hover:text-black" onClick={()=>{setVisible(true)}}>Đăng nhập <FaRegUser className="inline-block ml-1" size={20}/></button>

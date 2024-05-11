@@ -1,8 +1,8 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useState } from "react";
 
-const PlusMinusInput = () => {
-    let [count, setCount] = useState(0);
+const PlusMinusInput = ({count, setCount}) => {
+    //let [count, setCount] = useState(0);
 
     function incrementCount() {
       count = count + 1;
