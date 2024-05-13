@@ -78,8 +78,8 @@ const Cart = () => {
             <div className="mt-12 p-4 w-full md:max-w-[1320px] mx-auto">
                 <div className="flex items-center">
                     <h1 className="font-Montserrat text-2xl font-semibold">Giỏ hàng</h1>
-                    <div class="w-6 h-6 bg-[#BC5B64] flex items-center justify-center rounded-full ml-2">
-                        <p class="text-white text-sm">{total}</p>
+                    <div className="w-6 h-6 bg-[#BC5B64] flex items-center justify-center rounded-full ml-2">
+                        <p className="text-white text-sm">{total}</p>
                     </div>                
                 </div>
 

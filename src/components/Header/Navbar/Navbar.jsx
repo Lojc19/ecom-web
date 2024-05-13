@@ -3,41 +3,41 @@ import SearchInput from "./SearchInput";
 import { FaChevronDown } from "react-icons/fa";
 import { useState, useEffect } from "react";
 import ModalMenu from "./ModalMenu";
-import { IoCartOutline} from "react-icons/io5";
+import { IoCartOutline } from "react-icons/io5";
 import { FaRegUser } from "react-icons/fa";
 
 const Navbar = () => {
     const [activeMenu, setActiveMenu] = useState(false);
     const [scrolled, setScrolled] = useState(false);
-
+    const [scrolled2, setScrolled2] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => {
-          if (window.scrollY > 150) {
-            setScrolled(true);
-          } else {
-            setScrolled(false);
-          }
+            if (window.scrollY >= 40) {
+                setScrolled(true);
+            } else {
+                setScrolled(false);
+            }
         };
-    
-        window.addEventListener('scroll', handleScroll);
-    
+
+        window.addEventListener("scroll", handleScroll);
+
         // Cleanup
         return () => {
-          window.removeEventListener('scroll', handleScroll);
+            window.removeEventListener("scroll", handleScroll);
         };
-      }, []);
+    }, []);
 
     const openMenu = () => {
         setActiveMenu(true);
     };
     const closeMenu = () => {
-      if (window.innerWidth > 768 && window.innerHeight > 768) {
+        if (window.innerWidth > 768 && window.innerHeight > 768) {
+            setActiveMenu(false);
+            // Code để xử lý trên máy tính PC ở đây
+        }
         setActiveMenu(false);
-        // Code để xử lý trên máy tính PC ở đây
-      }
-      setActiveMenu(false);
-  };
+    };
     const dataRoom = [
         "Phòng khách",
         "Phòng ăn",
@@ -98,7 +98,13 @@ const Navbar = () => {
 
     return (
         <>
-        <div className={`w-screen h-auto px-3 bg-white bg-opacity-90 items-center border-b-[1px] z-10 ${scrolled ? 'fixed top-0 left-0 animate-navbar' : ''}`}>
+            <div
+                className={`w-screen fixed h-auto px-3 bg-white items-center border-b-[1px] z-10 ${
+                    scrolled
+                        ? "fixed top-0 left-0 shadow-lg animate-navbar"
+                        : ""
+                }`}
+            >
                 <div className="container px-4 md:max-w-[1320px] h-[90px] mx-auto flex justify-between items-center relative">
                     <div className="flex items-center">
                         <IoMenu
@@ -183,18 +189,25 @@ const Navbar = () => {
                     </div>
 
                     <div className="md:hidden flex justify-between items-center gap-3">
-                    <a href=""><IoCartOutline size={22}/></a>
-                    <a href=""><FaRegUser className="inline-block ml-1" size={20}/></a>
+                        <a href="">
+                            <IoCartOutline size={22} />
+                        </a>
+                        <a href="">
+                            <FaRegUser
+                                className="inline-block ml-1"
+                                size={20}
+                            />
+                        </a>
                     </div>
 
                     <div className="w-[273px] h-auto hidden md:block">
                         <SearchInput />
                     </div>
                 </div>
-        </div>
+            </div>
 
             {/* menu */}
-            {activeMenu && <ModalMenu  closeMenu = {closeMenu} />}
+            {activeMenu && <ModalMenu closeMenu={closeMenu} />}
         </>
     );
 };
