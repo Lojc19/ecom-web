@@ -139,7 +139,13 @@ const Cart = () => {
 
                             <div className="flex justify-between text-sm font-Roboto mt-5">
                                 <button className="w-[48%] border border-black py-2 px-[15px] font-bold hover:text-white hover:bg-black" onClick={()=>{navigate(`/`)}}><LuMoveLeft className="inline-block" />TIẾP TỤC MUA HÀNG</button>
-                                <button className="w-[48%] border py-2 px-[15px] font-bold text-white bg-black">ĐẶT HÀNG</button>
+                                <button className="w-[48%] border py-2 px-[15px] font-bold text-white bg-black" onClick={()=>{
+                                    if(total == 0){
+                                        toast.error("Cart Is Empty!");
+                                    }else{
+                                        navigate(`/payment/checkout`)
+                                    }
+                                }} >ĐẶT HÀNG</button>
                             </div>
                         </div>
                     </div>

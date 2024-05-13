@@ -382,12 +382,12 @@ const UserProfile = () => {
                         <h2 className="text-left text-3xl ml-4 my-8 font-semibold">
                             Địa chỉ
                         </h2>
-                        <div class="flex flex-grow mx-4 w-full">
+                        <div class="flex flex-grow w-full">
                             <div className="w-full md:flex md:flex-wrap md:justify-start">
                                 {addresses?.map((p, index) => (
                                     <div>
                                         <button
-                                            className="px-4 py-2 border-2 mr-4 border-gray-300 text-lg"
+                                            className="px-4 py-2 border-2 mr-4 border-gray-300 text-lg cursor-pointer"
                                             onClick={() => {
                                                 setAddress(p);
                                             }}
@@ -420,7 +420,7 @@ const UserProfile = () => {
                     </div>
                     {address ? (
                         <>
-                            <div className="flex flex-col m-4">
+                            <div className="flex flex-col">
                                 <div class="flex flex-col mt-4 w-full">
                                     <label className="text-left" for="">
                                         Tên địa chỉ&nbsp;
