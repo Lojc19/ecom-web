@@ -13,7 +13,7 @@ const Navbar = () => {
 
     useEffect(() => {
         const handleScroll = () => {
-            if (window.scrollY >= 40) {
+            if (window.scrollY >= 145) {
                 setScrolled(true);
             } else {
                 setScrolled(false);
@@ -99,7 +99,7 @@ const Navbar = () => {
     return (
         <>
             <div
-                className={`w-screen fixed h-auto px-3 bg-white items-center border-b-[1px] z-10 ${
+                className={`w-screen h-auto px-3 bg-white items-center border-b-[1px] z-10 ${
                     scrolled
                         ? "fixed top-0 left-0 shadow-lg animate-navbar"
                         : ""
@@ -127,7 +127,7 @@ const Navbar = () => {
                                     SẢN PHẨM{" "}
                                     <FaChevronDown className="inline-block" />
                                 </a>
-                                <div className="container p-5 left-0 top-[92px] absolute md:max-w-[1320px] border border-[#ffffff4D] h-auto bg-white shadow-md hidden group-hover:block">
+                                <div className="container z-40 p-5 left-0 top-[92px] absolute md:max-w-[1320px] border border-[#ffffff4D] h-auto bg-white shadow-md hidden group-hover:block">
                                     <div className="w-full h-full flex justify-between ">
                                         <ul className="w-4/5 grid grid-cols-4 gap-4">
                                             {itemsCate?.map((p, index) => (
@@ -156,7 +156,7 @@ const Navbar = () => {
                                     PHÒNG{" "}
                                     <FaChevronDown className="inline-block" />
                                 </a>
-                                <div className="p-5 left-0 top-[80px] absolute w-[200px] border-[2px] border-solid border-[#ffffff4D] h-auto bg-white shadow-xl hidden group-hover:block">
+                                <div className="z-40 p-5 left-0 top-[80px] absolute w-[200px] border-[2px] border-solid border-[#ffffff4D] h-auto bg-white shadow-xl hidden group-hover:block">
                                     <ul className="w-full">
                                         {dataRoom?.map((p, index) => (
                                             // eslint-disable-next-line react/jsx-key

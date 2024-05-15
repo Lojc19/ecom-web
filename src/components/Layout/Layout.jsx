@@ -13,7 +13,7 @@ const Layout = ({ children, title, description}) => {
             </Helmet>
             <Header />
             <Navbar/>
-        <main className="pt-[90px]">
+        <main>
             <ToastContainer />
         {children}
         </main>
