@@ -13,6 +13,7 @@ const ProductItem = ({product, images}) => {
                 <a
                     href="#"
                     className="cursor-pointer text-[14px] font-Roboto md:w-9/10"
+                    onClick={() => navigate(`/product/${product.slug}`)}
                 >
                     <img
                         //src="./src/assets/imgs/product-test2.jpeg"
@@ -47,9 +48,9 @@ const ProductItem = ({product, images}) => {
                 </div>
 
                 <div className="mt-4 opacity-0 group-hover:opacity-100 flex justify-between h-[40px]">
-                    <BtnAddtocart />
+                    <BtnAddtocart  id={product?._id}/>
                     <button className="bg-black border border-black text-[13px] px-4 py-2 uppercase text-white cursor-pointer ml-3" 
-                        onClick={() => navigate(`/product/${product._id}`)}>
+                        onClick={() => navigate(`/product/${product.slug}`)}>
                         Xem thêm
                     </button>
                 </div>

@@ -5,11 +5,16 @@ import { useState, useEffect } from "react";
 import ModalMenu from "./ModalMenu";
 import { IoCartOutline } from "react-icons/io5";
 import { FaRegUser } from "react-icons/fa";
-
+import useCategory from "../../../hooks/useCategory";
+import useRoom from "../../../hooks/useRoom";
+import { useNavigate } from "react-router-dom";
 const Navbar = () => {
     const [activeMenu, setActiveMenu] = useState(false);
     const [scrolled, setScrolled] = useState(false);
     const [scrolled2, setScrolled2] = useState(false);
+    const categories = useCategory();
+    const rooms = useRoom();
+    const navigate = useNavigate();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -130,15 +135,17 @@ const Navbar = () => {
                                 <div className="container z-40 p-5 left-0 top-[92px] absolute md:max-w-[1320px] border border-[#ffffff4D] h-auto bg-white shadow-md hidden group-hover:block">
                                     <div className="w-full h-full flex justify-between ">
                                         <ul className="w-4/5 grid grid-cols-4 gap-4">
-                                            {itemsCate?.map((p, index) => (
+                                            {categories?.map((p, index) => (
                                                 // eslint-disable-next-line react/jsx-key
                                                 <li className="">
                                                     <a
-                                                        href=""
+                                                        href={`/category/${p._id}`}
                                                         className="hover:text-black text-[#777777] font-normal text-[18px]"
                                                         key={index}
+                                                        onClick={console.log(p, index)}
+                                                        
                                                     >
-                                                        {p}
+                                                        {p.nameCate}
                                                     </a>
                                                 </li>
                                             ))}
@@ -158,7 +165,7 @@ const Navbar = () => {
                                 </a>
                                 <div className="z-40 p-5 left-0 top-[80px] absolute w-[200px] border-[2px] border-solid border-[#ffffff4D] h-auto bg-white shadow-xl hidden group-hover:block">
                                     <ul className="w-full">
-                                        {dataRoom?.map((p, index) => (
+                                        {rooms?.map((p, index) => (
                                             // eslint-disable-next-line react/jsx-key
                                             <li className="border-b mb-4">
                                                 <a
@@ -166,7 +173,7 @@ const Navbar = () => {
                                                     className="hover:text-black text-[#777777] font-normal text-[18px]"
                                                     key={index}
                                                 >
-                                                    {p}
+                                                    {p.nameRoom}
                                                 </a>
                                             </li>
                                         ))}

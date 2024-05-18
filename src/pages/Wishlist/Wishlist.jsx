@@ -18,7 +18,7 @@ const Wishlist = () => {
     //getall products
     const getAllProducts = async () => {
         try {
-            const { data } = await axios.get('https://api-nhaxinh.onrender.com/api/product/getAllProduct');
+            const { data } = await axios.get('https://api-nhaxinh.onrender.com/api/product');
             setProducts(data.data.product);
         } catch (error) {
             console.log(error);

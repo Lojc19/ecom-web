@@ -11,6 +11,7 @@ import Wishlist from './pages/Wishlist/Wishlist';
 import PrivateRoute from './components/Auth/Private';
 import Cart from './pages/Cart/Cart';
 import Checkout from './pages/Checkout/Checkout';
+import ProductCategory from './pages/Product/Category/ProductCategory';
 function App() {
   return (
     <>
@@ -25,7 +26,8 @@ function App() {
           <Route path="checkout" element={<Checkout />} />
         </Route>
         <Route path="/cart" element={<Cart />} />
-        <Route path="/product/:id" element={<ProductDetail />} />
+        <Route path="/product/:slug" element={<ProductDetail />} />
+        <Route path="/category/:id" element={<ProductCategory />} />
         {/* <Route path="/search" element={<Search />} />
         <Route path="/cart" element={<CartPage />} />
         <Route path="/categories" element={<Categories />} />

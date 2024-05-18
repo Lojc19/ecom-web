@@ -58,11 +58,11 @@ const ProductDetail = () => {
 
 
     useEffect(() => {
-        if (params?.id){
+        if (params?.slug){
             getProduct();
             window.scrollTo({ top: 0, behavior: 'smooth' });   
         }
-    }, [params?.id]);
+    }, [params?.slug]);
 
     useEffect(() => {
         setImgActive(slide); // cập nhật lại ảnh active
@@ -73,7 +73,7 @@ const ProductDetail = () => {
     }, []);
     const getAllProducts = async () => {
         try {
-            const { data } = await axios.get('https://api-nhaxinh.onrender.com/api/product/getAllProduct');
+            const { data } = await axios.get('https://api-nhaxinh.onrender.com/api/product');
             setProducts(data.data.product);
         } catch (error) {
             console.log(error);
@@ -111,7 +111,7 @@ const ProductDetail = () => {
         console.log("closeModal");
         try {
             const { data } = await axios.get(
-                `https://api-nhaxinh.onrender.com/api/product/product-detail/${params.id}`
+                `https://api-nhaxinh.onrender.com/api/product/${params.slug}`
             );
             setProduct(data?.data);
             setImages(data?.data?.images);

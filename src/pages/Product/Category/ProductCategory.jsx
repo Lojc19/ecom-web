@@ -1,9 +1,40 @@
-import { React, useState } from "react";
+import { React, useState, useEffect } from "react";
 import { FaChevronDown } from "react-icons/fa";
+import axios from "axios";
+import { useAuth } from "../../../context/auth";
+import { useNavigate, useParams } from "react-router-dom";
+import {toast} from "react-toastify";
+import Layout from "../../../components/Layout/Layout";
+import ProductItem from "../../../components/Product/ProductItem";
 
 const ProductCategory = () => {
     const [dropdowns, setDropdowns] = useState(false);
     const [textFilter, setTextFilter] = useState("Theo mức độ phổ biến");
+    const navigate = useNavigate();
+    const [auth,setAuth] = useAuth();
+    const [products, setProducts] = useState([]);
+    const params = useParams();
+
+    useEffect(() => {
+        if (params?.id){
+            getProductCategories(params?.id);
+            window.scrollTo({ top: 0, behavior: 'smooth' });   
+        }
+    }, [params?.id]);
+
+    // useEffect(() => {
+        
+    // }, []);
+
+    const getProductCategories = async (id) => {
+        try {
+            const { data } = await axios.get(`https://api-nhaxinh.onrender.com/api/product/category/${id}`);
+            setProducts(data.data);
+        } catch (error) {
+            console.log(error);
+            toast.error("Someething Went Wrong");
+        }
+     };
 
     const TextFilter = (filter) => {
         setTextFilter(filter);
@@ -17,7 +48,8 @@ const ProductCategory = () => {
         }
     };
     return (
-        <>
+        <Layout title={"Shop"}>
+            <>
             <div className="w-full h-[486px] bg-[url(https://nhaxinh.com/wp-content/uploads/2022/04/banner-trang-chu-san-pham-dep-oki.jpg)] bg-cover relative">
                 <div className="md:w-[1320px] md:mx-auto py-5 px-[15px] text-center absolute left-0 right-0 bottom-[32px]">
                     <h1 className="font-Montserrat text-white text-[28px] leading-7 text-center mb-3 md:text-left">
@@ -109,6 +141,7 @@ const ProductCategory = () => {
                 ))}
             </div>
         </>
+        </Layout>
     );
 };
 
