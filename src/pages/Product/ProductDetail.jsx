@@ -94,7 +94,7 @@ const ProductDetail = () => {
                     toast.error("Please enter a valid quanity!");
                 }else{
                     const { data } = await axios.post('https://api-nhaxinh.onrender.com/api/cart/addtoCart', {
-                        productId: params?.id , quantity: count
+                        productId: product._id , quantity: count
                     });
                     if(data?.status == "success"){
                         toast.success("Add to Cart Successfully!");

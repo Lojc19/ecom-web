@@ -12,16 +12,12 @@ const BtnAddtocart = ({id}) => {
                 toast.error("Please Login to Add To Cart");
             }
             else{
-                if(count <= 0){
-                    toast.error("Please enter a valid quanity!");
-                }else{
-                    const { data } = await axios.post('https://api-nhaxinh.onrender.com/api/cart/addtoCart', {
-                        productId: id , quantity: 1
-                    });
-                    if(data?.status == "success"){
-                        toast.success("Add to Cart Successfully!");
-                    }
-                }
+              const { data } = await axios.post('https://api-nhaxinh.onrender.com/api/cart/addtoCart', {
+                productId: id , quantity: 1
+              });
+              if(data?.status == "success"){
+                  toast.success("Add to Cart Successfully!");
+              }
             }
         } catch (error) {
             console.log(error);
