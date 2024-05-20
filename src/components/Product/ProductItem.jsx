@@ -41,12 +41,17 @@ const ProductItem = ({product, images}) => {
                 </div>
                 <div className="flex justify-end">
                     <div className="">
-                        <span className="block text-red-600 right-0">
-                        {formatCurrency(product.price)}
+                        {product.sale > 0 ? (<>
+                            <span className="block text-red-600 right-0">
+                        {formatCurrency(product.priceSale)}
                         </span>
                         <span className="line-through right-0 ">
-                            {formatCurrency(product.priceSale)}
+                            {formatCurrency(product.price)}
+                        </span></>) : (<>
+                            <span className="block right-0">
+                        {formatCurrency(product.price)}
                         </span>
+                        </>)}
                     </div>
                 </div>
 
