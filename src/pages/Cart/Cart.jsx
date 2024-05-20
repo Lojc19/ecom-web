@@ -127,7 +127,7 @@ const Cart = () => {
 
                             <div className="flex justify-between font-Roboto text-sm mt-5">
                                 <p>Tổng cộng</p>
-                                <p className="font-bold">17,275,000₫</p>
+                                <p className="font-bold">{formatCurrency(price)}</p>
                             </div>
 
                             <div className="text-[14px] font-Roboto">

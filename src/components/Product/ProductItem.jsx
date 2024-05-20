@@ -7,6 +7,9 @@ const ProductItem = ({product, images}) => {
     // Lấy URL của hình ảnh đầu tiên từ mảng images
     const imageUrl = images.length > 0 ? images[0].url : './src/assets/imgs/product-test2.jpeg';
     const imageUrl_second = images.length > 1 ? images[1].url : "./src/assets/imgs/product-test2.jpeg";
+    const formatCurrency = (total) => {
+        return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(total);
+    };
     return (
         <div className="group w-full h-auto md:w-1/4 md:h-[400px] hover:border p-4">
             <div className="h-full w-full relative">
@@ -39,10 +42,10 @@ const ProductItem = ({product, images}) => {
                 <div className="flex justify-end">
                     <div className="">
                         <span className="block text-red-600 right-0">
-                            13,515,000đ
+                        {formatCurrency(product.price)}
                         </span>
                         <span className="line-through right-0 ">
-                            15,515,000đ
+                            {formatCurrency(product.priceSale)}
                         </span>
                     </div>
                 </div>
@@ -54,10 +57,17 @@ const ProductItem = ({product, images}) => {
                         Xem thêm
                     </button>
                 </div>
-
-                <span className="absolute inline-block top-0 right-0 bg-red-500 text-white text-sm font-semibold px-2 py-1 rounded">
-                    15%
-                </span>
+                {product.sale > 0 ? (
+                        <>
+                        <span className="absolute inline-block top-0 right-0 bg-red-500 text-white text-sm font-semibold px-2 py-1 rounded">
+                            {product.sale}%
+                        </span>
+                        </>
+                    ) : (
+                        <>
+                            
+                        </>
+                    )}
             </div>
         </div>
     );
