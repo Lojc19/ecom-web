@@ -96,7 +96,7 @@ const ProductCategory = () => {
                         <FaChevronDown size={12} />
                     </div>
                     {dropdowns && (
-                        <div className="absolute w-full top-[70px] border border-[#929292] rounded p-[15px]">
+                        <div className="absolute w-full top-[70px] border border-[#929292] bg-white rounded p-[15px] z-10">
                             <ul className="flex flex-col gap-2 text-[14px] font-Roboto">
                                 <li
                                     onClick={() =>
@@ -133,7 +133,7 @@ const ProductCategory = () => {
                 </button>
             </form>
 
-            <div className="w-full md:w-[1320px] mx-auto md:flex md:flex-wrap md:justify-between">
+            <div className="w-full md:w-[1320px] mx-auto md:flex md:flex-wrap md:justify-between mt-10">
                 {products?.map((p, index) => (
                     <>
                         <ProductItem product={p} images={p.images}/>
