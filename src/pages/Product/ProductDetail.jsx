@@ -18,6 +18,7 @@ import { useAuth } from "../../context/auth"
 import {toast} from "react-toastify";
 import useWishlist from "../../hooks/useWhislist"
 import { IoMdHeart } from "react-icons/io";
+import { Rating } from "@material-tailwind/react";
 
 
 const ProductDetail = () => {
@@ -60,6 +61,9 @@ const ProductDetail = () => {
     const [auth,setAuth] = useAuth()
     const [reviews, setReviews] = useState([]);
     const { whisProducts, isInWishlist, toogleWishlist } = useWishlist();
+    const [rated, setRated] = useState(4);
+    const [commment, setComment] = useState("");
+
 
     const formatCurrency = (total) => {
         return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(total);
@@ -92,6 +96,20 @@ const ProductDetail = () => {
             setReviews(data.data);
         } catch (error) {
             console.log(error);
+            toast.error("Someething Went Wrong");
+        }
+     };
+
+     const createReview = async () => {
+        try {
+            const { data } = await axios.post('https://api-nhaxinh.onrender.com/api/review', {
+                star: rated, productID: product._id, comment: commment
+            });
+            if(data.status == "success"){
+                toast.success(data.message);
+            }
+            //setProducts(data.data.product);
+        } catch (error) {
             toast.error("Someething Went Wrong");
         }
      };
@@ -506,6 +524,32 @@ const ProductDetail = () => {
                                 toggleState === 4 ? "block" : "hidden"
                             }`}
                         >   
+                            <Rating value={4} onChange={(value) => setRated(value)}/>;
+                            {!auth?.user ? (
+                                <>
+                                    
+                                </>
+                                ) : (
+                                <>
+                                    <input
+                                className="form-control w-full mr-16 mt-4  p-4 border-2 border-gray-300 text-lg"
+                                placeholder="Type your review here"
+                                value={commment}
+                                onChange={(e) =>
+                                    setComment(e.target.value)
+                                }
+                            ></input>
+
+                            <div className="w-full flex flex-grow justify-end h-12 mt-4 mr-4 mb-4">
+                                <button className="border w-auto h-full border-black text-[13px] px-4 py-2 uppercase bg-black text-white cursor-pointer md:mx-4 mr-3" 
+                                    onClick={createReview}
+                                >
+                                    Đánh giá
+                                </button>
+                            </div>
+                                </>
+                            )}
+                            
                             {reviews?.map((p, index) => (
                                 <>
                                     <ReviewProduct review={p}/>
