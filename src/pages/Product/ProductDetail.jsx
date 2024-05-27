@@ -58,6 +58,7 @@ const ProductDetail = () => {
     const [products, setProducts] = useState([]);
     const [count, setCount] = useState(0);
     const [auth,setAuth] = useAuth()
+    const [reviews, setReviews] = useState([]);
     const { whisProducts, isInWishlist, toogleWishlist } = useWishlist();
 
     const formatCurrency = (total) => {
@@ -78,6 +79,24 @@ const ProductDetail = () => {
     useEffect(() => {
         getAllProducts();
     }, []);
+
+    useEffect(() => {
+        if(product?._id)
+            getProductReview();
+    }, [product?._id]);
+
+    const getProductReview = async () => {
+        console.log(product._id);
+        try {
+            const { data } = await axios.get(`https://api-nhaxinh.onrender.com/api/review/byProduct/${product._id}`);
+            setReviews(data.data);
+        } catch (error) {
+            console.log(error);
+            toast.error("Someething Went Wrong");
+        }
+     };
+
+
     const getAllProducts = async () => {
         try {
             const { data } = await axios.get('https://api-nhaxinh.onrender.com/api/product');
@@ -131,6 +150,7 @@ const ProductDetail = () => {
             if(specs.length > 1) {
                 setmaterials(data?.data?.specs[1])
             }
+            //await getProductReview();
 
         } catch (error) {
             console.log(error);
@@ -485,8 +505,12 @@ const ProductDetail = () => {
                             className={`py-4 text-[14px] font font-Roboto md:py-8 ${
                                 toggleState === 4 ? "block" : "hidden"
                             }`}
-                        >
-                            <ReviewProduct/>
+                        >   
+                            {reviews?.map((p, index) => (
+                                <>
+                                    <ReviewProduct review={p}/>
+                                </>
+                            ))}
                         </div>
                     </div>
                 </div>
