@@ -16,6 +16,9 @@ import ProductItem from "../../components/Product/ProductItem";
 import Layout from "../../components/Layout/Layout";
 import { useAuth } from "../../context/auth"
 import {toast} from "react-toastify";
+import useWishlist from "../../hooks/useWhislist"
+import { IoMdHeart } from "react-icons/io";
+
 
 const ProductDetail = () => {
     const data = [
@@ -55,7 +58,11 @@ const ProductDetail = () => {
     const [products, setProducts] = useState([]);
     const [count, setCount] = useState(0);
     const [auth,setAuth] = useAuth()
+    const { whisProducts, isInWishlist, toogleWishlist } = useWishlist();
 
+    const formatCurrency = (total) => {
+        return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(total);
+    };
 
     useEffect(() => {
         if (params?.slug){
@@ -252,17 +259,23 @@ const ProductDetail = () => {
                     </h1>
                     <div className="border-2 w-[50px] mt-3"></div>
                     <div className="flex mt-8">
-                        <CiHeart
-                            className="w-1/10 cursor-pointer mr-3"
-                            size={24}
-                        />
+                        <button  onClick={(e)=>{
+                            e.preventDefault();
+                            toogleWishlist(product._id)
+                        }}>
+                            {isInWishlist(product._id) ? (
+                                <IoMdHeart className="w-1/10 cursor-pointer mr-2" size={24}/>
+                            ) : (
+                                <CiHeart className="w-1/10 cursor-pointer mr-2" size={24}/>
+                            )}
+                        </button>
                         <span className="block text-red-600 right-0 mr-3">
                             {/* 13,515,000đ */}
-                            {product.priceSale}
+                            {formatCurrency(product.priceSale)}
                         </span>
-                        <span className="line-through right-0">
+                        <span className="line-through right-0"> 
                             {/* 15,515,000đ */}
-                            {product.price}
+                            {formatCurrency(product.price)}
                         </span>
                     </div>
                     <div className="mt-8">

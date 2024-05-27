@@ -72,7 +72,7 @@ const Header = () => {
                 </div>
                 <div className="hidden md:flex justify-between gap-5">
                     <a href=""><IoLocationOutline size={22}/></a>
-                    <a href=""><IoHeartOutline size={22}/></a>
+                    <a href="/dashboard/wishlist"><IoHeartOutline size={22}/></a>
                     <a href="/cart"><IoCartOutline size={22}/></a>
                     {!auth?.user ? (
                         <>

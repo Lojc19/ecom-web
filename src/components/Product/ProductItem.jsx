@@ -1,15 +1,19 @@
 import BtnAddtocart from "../Button/BtnAddtocart";
 import { CiHeart } from "react-icons/ci";
 import { useNavigate } from "react-router-dom";
+import { IoMdHeart } from "react-icons/io";
+import useWishlist from "../../hooks/useWhislist"
+
 
 const ProductItem = ({product, images}) => {
     const navigate = useNavigate();
-    // Lấy URL của hình ảnh đầu tiên từ mảng images
     const imageUrl = images.length > 0 ? images[0].url : './src/assets/imgs/product-test2.jpeg';
     const imageUrl_second = images.length > 1 ? images[1].url : "./src/assets/imgs/product-test2.jpeg";
     const formatCurrency = (total) => {
         return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(total);
     };
+    const { whisProducts, isInWishlist, toogleWishlist } = useWishlist();
+
     return (
         <div className="group w-full h-auto md:w-1/4 md:h-[400px] hover:border p-4">
             <div className="h-full w-full relative">
@@ -37,7 +41,16 @@ const ProductItem = ({product, images}) => {
                     >
                         {product.name}
                     </a>
-                    <CiHeart className="w-1/10 cursor-pointer" size={24} />
+                    <button  onClick={(e)=>{
+                        e.preventDefault();
+                        toogleWishlist(product._id)
+                    }}>
+                        {isInWishlist(product._id) ? (
+                            <IoMdHeart className="w-1/10 cursor-pointer" size={24}/>
+                        ) : (
+                            <CiHeart className="w-1/10 cursor-pointer" size={24}/>
+                        )}
+                    </button>
                 </div>
                 <div className="flex justify-end">
                     <div className="">

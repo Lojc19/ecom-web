@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
+import useWishlist from "../../hooks/useWhislist"
 
 const UserWishList = () => {
+    const { whisProducts, isInWishlist, toogleWishlist } = useWishlist();
     
     return (
         <>
@@ -9,7 +11,7 @@ const UserWishList = () => {
             <div className="flex flex-grow">
                 <h2 className="text-left ml-4 text-2xl font-semibold p-4">Danh sách yêu thích</h2>
                 <div className="w-10 h-10 mt-4 bg-red-400 rounded-full">
-                    <h3 className="text-lg text-white font-bold mx-auto mt-1">1</h3>
+                    <h3 className="text-lg text-white font-bold mx-auto mt-1">{whisProducts.length}</h3>
                 </div>
             </div>
             <div className="w-full md:flex md:flex-wrap md:justify-start md:items-start mt-4 ml-4">

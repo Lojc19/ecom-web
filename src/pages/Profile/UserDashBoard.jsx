@@ -259,7 +259,7 @@ const UserProfile = () => {
                 <div class="basis-1/6 h-100% bg-slate-100">
                     <UserMenu />
                 </div>
-                <div class="basis-3/6 text-center m-4">
+                <div class="basis-4/6 text-center m-4">
                     <div className="flex flex-grow">
                         <div className="flex flex-grow justify-around">
                             <div class="flex flex-col mx-4 w-1/2">
@@ -621,9 +621,9 @@ const UserProfile = () => {
                         <></>
                     )}
                 </div>
-                <div class="basis-2/6 text-center">
+                {/* <div class="basis-2/6 text-center">
                     <UserWishList />
-                </div>
+                </div> */}
             </div>
         </Layout>
     );

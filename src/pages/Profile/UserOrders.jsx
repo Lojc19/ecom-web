@@ -113,7 +113,7 @@ const UserOrders = () => {
                 <div class="basis-1/6 h-100% bg-slate-100">
                     <UserMenu />
                 </div>
-                <div class="basis-3/6">
+                <div class="basis-4/6">
                 <h2 className="text-3xl font-semibold mb-8 ml-4">Đơn hàng của tôi</h2>
                 <Tabs value={activeTab} className="m-4">
                     <TabsHeader
@@ -208,9 +208,9 @@ const UserOrders = () => {
                     </TabsBody>
                 </Tabs>
                 </div>
-                <div class="basis-2/6 text-center">
+                {/* <div class="basis-2/6 text-center">
                     <UserWishList />
-                </div>
+                </div> */}
             </div>
         </Layout>
     );
