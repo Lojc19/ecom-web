@@ -5,6 +5,13 @@ import Header from "../Header/Header"
 import Footer from "../Footer/Footer"
 import 'react-toastify/dist/ReactToastify.css';
 import Navbar from "../Header/Navbar/Navbar"
+import config from "../Chatbot/Config";
+import ActionProvider from "../Chatbot/ActionProvider";
+import MessageParser from "../Chatbot/MessageParser";
+import Chatbot from 'react-chatbot-kit'
+import 'react-chatbot-kit/build/main.css'
+import '../../App.css'
+
 const Layout = ({ children, title, description}) => {
     return (
         <>
@@ -17,6 +24,13 @@ const Layout = ({ children, title, description}) => {
             <ToastContainer />
         {children}
         </main>
+        <div className="flex flex-grow w-full justify-center">
+        <Chatbot
+            config={config}
+            messageParser={MessageParser}
+            actionProvider={ActionProvider}
+        />
+        </div>
         <Footer />
         </>   
     );
