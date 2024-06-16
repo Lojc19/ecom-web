@@ -143,7 +143,7 @@ const UserOrders = () => {
                                 <>
     
                                 <div className="w-full h-44 bg-slate-200 m-4 rounded-lg flex flex-row">
-                                    <button className="basic 1/6 flex items-center">
+                                    <button className="basic 1/6 flex items-center" onClick={() => navigate(`${p._id}`)}>
                                         <img
                                         src={getProductImage(p)}
                                         //src={imageUrl}

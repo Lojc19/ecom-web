@@ -12,6 +12,7 @@ import PrivateRoute from './components/Auth/Private';
 import Cart from './pages/Cart/Cart';
 import Checkout from './pages/Checkout/Checkout';
 import ProductCategory from './pages/Product/Category/ProductCategory';
+import UserOrderDetail from './pages/Profile/UserOrderDetail';
 function App() {
   return (
     <>
@@ -20,6 +21,7 @@ function App() {
         <Route path="/dashboard" element={<PrivateRoute />}>
           <Route path="profile" element={<UserProfile />} />
           <Route path="orders" element={<UserOrders />} />
+          <Route path="orders/:id" element={<UserOrderDetail />} />
           <Route path="wishlist" element={<Wishlist />} />
         </Route>
         <Route path="/payment" element={<PrivateRoute />}>

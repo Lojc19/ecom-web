@@ -1,4 +1,4 @@
-import React from "react";
+import React , { useState } from "react";
 import { Helmet } from "react-helmet";
 import { ToastContainer, toast } from 'react-toastify';
 import Header from "../Header/Header"
@@ -11,8 +11,14 @@ import MessageParser from "../Chatbot/MessageParser";
 import Chatbot from 'react-chatbot-kit'
 import 'react-chatbot-kit/build/main.css'
 import '../../App.css'
+import { FaRegMessage } from "react-icons/fa6";
 
 const Layout = ({ children, title, description}) => {
+    const [showChatbot, setShowChatbot] = useState(false);
+
+    const toggleChatbot = () => {
+        setShowChatbot(prevState => !prevState);
+    };
     return (
         <>
             <Helmet>
@@ -24,12 +30,21 @@ const Layout = ({ children, title, description}) => {
             <ToastContainer />
         {children}
         </main>
-        <div className="flex flex-grow w-full justify-center">
-        <Chatbot
-            config={config}
-            messageParser={MessageParser}
-            actionProvider={ActionProvider}
-        />
+        {showChatbot && (
+            <div className="fixed bottom-4 right-4">
+                <div className="mb-24">
+                    <Chatbot
+                    config={config}
+                    messageParser={MessageParser}
+                    actionProvider={ActionProvider}
+                    />
+                </div>
+            </div>
+        )}
+        <div className="fixed bottom-4 right-4">
+            <div className=" bg-blue-500 p-6 rounded-full  cursor-pointer" onClick={toggleChatbot}>
+                <FaRegMessage className=""/>
+            </div>
         </div>
         <Footer />
         </>   

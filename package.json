@@ -1,6 +1,6 @@
 {
   "name": "web-nhaxinh",
-  "proxy": "https://api-nhaxinh.onrender.com/",
+  "proxy": ["https://api-nhaxinh.onrender.com/", "http://localhost:8888"],
   "private": true,
   "version": "0.0.0",
   "type": "module",

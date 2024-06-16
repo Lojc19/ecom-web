@@ -203,6 +203,9 @@ const Checkout = () => {
                             if(data?.status == "success"){
                                 toast.success("Order Successfully!");
                             }
+                            // const {data} = await axios.post("http://localhost:8888/order/create_payment_url",{
+                            //     amount: 20000
+                            // })
                         }
                     } catch (error) {
                         toast.error("Someething Went Wrong");
