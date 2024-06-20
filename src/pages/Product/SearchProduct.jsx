@@ -1,38 +1,32 @@
 import { React, useState, useEffect } from "react";
 import { FaChevronDown } from "react-icons/fa";
 import axios from "axios";
-import { useAuth } from "../../../context/auth";
+import { useAuth } from "../../context/auth.jsx";
 import { useNavigate, useParams } from "react-router-dom";
 import {toast} from "react-toastify";
-import Layout from "../../../components/Layout/Layout";
-import ProductItem from "../../../components/Product/ProductItem";
-import useCategory from "../../../hooks/useCategory";
+import Layout from "../../components/Layout/Layout";
+import ProductItem from "../../components/Product/ProductItem";
 
-const ProductCategory = () => {
+
+const SearchProduct = () => {
     const [dropdowns, setDropdowns] = useState(false);
     const [textFilter, setTextFilter] = useState("Theo mức độ phổ biến");
     const navigate = useNavigate();
     const [auth,setAuth] = useAuth();
     const [products, setProducts] = useState([]);
     const params = useParams();
-    const categories = useCategory();
-    const [cateName, setCateName]   = useState("");
+    // const categories = useCategory();
+    const [key, setKey]   = useState("");
 
     useEffect(() => {
-        if (params?.id){
-            getProductCategories(params?.id);
+        if (params?.key){
+            setKey(params.key);
+            searchProduct(params.key);
             window.scrollTo({ top: 0, behavior: 'smooth' });   
         }
-    }, [params?.id]);
+    }, [params?.key]);
 
-    useEffect(() => {
-        if (params?.id) {
-            const matchingCategory = categories.find(category => category._id === params.id);
-            if (matchingCategory) {
-                setCateName(matchingCategory.nameCate);  // Assuming categories have a 'name' field
-            }
-        }
-    }, [params?.id, categories]);
+    
 
     const sortProductsByPriceAsc = () => {
         const sortedProducts = [...products].sort((a, b) => a.price - b.price);
@@ -45,15 +39,15 @@ const ProductCategory = () => {
         setProducts(sortedProducts);
     }
 
-    const getProductCategories = async (id) => {
+    const searchProduct = async (key) => {
         try {
-            const { data } = await axios.get(`https://api-nhaxinh.onrender.com/api/product/category/${id}`);
+            const { data } = await axios.get(`https://api-nhaxinh.onrender.com/api/product/search/${key}`);
             setProducts(data.data);
         } catch (error) {
             console.log(error);
             toast.error("Someething Went Wrong");
         }
-     };
+    };
 
     const TextFilter = (filter) => {
         setTextFilter(filter);
@@ -72,7 +66,7 @@ const ProductCategory = () => {
             <div className="w-full h-[486px] bg-[url(https://nhaxinh.com/wp-content/uploads/2022/04/banner-trang-chu-san-pham-dep-oki.jpg)] bg-cover relative">
                 <div className="md:w-[1320px] md:mx-auto py-5 px-[15px] text-center absolute left-0 right-0 bottom-[32px]">
                     <h1 className="font-Montserrat text-white text-[28px] leading-7 text-center mb-3 md:text-left">
-                        {cateName}
+                        Search result for "{key}"
                     </h1>
                     <div className="absolute left-[15px]">
                         <a
@@ -91,7 +85,7 @@ const ProductCategory = () => {
                             href=""
                             className="cursor-pointer text-white text-[14px] ml-1 font-bold"
                         >
-                            {cateName}
+                            Search result for "{key}"
                         </a>
                     </div>
                 </div>
@@ -149,11 +143,6 @@ const ProductCategory = () => {
                         </div>
                     )}
                 </div>
-                {/* <div className="w-full md:w-[260px] h-[40px]"></div>
-                <div className="w-full md:w-[260px] h-[40px]"></div> */}
-                {/* <button className="bg-black text-white text-base font-Roboto uppercase py-[6px] px-3">
-                    Áp dụng
-                </button> */}
             </form>
 
             <div className="w-full md:w-[1320px] mx-auto md:flex md:flex-wrap md:justify-between mt-10">
@@ -162,10 +151,24 @@ const ProductCategory = () => {
                         <ProductItem product={p} images={p.images}/>
                     </>
                 ))}
+                {products.length > 0 ? (
+                    <>
+                    
+                    </>
+                ) : (
+                    <>
+                        <div className="w-full text-center mb-8">
+                            <h1 className="text-4xl">No product found</h1>
+                            <h1 className="text-2xl mt-4 font-thin">You search did not match any products</h1>
+                            <h1 className="text-2xl mt-4 font-thin">Please try again</h1>
+                        </div>
+                        
+                    </>
+                )}
             </div>
         </>
         </Layout>
     );
-};
+}
 
-export default ProductCategory;
+export default SearchProduct
