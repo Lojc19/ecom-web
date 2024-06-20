@@ -170,6 +170,95 @@ const Checkout = () => {
         return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(total);
     };
 
+    const placeOrderVNPay = ()=>{
+        if(!accept){
+            toast.error("Please Accept Policy!");
+        }else{
+            if(fullname == "" || phone == "" || email == ""){
+                toast.error("Please Enter All Infomation!");
+            }else{
+                if(!address){
+                    toast.error("Please Choose A Address");
+                }else{
+                    try {
+                        if(phone.length < 10){
+                            toast.error("Please Enter A Valid PhoneNumber");
+                        }else{
+                            console.log("Name: " + fullname);
+                            console.log("Email: " + email);
+                            console.log("PhoneNumber: " + phone);
+                            console.log("Province: " + province);
+                            console.log("Disctrict: " + disctrict);
+                            console.log("Yard: " + yard);
+                            console.log(("Note: " + note));
+
+                            // const { data } = await axios.post('https://api-nhaxinh.onrender.com/api/order', 
+                            //     {PaymentMethod: "VNPay", name: fullname, email: email, phoneNumber: phone, addressShipping: {
+                            //         province: province,
+                            //         district: disctrict,
+                            //         ward: yard,
+                            //         note: note,
+                            //     }}
+                            // );
+                            // if (data?.status == "success") {
+                            //     const { payment } = await axios.post("https://api-nhaxinh.onrender.com/api/order/create_payment_url", {
+                            //         amount: total,
+                            //         orderId: data?.data?.orderId
+                            //     })
+                            //     if (payment?.status == "success") {
+                            //         await navigateTo(payment?.vnpUrl);
+                            //     }
+                            // }
+
+                            axios.post('https://api-nhaxinh.onrender.com/api/order', {
+                                PaymentMethod: "VNPay",
+                                name: fullname,
+                                email: email,
+                                phoneNumber: phone,
+                                addressShipping: {
+                                    province: province,
+                                    district: disctrict,
+                                    ward: yard,
+                                    note: note,
+                                }
+                            })
+                            .then(response => {
+                                const data = response.data;
+                                if (data?.status === "success") {
+                                    return axios.post("https://api-nhaxinh.onrender.com/api/order/create_payment_url", {
+                                        amount: price,
+                                        orderId: data?.data?.orderId
+                                    });
+                                } else {
+                                    return Promise.reject("Order creation failed");
+                                }
+                            })
+                            .then(response => {
+                                const payment = response.data;
+                                if (payment?.status === "success") {
+                                    return navigateTo(payment?.vnpUrl);
+                                } else {
+                                    return Promise.reject("Failed to create payment URL");
+                                }
+                            })
+                            .catch(error => {
+                                console.error("An error occurred:", error);
+                                // Xử lý lỗi chung
+                            });
+                        }
+                    } catch (error) {
+                        toast.error("Someething Went Wrong");
+                    }
+                }
+            }
+        }
+    };
+
+    const navigateTo = async (link) => {
+        console.log(link);
+        window.location.href = link;
+    }
+
     const placeOrder = async () => {
         if(!accept){
             toast.error("Please Accept Policy!");
@@ -725,7 +814,7 @@ const Checkout = () => {
                         <button className="py-[10px] px[25px] w-full border bg-black text-white text-[21px] leading-5 font-Roboto uppercase mt-3"
                             onClick={(e) => {
                                 e.preventDefault();
-                                placeOrder();
+                                placeOrderVNPay();
                             }}
                         >Đặt mua</button>
                     </div>
