@@ -14,6 +14,8 @@ import Checkout from './pages/Checkout/Checkout';
 import ProductCategory from './pages/Product/Category/ProductCategory';
 import UserOrderDetail from './pages/Profile/UserOrderDetail';
 import SearchProduct from './pages/Product/SearchProduct';
+import Thank from './pages/Thank/Thank';
+import Fail from './pages/Thank/Fail';
 function App() {
   return (
     <>
@@ -27,12 +29,13 @@ function App() {
         </Route>
         <Route path="/payment" element={<PrivateRoute />}>
           <Route path="checkout" element={<Checkout />} />
+          <Route path="thank" element={<Thank />} />
+          <Route path="fail" element={<Fail />} />
         </Route>
         <Route path="/cart" element={<Cart />} />
         <Route path="/product/:slug" element={<ProductDetail />} />
         <Route path="/category/:id" element={<ProductCategory />} />
         <Route path="/search/:key" element={<SearchProduct />} />
-
         {/* <Route path="/search" element={<Search />} />
         <Route path="/cart" element={<CartPage />} />
         <Route path="/categories" element={<Categories />} />
