@@ -10,7 +10,7 @@ const Footer = () => {
                     </span>
                     <div className="w-[30px] bg-[#ffffff4D] h-[3px] my-3"></div>
                     <img
-                        src="./src/assets/imgs/logo-footer.png"
+                        src="/assets/imgs/logo-footer.png"
                         className="bg-cover"
                     ></img>
                     <div className="mt-6 text-white font-Montserrat text-[14px] font-light">

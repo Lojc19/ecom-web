@@ -32,7 +32,7 @@ const Home = () => {
             <div className="w-full md:h-[600px] md:w-1/2 p-3 relative">
                 <a href="">
                     <img
-                        src="./src/assets/imgs/BST-COASTAL-SOFA-VANG-2.jpg"
+                        src="/assets/imgs/BST-COASTAL-SOFA-VANG-2.jpg"
                         alt=""
                         className="bg-cover h-full w-full"
                     />
@@ -45,19 +45,19 @@ const Home = () => {
             <div className="w-full md:w-1/2 md:h-[600px] md:flex md:flex-wrap">
                 <BannerCate
                     title="bàn ăn"
-                    img="./src/assets/imgs/nha-xinh-banner-ban-an-vuong-24423.jpg"
+                    img="/assets/imgs/nha-xinh-banner-ban-an-vuong-24423.jpg"
                 />
                 <BannerCate
                     title="giường"
-                    img="./src/assets/imgs/giuong-ngu-pio-1.jpg"
+                    img="/assets/imgs/giuong-ngu-pio-1.jpg"
                 />
                 <BannerCate
                     title="armchair"
-                    img="./src/assets/imgs/banner-armchair-nhaxinh-31-1-24.jpg"
+                    img="/assets/imgs/banner-armchair-nhaxinh-31-1-24.jpg"
                 />
                 <BannerCate
                     title="ghế ăn"
-                    img="./src/assets/imgs/nha-xinh-ghe-an-phong-an-749x800.jpg"
+                    img="/assets/imgs/nha-xinh-ghe-an-phong-an-749x800.jpg"
                 />
             </div>
         </div>
@@ -68,7 +68,7 @@ const Home = () => {
                     <div className="md:absolute bg-cover md:w-6/7 h-full md:left-0 overflow-hidden">
                         <a className="cursor-pointer">
                             <img
-                                src="./src/assets/imgs/nha-xinh-banner-phong-khach-31-1-24.jpg"
+                                src="/assets/imgs/nha-xinh-banner-phong-khach-31-1-24.jpg"
                                 alt="img room"
                                 className="bg-cover w-full h-full hover:scale-110 ease-in-out duration-300"
                             />
@@ -94,7 +94,7 @@ const Home = () => {
                     <div className="md:absolute md:w-3/5 md:h-[500px] md:right-0 md:top-0 overflow-hidden">
                         <a href="#" className="cursor-pointer">
                             <img
-                                src="./src/assets/imgs/nha-xinh-do-trang-tri-banner-31-1-24.jpg"
+                                src="/assets/imgs/nha-xinh-do-trang-tri-banner-31-1-24.jpg"
                                 alt="img room"
                                 className="bg-cover w-full h-full hover:scale-110 ease-in-out duration-300"
                             />
@@ -123,7 +123,7 @@ const Home = () => {
                     <div className="bg-cover h-full md:absolute md:w-3/7 md:h-3/5 md:right-[160px] overflow-hidden">
                         <a href="#" className="cursor-pointer">
                             <img
-                                src="./src/assets/imgs/mau-phong-ngu-16-5-23.jpg"
+                                src="/assets/imgs/mau-phong-ngu-16-5-23.jpg"
                                 alt="img room"
                                 className="bg-cover w-full h-full hover:scale-110 ease-in-out duration-300"
                             />
@@ -149,7 +149,7 @@ const Home = () => {
                     <div className="md:left-[100px] md:top-[-50px] md:absolute md:w-3/7 md:h-3/5 overflow-hidden">
                         <a href="#" className="cursor-pointer">
                             <img
-                                src="./src/assets/imgs/banner-phong-an-nha-xinh-12-9-22.jpg"
+                                src="/assets/imgs/banner-phong-an-nha-xinh-12-9-22.jpg"
                                 alt="img room"
                                 className="bg-cover w-full h-full hover:scale-110 ease-in-out duration-300"
                             />
@@ -184,7 +184,7 @@ const Home = () => {
                 </div>
             </div>
             <div className="md:w-1/2">
-                <img src="./src/assets/imgs/nha-xinh-thiet-ke-noi-that-ecopark-16523.jpg" alt="thiết kế nội thất" className="w-full h-full bg-cover" />
+                <img src="/assets/imgs/nha-xinh-thiet-ke-noi-that-ecopark-16523.jpg" alt="thiết kế nội thất" className="w-full h-full bg-cover" />
             </div>
         </div>
 

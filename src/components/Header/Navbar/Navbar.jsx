@@ -119,7 +119,7 @@ const Navbar = () => {
                         />
                         <a href="">
                             <img
-                                src="src/assets/imgs/logo-nha-xinh-moi-200422.png"
+                                src="/assets/imgs/logo-nha-xinh-moi-200422.png"
                                 alt=""
                                 className="w-auto h-auto bg-cover"
                             />
