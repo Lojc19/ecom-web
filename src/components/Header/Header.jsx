@@ -19,6 +19,9 @@ const Header = () => {
 
     const navigate = useNavigate();
     const location = useLocation();
+    const onClickRegister = () => {
+      navigate("/register");
+    };
     const handleSubmit = async (e) => {
         try {
           const res = await axios.post("https://api-nhaxinh.onrender.com/api/user/loginUser", {
@@ -97,6 +100,7 @@ const Header = () => {
                     setUserName={setUsername}
                     password={password}
                     setPassword={setPassword}
+                    onClickRegister={onClickRegister}
                 />
             </Modal>
         </div>

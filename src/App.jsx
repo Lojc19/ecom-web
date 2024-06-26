@@ -16,6 +16,7 @@ import UserOrderDetail from './pages/Profile/UserOrderDetail';
 import SearchProduct from './pages/Product/SearchProduct';
 import Thank from './pages/Thank/Thank';
 import Fail from './pages/Thank/Fail';
+import Register from './pages/Register/Register';
 function App() {
   return (
     <>
@@ -36,6 +37,8 @@ function App() {
         <Route path="/product/:slug" element={<ProductDetail />} />
         <Route path="/category/:id" element={<ProductCategory />} />
         <Route path="/search/:key" element={<SearchProduct />} />
+        <Route path="/register" element={<Register />} />
+
         {/* <Route path="/search" element={<Search />} />
         <Route path="/cart" element={<CartPage />} />
         <Route path="/categories" element={<Categories />} />
