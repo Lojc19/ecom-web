@@ -22,6 +22,10 @@ const Header = () => {
     const onClickRegister = () => {
       navigate("/register");
     };
+
+    const onClickForgot = () => {
+      navigate("/resetpassword");
+    };
     const handleSubmit = async (e) => {
         try {
           const res = await axios.post("https://api-nhaxinh.onrender.com/api/user/loginUser", {
@@ -101,6 +105,7 @@ const Header = () => {
                     password={password}
                     setPassword={setPassword}
                     onClickRegister={onClickRegister}
+                    onClickForgot={onClickForgot}
                 />
             </Modal>
         </div>

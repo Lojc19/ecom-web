@@ -1,6 +1,6 @@
 import React from "react";
 
-const AuthForm = ({ handleSubmit, userName, setUserName, password, setPassword, onClickRegister }) => {
+const AuthForm = ({ handleSubmit, userName, setUserName, password, setPassword, onClickRegister, onClickForgot }) => {
   return (
     <>
       <div className="flex flex-row p-4">
@@ -45,7 +45,11 @@ const AuthForm = ({ handleSubmit, userName, setUserName, password, setPassword, 
                 </button>
             </div>
             <div className="flex flex-row w-full mt-2">
-                <a className="text-xl font-semibold">Quên mật khẩu?</a>
+                <a className="text-xl font-semibold" 
+                    onClick={()=>{
+                        onClickForgot();
+                    }}
+                >Quên mật khẩu?</a>
             </div>
         </div>
         <div class="basis-1/2">

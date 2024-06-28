@@ -17,6 +17,9 @@ import SearchProduct from './pages/Product/SearchProduct';
 import Thank from './pages/Thank/Thank';
 import Fail from './pages/Thank/Fail';
 import Register from './pages/Register/Register';
+import Resetpassword from "./pages/Profile/ResetPassUser/ResetPassword"
+import NewPassword from './pages/Profile/ResetPassUser/NewPassword';
+import SubmitOTP from './pages/Profile/ResetPassUser/SubmitOTP';
 function App() {
   return (
     <>
@@ -38,6 +41,12 @@ function App() {
         <Route path="/category/:id" element={<ProductCategory />} />
         <Route path="/search/:key" element={<SearchProduct />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/resetpassword" element={<Resetpassword />} />
+        <Route path="/newpassword" element={<NewPassword />} />
+        <Route path="/submitOtp" element={<SubmitOTP />} />
+
+
+
 
         {/* <Route path="/search" element={<Search />} />
         <Route path="/cart" element={<CartPage />} />
