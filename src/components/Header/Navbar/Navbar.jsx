@@ -142,7 +142,7 @@ const Navbar = () => {
                                                         href={`/category/${p._id}`}
                                                         className="hover:text-black text-[#777777] font-normal text-[18px]"
                                                         key={index}
-                                                        onClick={console.log(p, index)}
+                                                        // onClick={console.log(p, index)}
                                                         
                                                     >
                                                         {p.nameCate}

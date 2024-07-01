@@ -184,13 +184,13 @@ const Checkout = () => {
                         if(phone.length < 10){
                             toast.error("Please Enter A Valid PhoneNumber");
                         }else{
-                            console.log("Name: " + fullname);
-                            console.log("Email: " + email);
-                            console.log("PhoneNumber: " + phone);
-                            console.log("Province: " + province);
-                            console.log("Disctrict: " + disctrict);
-                            console.log("Yard: " + yard);
-                            console.log(("Note: " + note));
+                            // console.log("Name: " + fullname);
+                            // console.log("Email: " + email);
+                            // console.log("PhoneNumber: " + phone);
+                            // console.log("Province: " + province);
+                            // console.log("Disctrict: " + disctrict);
+                            // console.log("Yard: " + yard);
+                            // console.log(("Note: " + note));
 
                             // const { data } = await axios.post('https://api-nhaxinh.onrender.com/api/order', 
                             //     {PaymentMethod: "VNPay", name: fullname, email: email, phoneNumber: phone, addressShipping: {
@@ -255,7 +255,7 @@ const Checkout = () => {
     };
 
     const navigateTo = async (link) => {
-        console.log(link);
+        //console.log(link);
         window.location.href = link;
     }
 
@@ -273,13 +273,13 @@ const Checkout = () => {
                         if(phone.length < 10){
                             toast.error("Please Enter A Valid PhoneNumber");
                         }else{
-                            console.log("Name: " + fullname);
-                            console.log("Email: " + email);
-                            console.log("PhoneNumber: " + phone);
-                            console.log("Province: " + province);
-                            console.log("Disctrict: " + disctrict);
-                            console.log("Yard: " + yard);
-                            console.log(("Note: " + note));
+                            // console.log("Name: " + fullname);
+                            // console.log("Email: " + email);
+                            // console.log("PhoneNumber: " + phone);
+                            // console.log("Province: " + province);
+                            // console.log("Disctrict: " + disctrict);
+                            // console.log("Yard: " + yard);
+                            // console.log(("Note: " + note));
 
                             const { data } = await axios.post('https://api-nhaxinh.onrender.com/api/order', 
                                 {PaymentMethod: "COD", name: fullname, email: email, phoneNumber: phone, addressShipping: {

@@ -12,10 +12,10 @@ const ResetPassword = () => {
     const handleClick = () => {
         if(capVal && ValidateEmail(email)){
             forgotPass();
-            const temp = {
-                email: email,
-            };
-            navigate('/submitOtp', { state: temp });
+            // const temp = {
+            //     email: email,
+            // };
+            // navigate('/submitOtp', { state: temp });
         }
     };
 
@@ -27,6 +27,14 @@ const ResetPassword = () => {
                     email: email,
                 }
             );
+            if(data?.status == "success"){
+                const temp = {
+                    email: email,
+                };
+                navigate('/submitOtp', { state: temp });
+            }else{
+                toast.error("Email Not Found!");
+            }
         } catch (error) {
             console.log(error);
         }

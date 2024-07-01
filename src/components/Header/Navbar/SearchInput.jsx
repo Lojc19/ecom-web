@@ -14,7 +14,7 @@ const SearchInput = () => {
       const { value } = event.target;
       //setActiveSearch(true);
       setValueSearch(value);
-      console.log(value);
+      //console.log(value);
       //searchData(valueSearch);
     };
 

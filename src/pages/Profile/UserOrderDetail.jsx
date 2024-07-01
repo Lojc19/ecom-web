@@ -19,7 +19,7 @@ const UserOrderDetail = () => {
     }, [params?.id]);
 
     const getOrder = async () => {
-        console.log("closeModal");
+        //console.log("closeModal");
         try {
             const { data } = await axios.get(
                 `https://api-nhaxinh.onrender.com/api/order/detail/${params.id}`

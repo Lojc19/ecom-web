@@ -90,7 +90,7 @@ const ProductDetail = () => {
     }, [product?._id]);
 
     const getProductReview = async () => {
-        console.log(product._id);
+        //console.log(product._id);
         try {
             const { data } = await axios.get(`https://api-nhaxinh.onrender.com/api/review/byProduct/${product._id}`);
             setReviews(data.data);
@@ -152,7 +152,7 @@ const ProductDetail = () => {
      };
 
     const getProduct = async () => {
-        console.log("closeModal");
+        //console.log("closeModal");
         try {
             const { data } = await axios.get(
                 `https://api-nhaxinh.onrender.com/api/product/${params.slug}`
@@ -574,7 +574,7 @@ const ProductDetail = () => {
             <div>
                 {isModalOpen && (
                     <ModalImg
-                        data={data}
+                        data={images}
                         indexImgClick={clickedImgModal}
                         onClose={closeModal}
                     />

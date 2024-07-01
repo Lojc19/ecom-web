@@ -119,12 +119,12 @@ const UserProfile = () => {
     }, [yards]);
 
     const updateAddress = async () => {
-        console.log(name);
-        console.log(note);
-        console.log(province);
-        console.log(disctrict);
-        console.log(yard);
-        console.log(check);
+        // console.log(name);
+        // console.log(note);
+        // console.log(province);
+        // console.log(disctrict);
+        // console.log(yard);
+        // console.log(check);
         try {
             const { data } = await axios.put(
                 `https://api-nhaxinh.onrender.com/api/address/${address?._id}`,
@@ -148,12 +148,12 @@ const UserProfile = () => {
     };
 
     const deleteAddress = async () => {
-        console.log(name);
-        console.log(note);
-        console.log(province);
-        console.log(disctrict);
-        console.log(yard);
-        console.log(check);
+        // console.log(name);
+        // console.log(note);
+        // console.log(province);
+        // console.log(disctrict);
+        // console.log(yard);
+        // console.log(check);
         try {
             if (address?.default) {
                 toast.error("Cannot Delete Default Address!");

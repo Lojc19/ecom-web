@@ -38,8 +38,8 @@ const ModalImg = (props) => {
                     {props.data.map((item, index) => {
                         return (
                             <img
-                                src={item.src}
-                                alt={item.alt}
+                                src={item?.url}
+                                alt={item?.alt}
                                 key={index}
                                 className={`w-full h-full ${
                                     slide === index ? "block" : "hidden"

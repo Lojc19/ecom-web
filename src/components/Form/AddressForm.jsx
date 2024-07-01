@@ -26,12 +26,12 @@ const AddressForm = ({handleSubmit}) => {
     };
 
     const createAddress = async () => {
-        console.log(name);
-        console.log(note);
-        console.log(province);
-        console.log(disctrict);
-        console.log(yard);
-        console.log(check);
+        // console.log(name);
+        // console.log(note);
+        // console.log(province);
+        // console.log(disctrict);
+        // console.log(yard);
+        // console.log(check);
         try {
             const { data } = await axios.post(
                 "https://api-nhaxinh.onrender.com/api/address/",

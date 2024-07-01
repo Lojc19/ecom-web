@@ -6,7 +6,7 @@ const StarRating = (props) => {
     const hasHalfStar = props.rate % 1 !== 0;
     const starGray = 5 - Math.round(props.rate);
     const numbers2 = Array.from({ length: starGray }, (_, index) => index + 1);
-    console.log(numbers);
+    //console.log(numbers);
     return (
         <div className="flex items-cente mt-1">
             {numbers.map(() => (
