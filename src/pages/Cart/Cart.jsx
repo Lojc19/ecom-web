@@ -132,7 +132,7 @@ const Cart = () => {
 
                             <div className="text-[14px] font-Roboto">
                                 <h1 className="mt-5 mb-1 font-Montserrat text-base font-bold">Thông tin giao hàng</h1>
-                                <p className="mb-3">Đối với những sản phẩm có sẵn tại khu vực, Nhà Xinh sẽ giao hàng trong vòng 2-7 ngày. Đối với những sản phẩm không có sẵn, thời gian giao hàng sẽ được nhân viên Nhà Xinh thông báo đến quý khách.</p>
+                                <p className="mb-3">Đối với những sản phẩm có sẵn tại khu vực, LC sẽ giao hàng trong vòng 2-7 ngày. Đối với những sản phẩm không có sẵn, thời gian giao hàng sẽ được nhân viên LC thông báo đến quý khách.</p>
                                 <p className="mb-3">Từ 2-6: 8:30 - 17:30</p>
                                 <p>Thứ 7, CN: 9:30 - 16:30</p>
                             </div>

@@ -793,13 +793,13 @@ const Checkout = () => {
                             CHÍNH SÁCH BÁN HÀNG
                             </strong>
                             <p className="text-base font-Roboto font-bold mt-3">1. Thanh toán</p>
-                            <p className="text-sm font-Roboto font-medium mt-2">Nhà Xinh chỉ áp dụng duy nhất một hình thức thanh toán online qua thẻ tín dụng, chuyển khoản, cụ thể:</p>
+                            <p className="text-sm font-Roboto font-medium mt-2">LC chỉ áp dụng duy nhất một hình thức thanh toán online qua thẻ tín dụng, chuyển khoản, cụ thể:</p>
                             <ul className="text-sm font-Roboto font-medium mt-2">
                                 <li>Bước 1: Khách hàng tìm hiểu thông tin về sản phẩm.</li>
                                 <li>Bước 2: Khách hàng xác thực đơn hàng (điện thoại, tin nhắn, email).</li>
                                 <li>Bước 3: Khách hàng đồng ý các điều khoản mua hàng, chi phí giao hàng và lắp đặt.</li>
                                 <li>Bước 4: Khách hàng thanh toán qua các thẻ ATM/VISA/CREDIT CARD.</li>
-                                <li>Bước 5: Hệ thống Nhà Xinh xác nhận thông tin khách hàng và giao hàng.</li>
+                                <li>Bước 5: Hệ thống LC xác nhận thông tin khách hàng và giao hàng.</li>
                                 <li>Bước 6: Khách hàng nhận hàng, kiểm tra và xác nhận với nhân viên.</li>
                             </ul>
                         </div>

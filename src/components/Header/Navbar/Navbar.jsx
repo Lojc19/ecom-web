@@ -112,16 +112,16 @@ const Navbar = () => {
             >
                 <div className="container px-4 md:max-w-[1320px] h-[90px] mx-auto flex justify-between items-center relative">
                     <div className="flex items-center">
-                        <IoMenu
+                        {/* <IoMenu
                             size={32}
                             className="mr-4 md:mr-3 cursor-pointer"
                             onClick={openMenu}
-                        />
-                        <a href="">
+                        /> */}
+                        <a href="/">
                             <img
-                                src="/assets/imgs/logo-nha-xinh-moi-200422.png"
+                                src="/assets/imgs/new-logo.png"
                                 alt=""
-                                className="w-auto h-auto bg-cover"
+                                className="w-16 h-16 bg-cover"
                             />
                         </a>
                     </div>

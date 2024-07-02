@@ -449,36 +449,36 @@ const ProductDetail = () => {
                             }`}
                         >
                             <p>
-                                Các sản phẩm nội thất tại Nhà Xinh đa số đều
+                                Các sản phẩm nội thất tại LC đa số đều
                                 được sản xuất tại nhà máy của công ty cổ phần
                                 xây dựng kiến trúc AA với đội ngũ nhân viên và
                                 công nhân ưu tú cùng cơ sở vật chất hiện đại
-                                (http://www.aacorporation.com/). Nhà Xinh đã
+                                . LC đã
                                 kiểm tra kỹ lưỡng từ nguồn nguyên liệu cho đến
                                 sản phẩm hoàn thiện cuối cùng.
                             </p>
                             <p>
-                                Nhà Xinh bảo hành một năm cho các trường hợp có
+                                LC bảo hành một năm cho các trường hợp có
                                 lỗi về kỹ thuật trong quá trình sản xuất hay lắp
                                 đặt.
                             </p>
                             <p>
                                 Quý khách không nên tự sửa chữa mà hãy báo ngay
-                                cho Nhà Xinh qua hotline: 1800 7200.
+                                cho LC qua hotline: 1800 7200.
                             </p>
                             <p>
                                 Sau thời gian hết hạn bảo hành, nếu quý khách có
                                 bất kỳ yêu cầu hay thắc mắc thì vui lòng liên hệ
-                                với Nhà Xinh để được hướng dẫn và giải quyết các
+                                với LC để được hướng dẫn và giải quyết các
                                 vấn đề gặp phải.
                             </p>
                             <strong>
-                                TUY NHIÊN NHÀ XINH KHÔNG BẢO HÀNH CHO CÁC TRƯỜNG
+                                TUY NHIÊN LC KHÔNG BẢO HÀNH CHO CÁC TRƯỜNG
                                 HỢP SAU:
                             </strong>
                             <p>
                                 Khách hàng tự ý sửa chữa khi sản phẩm bị trục
-                                trặc mà không báo cho Nhà Xinh.
+                                trặc mà không báo cho LC.
                             </p>
                             <p>
                                 Sản phẩm được sử dụng không đúng quy cách của sổ
@@ -495,7 +495,7 @@ const ProductDetail = () => {
                             </p>
                             <p>Sản phẩm hết hạn bảo hành.</p>
                             <p>
-                                Sản phẩm không có phiếu bảo hành của Nhà Xinh.
+                                Sản phẩm không có phiếu bảo hành của LC.
                             </p>
                             <p>Xem nội dung sổ bảo hành</p>
                         </div>
@@ -506,7 +506,7 @@ const ProductDetail = () => {
                         >
                                 <strong>GIAO HÀNG TẬN NƠI</strong>
                                 <p>
-                                    Nhà Xinh cung cấp dịch vụ giao hàng tận nơi,
+                                    LC cung cấp dịch vụ giao hàng tận nơi,
                                     lắp ráp và sắp xếp vị trí theo đúng ý muốn
                                     của quý khách:
                                 </p>
