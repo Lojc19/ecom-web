@@ -42,7 +42,7 @@ const AddressForm = ({handleSubmit}) => {
                 handleSubmit();
             }
         } catch (error) {
-            console.log(error);
+            toast.error(error.response.data.message);
         }
     };
 
@@ -53,7 +53,7 @@ const AddressForm = ({handleSubmit}) => {
         );
         setProvinces(data?.results);
     } catch (error) {
-        console.log(error);
+        toast.error(error.response.data.message);
     }
     };
 
@@ -64,7 +64,7 @@ const AddressForm = ({handleSubmit}) => {
             );
             setDisctricts(data?.results);
         } catch (error) {
-            console.log(error);
+            toast.error(error.response.data.message);
         }
     };
 
@@ -75,7 +75,7 @@ const AddressForm = ({handleSubmit}) => {
             );
             setYards(data?.results);
         } catch (error) {
-            console.log(error);
+            toast.error(error.response.data.message);
         }
     };
 

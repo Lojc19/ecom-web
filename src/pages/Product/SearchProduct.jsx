@@ -44,8 +44,7 @@ const SearchProduct = () => {
             const { data } = await axios.get(`https://api-nhaxinh.onrender.com/api/product/search/${key}`);
             setProducts(data.data);
         } catch (error) {
-            console.log(error);
-            toast.error("Someething Went Wrong");
+            toast.error(error.response.data.message);
         }
     };
 

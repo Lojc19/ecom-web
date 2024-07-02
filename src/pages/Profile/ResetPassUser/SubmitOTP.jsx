@@ -44,7 +44,7 @@ const SubmitOTP = () => {
                 toast.error("Please try again!")
             }
         } catch (error) {
-            console.log(error);
+            toast.error(error.response.data.message);
         }
     };  
     

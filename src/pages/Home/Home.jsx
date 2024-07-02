@@ -22,8 +22,7 @@ const Home = () => {
             const { data } = await axios.get('https://api-nhaxinh.onrender.com/api/product');
             setProducts(data.data.product);
         } catch (error) {
-            console.log(error);
-            toast.error("Someething Went Wrong");
+            toast.error(error.response.data.message);
         }
      };
     return (

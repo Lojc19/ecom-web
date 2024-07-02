@@ -35,19 +35,17 @@ const Cart = () => {
     }, [products]);
 
     const updateQuantity = async (productId, newQuantity) => {
-        // setCarts((prevCarts) => ({
-        //     ...prevCarts,
-        //     [productId]: {
-        //         ...prevCarts[productId],
-        //         quantity: newQuantity,
-        //     },
-        // }));
-        const { data } = await axios.put('https://api-nhaxinh.onrender.com/api/cart/updateCart', {
-            productId: productId , quantity: newQuantity
-        });
-        if(data?.status == "success"){
-            toast.success("Update Successfully!");
-            getCarts();
+        try{
+            const { data } = await axios.put('https://api-nhaxinh.onrender.com/api/cart/updateCart', {
+                productId: productId , quantity: newQuantity
+            });
+            if(data?.status == "success"){
+                toast.success("Update Successfully!");
+                getCarts();
+            }
+        }
+        catch(error){
+            toast.error(error.response.data.message);
         }
     };
     
@@ -64,7 +62,7 @@ const Cart = () => {
                 setProducts(data.data.products);
             }
         } catch (error) {
-            toast.error("Someething Went Wrong");
+            toast.error(error.response.data.message);
         }
      };
 

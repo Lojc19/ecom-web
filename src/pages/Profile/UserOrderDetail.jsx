@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import UserMenu from "./UserMenu"
-
+import {toast} from "react-toastify";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -28,7 +28,7 @@ const UserOrderDetail = () => {
             setUpdateStatus(data.data?.status);
             setInitStatus(data.data?.status);
         } catch (error) {
-            console.log(error);
+            toast.error(error.response.data.message);
         }
     };
 
@@ -41,7 +41,7 @@ const UserOrderDetail = () => {
             );
             await getOrder();
         } catch (error) {
-            console.log(error);
+            toast.error(error.response.data.message);
         }
     };
 

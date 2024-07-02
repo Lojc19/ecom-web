@@ -52,7 +52,8 @@ const UserProfile = () => {
             );
             setProvinces(data?.results);
         } catch (error) {
-            console.log(error);
+            toast.error(error.response.data.message);
+            
         }
     };
 
@@ -63,7 +64,8 @@ const UserProfile = () => {
             );
             setDisctricts(data?.results);
         } catch (error) {
-            console.log(error);
+            toast.error(error.response.data.message);
+            
         }
     };
 
@@ -74,7 +76,8 @@ const UserProfile = () => {
             );
             setYards(data?.results);
         } catch (error) {
-            console.log(error);
+            toast.error(error.response.data.message);
+            
         }
     };
 
@@ -143,7 +146,7 @@ const UserProfile = () => {
                 getAddresses();
             }
         } catch (error) {
-            console.log(error);
+            toast.error(error.response.data.message);
         }
     };
 
@@ -168,7 +171,7 @@ const UserProfile = () => {
                 }
             }
         } catch (error) {
-            console.log(error);
+            toast.error(error.response.data.message);
         }
     };
 
@@ -179,7 +182,7 @@ const UserProfile = () => {
             );
             setAddresses(data?.data);
         } catch (error) {
-            console.log(error);
+            toast.error(error.response.data.message);
         }
     };
 
@@ -193,7 +196,8 @@ const UserProfile = () => {
             setLastName(data?.data.lastname);
             setEmail(data?.data.email);
         } catch (error) {
-            console.log(error);
+            toast.error(error.response.data.message);
+            
         }
     };
 
@@ -217,7 +221,8 @@ const UserProfile = () => {
                 }
             }
         } catch (error) {
-            console.log(error);
+            toast.error(error.response.data.message);
+            
         }
     };
 
@@ -244,7 +249,8 @@ const UserProfile = () => {
                 toast.warn("Please Enter A New Password");
             }
         } catch (error) {
-            console.log(error);
+            toast.error(error.response.data.message);
+
         }
     };
 

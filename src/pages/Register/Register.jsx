@@ -53,8 +53,7 @@ const Register = () => {
                         }
                     })
                     .catch(error => {
-                        console.error("An error occurred:", error);
-                        // Xử lý lỗi chung
+                        toast.error(error.response.data.message);
                     });
                 }else{
                     toast.error("Please Enter A Valid Email");

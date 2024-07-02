@@ -95,8 +95,7 @@ const ProductDetail = () => {
             const { data } = await axios.get(`https://api-nhaxinh.onrender.com/api/review/byProduct/${product._id}`);
             setReviews(data.data);
         } catch (error) {
-            console.log(error);
-            toast.error("Someething Went Wrong");
+            toast.error(error.response.data.message);
         }
      };
 
@@ -110,7 +109,8 @@ const ProductDetail = () => {
             }
             //setProducts(data.data.product);
         } catch (error) {
-            toast.error("Someething Went Wrong");
+            toast.error(error.response.data.message);
+
         }
      };
 
@@ -120,8 +120,8 @@ const ProductDetail = () => {
             const { data } = await axios.get('https://api-nhaxinh.onrender.com/api/product');
             setProducts(data.data.product);
         } catch (error) {
-            console.log(error);
-            toast.error("Someething Went Wrong");
+            toast.error(error.response.data.message);
+
         }
      };
 
@@ -147,8 +147,8 @@ const ProductDetail = () => {
                 }
             }
         } catch (error) {
-            console.log(error);
-            toast.error("Someething Went Wrong");
+            toast.error(error.response.data.message);
+
         }
      };
 
@@ -172,7 +172,7 @@ const ProductDetail = () => {
             //await getProductReview();
 
         } catch (error) {
-            console.log(error);
+            toast.error(error.response.data.message);
         }
     };
 

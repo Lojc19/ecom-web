@@ -13,7 +13,7 @@ export default function useWishlist() {
       const { data } = await axios.get("https://api-nhaxinh.onrender.com/api/user/wishlist");
       setWhisProducts(data?.data);
     } catch (error) {
-      console.log(error);
+      //toast.error(error.response.data.message);
     }
   };
 

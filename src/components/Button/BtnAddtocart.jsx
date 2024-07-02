@@ -20,8 +20,7 @@ const BtnAddtocart = ({id, quantity}) => {
               }
             }
         } catch (error) {
-            console.log(error);
-            toast.error("Someething Went Wrong");
+            toast.error(error.response.data.message);
         }
      };
   

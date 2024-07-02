@@ -52,7 +52,7 @@ const Checkout = () => {
             );
             setProvinces(data?.results);
         } catch (error) {
-            console.log(error);
+            toast.error(error.response.data.message);
         }
     };
 
@@ -63,7 +63,7 @@ const Checkout = () => {
             );
             setDisctricts(data?.results);
         } catch (error) {
-            console.log(error);
+            toast.error(error.response.data.message);
         }
     };
 
@@ -74,7 +74,7 @@ const Checkout = () => {
             );
             setYards(data?.results);
         } catch (error) {
-            console.log(error);
+            toast.error(error.response.data.message);
         }
     };
 
@@ -85,7 +85,7 @@ const Checkout = () => {
             );
             setAddresses(data?.data);
         } catch (error) {
-            console.log(error);
+            toast.error(error.response.data.message);
         }
     };
 
@@ -162,7 +162,8 @@ const Checkout = () => {
                 setProducts(data.data.products);
             }
         } catch (error) {
-            toast.error("Someething Went Wrong");
+            toast.error(error.response.data.message);
+
         }
      };
 
@@ -242,12 +243,12 @@ const Checkout = () => {
                                 }
                             })
                             .catch(error => {
-                                console.error("An error occurred:", error);
-                                // Xử lý lỗi chung
+                                toast.error(error.response.data.message);
                             });
                         }
                     } catch (error) {
-                        toast.error("Someething Went Wrong");
+                        toast.error(error.response.data.message);
+
                     }
                 }
             }
@@ -297,7 +298,7 @@ const Checkout = () => {
                             // })
                         }
                     } catch (error) {
-                        toast.error("Someething Went Wrong");
+                        toast.error(error.response.data.message);
                     }
                 }
             }
