@@ -137,6 +137,7 @@ const ProductDetail = () => {
                 if(count <= 0){
                     toast.error("Please enter a valid quanity!");
                 }else{
+                    console.log(product._id , count);
                     const { data } = await axios.post('https://api-nhaxinh.onrender.com/api/cart/addtoCart', {
                         productId: product._id , quantity: count
                     });
@@ -348,7 +349,7 @@ const ProductDetail = () => {
                             >
                                 Mua ngay
                             </button>
-                            <BtnAddtocart />
+                            <BtnAddtocart id={product._id} quantity={count} />
                         </div>
                     </div>
 

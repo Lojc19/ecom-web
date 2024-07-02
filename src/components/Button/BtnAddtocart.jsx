@@ -3,7 +3,7 @@ import axios from "axios";
 import {toast} from "react-toastify";
 
 
-const BtnAddtocart = ({id}) => {
+const BtnAddtocart = ({id, quantity}) => {
   const [auth,setAuth] = useAuth()
 
     const addToCart = async () => {
@@ -13,7 +13,7 @@ const BtnAddtocart = ({id}) => {
             }
             else{
               const { data } = await axios.post('https://api-nhaxinh.onrender.com/api/cart/addtoCart', {
-                productId: id , quantity: 1
+                productId: id , quantity: quantity
               });
               if(data?.status == "success"){
                   toast.success("Add to Cart Successfully!");
