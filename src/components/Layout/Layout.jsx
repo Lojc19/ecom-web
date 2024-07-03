@@ -30,7 +30,7 @@ const Layout = ({ children, title, description}) => {
             <ToastContainer />
         {children}
         </main>
-        {showChatbot && (
+        {/* {showChatbot && (
             <div className="fixed bottom-4 right-4">
                 <div className="mb-24">
                     <Chatbot
@@ -40,12 +40,12 @@ const Layout = ({ children, title, description}) => {
                     />
                 </div>
             </div>
-        )}
-        <div className="fixed bottom-4 right-4">
+        )} */}
+        {/* <div className="fixed bottom-4 right-4">
             <div className=" bg-blue-500 p-6 rounded-full  cursor-pointer" onClick={toggleChatbot}>
                 <FaRegMessage className=""/>
             </div>
-        </div>
+        </div> */}
         <Footer />
         </>   
     );
