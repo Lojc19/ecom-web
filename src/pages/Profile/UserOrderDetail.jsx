@@ -3,6 +3,7 @@ import UserMenu from "./UserMenu"
 import {toast} from "react-toastify";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
+import Layout from "../../components/Layout/Layout";
 
 const UserOrderDetail = () => {
     const params = useParams();
@@ -57,7 +58,8 @@ const UserOrderDetail = () => {
         return `${day}/${month}/${year}`;
     };
   return (
-    <div className="flex flex-row h-auto m-8 mx-24">
+    <Layout>
+        <div className="flex flex-row h-auto m-8 mx-24">
             <div class="basis-1/6 h-100% bg-slate-100">
                 <UserMenu />
             </div>
@@ -72,6 +74,7 @@ const UserOrderDetail = () => {
                 </div>
                 <div class="flex flex-col w-full mt-2">
                     <h1 className="text-left w-full text-3xl my-2">Thông tin đơn hàng</h1>
+                    <h1 className="text-left w-full text-lg my-2">Order Id : {order?.orderId}</h1>
                     <h1 className="text-left w-full text-lg my-2">Phương thức thanh toán : {order?.PaymentMethod}</h1>
                     <h1 className="text-left w-full text-lg my-2">Số điện thoại đặt hàng : {order?.phoneNumber}</h1>
                     <div class="flex flex-col justify-center items-center my-8">
@@ -130,6 +133,8 @@ const UserOrderDetail = () => {
                 </div>
             </div>
         </div>
+    </Layout>
+    
   )
 }
 

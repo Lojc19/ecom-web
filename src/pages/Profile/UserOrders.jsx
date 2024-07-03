@@ -62,6 +62,12 @@ const UserOrders = () => {
         return `${day}/${month}/${year}`;
     };
 
+    const statuses = { Delivered: 'text-green-400', Processing: 'text-orange-400',  Cancelled: 'text-red-400', Dispatched: 'text-yellow-400'};
+    
+    function classNames(...classes) {
+        return classes.filter(Boolean).join(' ')
+      }
+
     const getProductImage = (order) => {
         if (order && order.products && order.products.length > 0) {
             const product = order.products[0];
@@ -74,33 +80,33 @@ const UserOrders = () => {
     };
     const data = [
         {
-          label: "Tất cả đơn hàng",
+          label: "All",
           value: "All",
           desc: `It really matters and then like it really doesn't matter.
           What matters is the people who are sparked by it. And the people 
           who are like offended by it, it doesn't matter.`,
         },
         {
-          label: "Đang xử lí",
-          value: "Pending",
+          label: "Processing",
+          value: "Processing",
           desc: `Because it's about motivating the doers. Because I'm here
           to follow my dreams and inspire other people to follow their dreams, too.`,
         },
         {
-          label: "Đang giao",
-          value: "Processing",
+          label: "Dispatched",
+          value: "Dispatched",
           desc: `We're not always in the position that we want to be at.
           We're constantly growing. We're constantly making mistakes. We're
           constantly trying to express ourselves and actualize our dreams.`,
         },
         {
-          label: "Đã hoàn thành",
+          label: "Delivered",
           value: "Delivered",
           desc: `Because it's about motivating the doers. Because I'm here
           to follow my dreams and inspire other people to follow their dreams, too.`,
         },
         {
-          label: "Trả lại",
+          label: "Cancelled",
           value: "Cancelled",
           desc: `We're not always in the position that we want to be at.
           We're constantly growing. We're constantly making mistakes. We're
@@ -113,7 +119,7 @@ const UserOrders = () => {
                 <div class="basis-1/6 h-100% bg-slate-100">
                     <UserMenu />
                 </div>
-                <div class="basis-4/6">
+                <div class="basis-5/6">
                 <h2 className="text-3xl font-semibold mb-8 ml-4">Đơn hàng của tôi</h2>
                 <Tabs value={activeTab} className="m-4">
                     <TabsHeader
@@ -138,7 +144,7 @@ const UserOrders = () => {
                         ))}
                     </TabsHeader>
                     <TabsBody>
-                        <div className="w-full md:flex md:flex-wrap md:justify-between">
+                        {/* <div className="w-full md:flex md:flex-wrap md:justify-between">
                             {orders?.map((p, index) => (
                                 <>
     
@@ -159,51 +165,46 @@ const UserOrders = () => {
                                 </div>
                                 </>
                             ))}
-                            {/* <div className="w-full h-44 bg-slate-200 m-4 rounded-lg flex flex-row">
-                                <button className="basic 1/6 flex items-center">
-                                    <img
-                                    src="../src/assets/imgs/product-test2.jpeg"
-                                    //src={imageUrl}
-                                    alt="Product"
-                                    className="bg-cover h-full w-full group-hover:hidden p-4"
-                                    />
-                                </button>
-                                <div className="basic 5/6 flex flex-col m-4 justify-around">
-                                    <h3 className="text-xl font-bold">Status: <span className="text-2xl text-gray-500">PENDING</span></h3>
-                                    <h3 className="text-xl font-bold">Total Price: <span className="text-2xl">19,000,000vnd</span></h3>
-                                    <h3 className="text-xl font-bold">Order Day: <span className="text-2xl">29/4/2024</span></h3>
-                                </div>
+                        </div> */}
+                        <div className="mt-8 flow-root ml-4">
+                            <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                            <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+                                <table className="min-w-full divide-y divide-gray-300">
+                                <tbody className="divide-y divide-gray-200 bg-white">
+                                    {orders.map((p) => (
+                                    <tr key={p?._id}>
+                                        <td className="whitespace-nowrap py-5 pl-4 pr-3 text-sm sm:pl-0">
+                                        <div className="flex items-center">
+                                            <div className="h-11 w-11 flex-shrink-0">
+                                            <img className="h-11 w-11 rounded-full cursor-pointer" src={getProductImage(p)} alt="" onClick={() => navigate(`${p._id}`)} />
+                                            </div>
+                                            <div className="ml-4">
+                                            <div className="font-medium text-gray-900">Order Id:</div>
+                                            <div className="mt-1 text-gray-500">{p?.orderId}</div>
+                                            </div>
+                                        </div>
+                                        </td>
+                                        <td className="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
+                                        <div className="text-gray-900">{formatCurrency(p.total)}</div>
+                                        <div className="mt-1 text-gray-500"></div>
+                                        </td>
+                                        <td className="whitespace-nowrap px-3 py-5 text-sm text-gray-500">{formatDate(p.orderTime)}</td>
+                                        <td className="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
+                                        <span 
+                                            className={classNames(statuses[p.status], 'inline-flex items-center rounded-md bg-white px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20')}
+                                        >
+                                            {p.status}
+                                        </span>
+                                        </td>
+                                        <td className="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
+                                        <div className="text-gray-900">{p?.PaymentMethod}</div>
+                                        </td>
+                                    </tr>
+                                    ))}
+                                </tbody>
+                                </table>
                             </div>
-                            <div className="w-full h-44 bg-slate-200 m-4 rounded-lg flex flex-row">
-                                <button className="basic 1/6 flex items-center">
-                                    <img
-                                    src="../src/assets/imgs/product-test2.jpeg"
-                                    //src={imageUrl}
-                                    alt="Product"
-                                    className="bg-cover h-full w-full group-hover:hidden p-4"
-                                    />
-                                </button>
-                                <div className="basic 5/6 flex flex-col m-4 justify-around">
-                                    <h3 className="text-xl font-bold">Status: <span className="text-2xl text-gray-500">PENDING</span></h3>
-                                    <h3 className="text-xl font-bold">Total Price: <span className="text-2xl">19,000,000vnd</span></h3>
-                                    <h3 className="text-xl font-bold">Order Day: <span className="text-2xl">29/4/2024</span></h3>
-                                </div>
                             </div>
-                            <div className="w-full h-44 bg-slate-200 m-4 rounded-lg flex flex-row">
-                                <button className="basic 1/6 flex items-center">
-                                    <img
-                                    src="../src/assets/imgs/product-test2.jpeg"
-                                    //src={imageUrl}
-                                    alt="Product"
-                                    className="bg-cover h-full w-full group-hover:hidden p-4"
-                                    />
-                                </button>
-                                <div className="basic 5/6 flex flex-col m-4 justify-around">
-                                    <h3 className="text-xl font-bold">Status: <span className="text-2xl text-gray-500">PENDING</span></h3>
-                                    <h3 className="text-xl font-bold">Total Price: <span className="text-2xl">19,000,000vnd</span></h3>
-                                    <h3 className="text-xl font-bold">Order Day: <span className="text-2xl">29/4/2024</span></h3>
-                                </div>
-                            </div> */}
                         </div>
                     </TabsBody>
                 </Tabs>
