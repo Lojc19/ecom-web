@@ -34,6 +34,16 @@ const ProductCategory = () => {
         }
     }, [params?.id, categories]);
 
+    const sortProductsByNewest = () => {
+        const sortedProducts = [...products].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+        setProducts(sortedProducts);
+    };
+
+    const sortProductsBySold = () => {
+        const sortedProducts = [...products].sort((a, b) => b.sold - a.sold);
+        setProducts(sortedProducts);
+    };
+
     const sortProductsByPriceAsc = () => {
         const sortedProducts = [...products].sort((a, b) => a.price - b.price);
         setProducts(sortedProducts);
@@ -118,13 +128,18 @@ const ProductCategory = () => {
                         <div className="absolute w-full top-[70px] border border-[#929292] bg-white rounded p-[15px] z-10">
                             <ul className="flex flex-col gap-2 text-[14px] font-Roboto">
                                 <li
-                                    onClick={() =>
-                                        TextFilter("Theo mức độ phổ biến")
+                                    onClick={() =>{
+                                        TextFilter("Theo mức độ phổ biến");
+                                        sortProductsBySold()
                                     }
+                                }
                                 >
                                     Theo mức độ phổ biến
                                 </li>
-                                <li onClick={() => TextFilter("Mới nhất")}>
+                                <li onClick={() => {
+                                    TextFilter("Mới nhất"); 
+                                    sortProductsByNewest();
+                                }}>
                                     Mới nhất
                                 </li>
                                 <li

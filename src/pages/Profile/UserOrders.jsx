@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useAuth } from "../../context/auth";
 import { useNavigate } from "react-router-dom";
-import {toast} from "react-toastify";
+import { toast } from "react-toastify";
 import Layout from "../../components/Layout/Layout";
 import { NavLink } from "react-router-dom";
 import UserMenu from "./UserMenu"
@@ -17,7 +17,7 @@ import {
 
 const UserOrders = () => {
     const navigate = useNavigate();
-    const [auth,setAuth] = useAuth();
+    const [auth, setAuth] = useAuth();
     const [activeTab, setActiveTab] = React.useState("html");
     const [orders, setOrders] = useState([]);
 
@@ -36,7 +36,7 @@ const UserOrders = () => {
         }
     };
 
-    const filterOrder = async (statusOrder) =>{
+    const filterOrder = async (statusOrder) => {
         if (statusOrder != "All") {
             const { data } = await axios.get(
                 "https://api-nhaxinh.onrender.com/api/order/myOrder"
@@ -62,11 +62,11 @@ const UserOrders = () => {
         return `${day}/${month}/${year}`;
     };
 
-    const statuses = { Delivered: 'text-green-400', Processing: 'text-orange-400',  Cancelled: 'text-red-400', Dispatched: 'text-yellow-400'};
-    
+    const statuses = { Delivered: 'text-green-400', Processing: 'text-orange-400', Cancelled: 'text-red-400', Dispatched: 'text-yellow-400' };
+
     function classNames(...classes) {
         return classes.filter(Boolean).join(' ')
-      }
+    }
 
     const getProductImage = (order) => {
         if (order && order.products && order.products.length > 0) {
@@ -80,71 +80,71 @@ const UserOrders = () => {
     };
     const data = [
         {
-          label: "All",
-          value: "All",
-          desc: `It really matters and then like it really doesn't matter.
+            label: "All",
+            value: "All",
+            desc: `It really matters and then like it really doesn't matter.
           What matters is the people who are sparked by it. And the people 
           who are like offended by it, it doesn't matter.`,
         },
         {
-          label: "Processing",
-          value: "Processing",
-          desc: `Because it's about motivating the doers. Because I'm here
+            label: "Processing",
+            value: "Processing",
+            desc: `Because it's about motivating the doers. Because I'm here
           to follow my dreams and inspire other people to follow their dreams, too.`,
         },
         {
-          label: "Dispatched",
-          value: "Dispatched",
-          desc: `We're not always in the position that we want to be at.
+            label: "Dispatched",
+            value: "Dispatched",
+            desc: `We're not always in the position that we want to be at.
           We're constantly growing. We're constantly making mistakes. We're
           constantly trying to express ourselves and actualize our dreams.`,
         },
         {
-          label: "Delivered",
-          value: "Delivered",
-          desc: `Because it's about motivating the doers. Because I'm here
+            label: "Delivered",
+            value: "Delivered",
+            desc: `Because it's about motivating the doers. Because I'm here
           to follow my dreams and inspire other people to follow their dreams, too.`,
         },
         {
-          label: "Cancelled",
-          value: "Cancelled",
-          desc: `We're not always in the position that we want to be at.
+            label: "Cancelled",
+            value: "Cancelled",
+            desc: `We're not always in the position that we want to be at.
           We're constantly growing. We're constantly making mistakes. We're
           constantly trying to express ourselves and actualize our dreams.`,
         },
-      ];
+    ];
     return (
-        <Layout title={"User Profile"}>
+        <Layout title={"Lịch sử mua hàng"}>
             <div className="flex flex-row h-auto m-8 mx-24">
                 <div class="basis-1/6 h-100% bg-slate-100">
                     <UserMenu />
                 </div>
                 <div class="basis-5/6">
-                <h2 className="text-3xl font-semibold mb-8 ml-4">Đơn hàng của tôi</h2>
-                <Tabs value={activeTab} className="m-4">
-                    <TabsHeader
-                        className="rounded-none border-b border-blue-gray-50 bg-transparent p-0"
-                        indicatorProps={{
-                        className:
-                            "bg-transparent border-b-2 border-gray-900 shadow-none rounded-none",
-                        }}
-                    >
-                        {data.map(({ label, value }) => (
-                        <Tab
-                            key={value}
-                            value={value}
-                            onClick={() => {
-                                filterOrder(value);
-                                setActiveTab(value);
+                    <h2 className="text-3xl font-semibold mb-8 ml-4">Đơn hàng của tôi</h2>
+                    <Tabs value={activeTab} className="m-4">
+                        <TabsHeader
+                            className="rounded-none border-b border-blue-gray-50 bg-transparent p-0"
+                            indicatorProps={{
+                                className:
+                                    "bg-transparent border-b-2 border-gray-900 shadow-none rounded-none",
                             }}
-                            className={activeTab === value ? "text-gray-900 border-b-2 border-yellow-500" : ""}
                         >
-                            {label}
-                        </Tab>
-                        ))}
-                    </TabsHeader>
-                    <TabsBody>
-                        {/* <div className="w-full md:flex md:flex-wrap md:justify-between">
+                            {data.map(({ label, value }) => (
+                                <Tab
+                                    key={value}
+                                    value={value}
+                                    onClick={() => {
+                                        filterOrder(value);
+                                        setActiveTab(value);
+                                    }}
+                                    className={activeTab === value ? "text-gray-900 border-b-2 border-yellow-500" : ""}
+                                >
+                                    {label}
+                                </Tab>
+                            ))}
+                        </TabsHeader>
+                        <TabsBody>
+                            {/* <div className="w-full md:flex md:flex-wrap md:justify-between">
                             {orders?.map((p, index) => (
                                 <>
     
@@ -166,7 +166,39 @@ const UserOrders = () => {
                                 </>
                             ))}
                         </div> */}
-                        <div className="mt-8 flow-root ml-4">
+                            {orders?.map((order, index) => (<>
+                                <div className="mt-5 cursor-pointer w-full md:w-3/4">
+                                    <div className="mx-3 flex justify-between items-center bg-[#2F5ACF] rounded-t-xl">
+                                        <div className="p-3 text-white font-semibold font-Roboto">
+                                            <p className="text-lg">Mã đơn hàng: {order.orderId}</p>
+                                            <p className="text-xs">{formatDate(order.orderTime)}</p>
+                                        </div>
+                                        <div className="p-3">
+                                            <div className="rounded-3xl p-2 text-sm bg-white text-black font-semibold font-Roboto">{order.status}</div>
+                                        </div>
+                                    </div>
+                                    {order.products.map((p, index) => (<>
+                                        <div className="mx-3 bg-[#0000001A]">
+                                            <div className="flex items-center w-1/2 py-4 px-7">
+                                                <img className="w-[100px] h-[100px] bg-cover" src={p.product.images[0].url} alt="" />
+                                                <div className="font-Roboto ml-5">
+                                                    <p className="text-sm font-bold text-black">{p.product.name}</p>
+                                                    <p className="text-sm text-[#00000099] my-3">Số lượng: {p.quantity}</p>
+                                                    <p className="text-sm font-bold text-black">Tổng: {formatCurrency(p.totalPriceItem)}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </>))}
+                                    <div className="mx-3 rounded-b-xl font-Roboto border-[#d9d9d9] border-t flex justify-between items-center px-7 py-3 bg-[#0000001A]">
+                                        {/* {order.coupon && (
+                                            <p className="text-sm font-bold text-black">Mã giảm giá: {order.coupon}</p>
+                                        )} */}
+                                        <p className="text-sm font-bold text-black">Tổng đơn hàng:</p>
+                                        <p className="text-sm font-bold text-black">{formatCurrency(order.total)} </p>
+                                    </div>
+                                </div>
+                            </>))}
+                            {/* <div className="mt-8 flow-root ml-4">
                             <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                             <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
                                 <table className="min-w-full divide-y divide-gray-300">
@@ -205,9 +237,9 @@ const UserOrders = () => {
                                 </table>
                             </div>
                             </div>
-                        </div>
-                    </TabsBody>
-                </Tabs>
+                        </div> */}
+                        </TabsBody>
+                    </Tabs>
                 </div>
                 {/* <div class="basis-2/6 text-center">
                     <UserWishList />
