@@ -43,72 +43,14 @@ const Navbar = () => {
         }
         setActiveMenu(false);
     };
-    const dataRoom = [
-        "Phòng khách",
-        "Phòng ăn",
-        "Phòng ngủ",
-        "Phòng làm việc",
-        "Tủ bếp",
-        "Hàng trang trí",
-        "Ngoại thất",
-    ];
-    const itemsCate = [
-        "Sofa",
-        "Sofa góc",
-        "Ghế thư giãn",
-        "Armchair",
-        "Ghế dài & đôn",
-        "Bàn bên",
-        "Bàn nước",
-        "Bàn Console",
-        "Tủ tivi",
-        "Kệ trưng bày",
-        "Tủ giày",
-        "Bàn ăn",
-        "Ghế ăn",
-        "Ghế Bar",
-        "Tủ ly",
-        "Xe đẩy",
-        "Tủ bếp",
-        "Thiết bị bếp",
-        "Giường ngủ",
-        "Bàn đầu giường",
-        "Bàn trang điểm",
-        "Tủ áo",
-        "Tủ âm tường",
-        "Tủ hộc kéo",
-        "Nệm",
-        "Bàn làm việc",
-        "Ghế làm việc",
-        "Kệ sách",
-        "Bàn ngoài trời",
-        "Ghế ngoài trời",
-        "Đèn trang trí",
-        "Thảm trang trí",
-        "Michael Aram",
-        "Đồ trang trí noel",
-        "Bình trang trí",
-        "Tranh",
-        "Gương",
-        "Hoa và cây",
-        "Đồng hồ",
-        "Khung hình",
-        "Tượng trang trí",
-        "Gối và thú bông",
-        "Nến & chân nến",
-        "Dụng cụ bếp",
-        "Hàng trang trí khác",
-        "Tinh dầu",
-    ];
 
     return (
         <>
             <div
-                className={`w-screen h-auto px-3 bg-white items-center border-b-[1px] z-10 ${
-                    scrolled
-                        ? "fixed top-0 left-0 shadow-lg animate-navbar"
-                        : ""
-                }`}
+                className={`w-screen h-auto px-3 bg-white items-center border-b-[1px] z-10 ${scrolled
+                    ? "fixed top-0 left-0 shadow-lg animate-navbar"
+                    : ""
+                    }`}
             >
                 <div className="container px-4 md:max-w-[1320px] h-[90px] mx-auto flex justify-between items-center relative">
                     <div className="flex items-center">
@@ -134,22 +76,32 @@ const Navbar = () => {
                                 </a>
                                 <div className="container z-40 p-5 left-0 top-[92px] absolute md:max-w-[1320px] border border-[#ffffff4D] h-auto bg-white shadow-md hidden group-hover:block">
                                     <div className="w-full h-full flex justify-between ">
-                                        <ul className="w-4/5 grid grid-cols-4 gap-4">
-                                            {categories?.map((p, index) => (
+                                        {rooms?.map((p, index) => (
+                                            // eslint-disable-next-line react/jsx-key
+                                            <div className="flex flex-col">
+                                                <li className="">
+                                                    <p
+                                                        href=""
+                                                        className="text-black font-semibold text-[18px]"
+                                                        key={index}
+                                                    >
+                                                        {p.nameRoom}
+                                                    </p>
+                                                </li>
+                                                {p.categories.map((p, index) => (
                                                 // eslint-disable-next-line react/jsx-key
                                                 <li className="">
                                                     <a
-                                                        href={`/category/${p._id}`}
+                                                        href={`/category/${p.slug}`}
                                                         className="hover:text-black text-[#777777] font-normal text-[18px]"
                                                         key={index}
-                                                        // onClick={console.log(p, index)}
-                                                        
                                                     >
                                                         {p.nameCate}
                                                     </a>
                                                 </li>
                                             ))}
-                                        </ul>
+                                            </div>
+                                        ))}
                                         <img
                                             src="https://nhaxinh.com/wp-content/uploads/2021/10/nha-xinh-phong-khach-hien-dai-poppy-1.jpg"
                                             alt=""
