@@ -7,7 +7,7 @@ import Layout from "../../components/Layout/Layout";
 import { NavLink } from "react-router-dom";
 import UserMenu from "../Profile/UserMenu"
 import ProductItem from "../../components/Product/ProductItem";
-import useWishlist from "../../hooks/useWhislist"
+import { useWishlist } from "../../hooks/useWhislist"
 const Wishlist = () => {
     const navigate = useNavigate();
     const [auth,setAuth] = useAuth();

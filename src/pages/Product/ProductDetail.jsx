@@ -16,10 +16,9 @@ import ProductItem from "../../components/Product/ProductItem";
 import Layout from "../../components/Layout/Layout";
 import { useAuth } from "../../context/auth"
 import {toast} from "react-toastify";
-import useWishlist from "../../hooks/useWhislist"
 import { IoMdHeart } from "react-icons/io";
 import { Rating } from "@material-tailwind/react";
-
+import { useWishlist } from "../../hooks/useWhislist"
 
 const ProductDetail = () => {
     const data = [

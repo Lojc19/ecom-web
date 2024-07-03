@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import useWishlist from "../../hooks/useWhislist"
-
+import { useWishlist } from "../../hooks/useWhislist"
 const UserWishList = () => {
     const { whisProducts, isInWishlist, toogleWishlist } = useWishlist();
     

@@ -1,57 +1,118 @@
-import { useState, useEffect } from "react";
+// import { useState, useEffect } from "react";
+// import axios from "axios";
+// import { useAuth } from "../context/auth"
+// import {toast} from "react-toastify";
+
+// export default function useWishlist() {
+//   const [whisProducts, setWhisProducts] = useState([]);
+//   const [auth,setAuth] = useAuth()
+
+//   //get cat
+//   const getWishlists = async () => {
+//     try {
+//       const { data } = await axios.get("https://api-nhaxinh.onrender.com/api/user/wishlist");
+//       setWhisProducts(data?.data);
+//     } catch (error) {
+//       //toast.error(error.response.data.message);
+//     }
+//   };
+
+//   const isInWishlist = (productId) => {
+//     if(!auth?.user)
+//       return false;
+//     return whisProducts.some(product => product._id === productId);
+//   };
+
+//   const toogleWishlist = async (productId) => {
+//     if(auth?.user){
+//       try{
+//         const { data } = await axios.post("https://api-nhaxinh.onrender.com/api/user/wishlist", 
+//           {
+//             prodId: productId,
+//           }
+//         );
+//         if(data.status == "success"){
+//           toast.success("Change Successfully");
+//           await getWishlists();
+//         }
+//       } catch(error){
+//         console.log(error);
+//       }
+//     }else{
+//       toast.error("Please Login To Add");
+//     }
+//   };
+
+//   useEffect(() => {
+//     if(auth?.user){
+//         getWishlists();
+//     }
+//   }, [auth?.user]);
+
+//   return {
+//     whisProducts,
+//     isInWishlist,
+//     toogleWishlist
+//   };
+// }
+
+import React, { createContext, useState, useContext, useEffect } from "react";
 import axios from "axios";
-import { useAuth } from "../context/auth"
-import {toast} from "react-toastify";
+import { useAuth } from "../context/auth";
+import { toast } from "react-toastify";
 
-export default function useWishlist() {
+const WishlistContext = createContext();
+
+const WishlistProvider = ({ children }) => {
   const [whisProducts, setWhisProducts] = useState([]);
-  const [auth,setAuth] = useAuth()
+  const [auth, setAuth] = useAuth();
 
-  //get cat
   const getWishlists = async () => {
     try {
       const { data } = await axios.get("https://api-nhaxinh.onrender.com/api/user/wishlist");
       setWhisProducts(data?.data);
+      setHasFetched(true);
     } catch (error) {
-      //toast.error(error.response.data.message);
+      console.log(error);
     }
   };
 
   const isInWishlist = (productId) => {
-    if(!auth?.user)
-      return false;
+    if (!auth?.user) return false;
     return whisProducts.some(product => product._id === productId);
   };
 
   const toogleWishlist = async (productId) => {
-    if(auth?.user){
-      try{
-        const { data } = await axios.post("https://api-nhaxinh.onrender.com/api/user/wishlist", 
-          {
-            prodId: productId,
-          }
-        );
-        if(data.status == "success"){
+    if (auth?.user) {
+      try {
+        const { data } = await axios.post("https://api-nhaxinh.onrender.com/api/user/wishlist", {
+          prodId: productId,
+        });
+        if (data.status === "success") {
           toast.success("Change Successfully");
           await getWishlists();
         }
-      } catch(error){
+      } catch (error) {
         console.log(error);
       }
-    }else{
+    } else {
       toast.error("Please Login To Add");
     }
   };
 
   useEffect(() => {
-    if(auth?.user){
-        getWishlists();
+    if (auth?.user) {
+      getWishlists();
     }
   }, [auth?.user]);
 
-  return {
-    whisProducts,
-    isInWishlist,
-    toogleWishlist
-  };
-}
+  return (
+    <WishlistContext.Provider value={{ whisProducts, isInWishlist, toogleWishlist }}>
+      {children}
+    </WishlistContext.Provider>
+  );
+};
+const useWishlist = () => useContext(WishlistContext);
+
+
+export { useWishlist, WishlistProvider };
