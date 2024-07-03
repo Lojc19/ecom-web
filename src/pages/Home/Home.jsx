@@ -13,14 +13,27 @@ const Home = () => {
     const navigate = useNavigate();
     const [auth,setAuth] = useAuth();
     const [products, setProducts] = useState([]);
+    const [sellproducts, setSellProducts] = useState([]);
+
     useEffect(() => {
         getAllProducts();
+        getAllSellProducts();
     }, []);
     //getall products
     const getAllProducts = async () => {
         try {
             const { data } = await axios.get('https://api-nhaxinh.onrender.com/api/product');
             setProducts(data.data.product);
+        } catch (error) {
+            toast.error(error.response.data.message);
+        }
+     };
+
+     //getall products
+    const getAllSellProducts = async () => {
+        try {
+            const { data } = await axios.get('https://api-nhaxinh.onrender.com/api/product/bestsellers');
+            setSellProducts(data.data);
         } catch (error) {
             toast.error(error.response.data.message);
         }
@@ -184,6 +197,21 @@ const Home = () => {
             </div>
             <div className="md:w-1/2">
                 <img src="/assets/imgs/nha-xinh-thiet-ke-noi-that-ecopark-16523.jpg" alt="thiết kế nội thất" className="w-full h-full bg-cover" />
+            </div>
+        </div>
+
+        <div className="p-3 mx-auto w-full md:w-[1200px] md:p-0 mt-8">
+            <div className="flex w-full">
+                <h2 className="uppercase font-Montserrat font-bold text-[18px]">Best Seller</h2>
+            </div>
+            <div className="border-b-[1px] border-[#ececec] w-full mb-10"></div>
+
+            <div className="w-full md:flex md:flex-wrap md:justify-between">
+                {sellproducts?.map((p, index) => (
+                    <>
+                        <ProductItem product={p} images={p.images}/>
+                    </>
+                ))}
             </div>
         </div>
 

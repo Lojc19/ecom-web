@@ -187,7 +187,7 @@ const Navbar = () => {
                                 <a href="">THIẾT KẾ NỘI THẤT</a>
                             </li>{" "}
                             <li className="hover:text-[#FFB236]">
-                                <a href="">CỬA HÀNG 360 ĐỘ</a>
+                                <a href="/store360">CỬA HÀNG 360 ĐỘ</a>
                             </li>
                             <li className="hover:text-[#FFB236]">
                                 <a href="">GÓC CẢM HỨNG</a>
