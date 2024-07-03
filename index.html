@@ -12,16 +12,20 @@
     <!-- from cdn -->
     <script src="https://unpkg.com/@material-tailwind/html@latest/scripts/tabs.js"></script>
     <script>
-      window.embeddedChatbotConfig = {
-      chatbotId: "uAPpA0FCgTUagT0hQlxnT",
-      domain: "www.chatbase.co"
-      }
-      </script>
-      <script
-      src="https://www.chatbase.co/embed.min.js"
-      chatbotId="uAPpA0FCgTUagT0hQlxnT"
-      domain="www.chatbase.co"
-      defer>
+      !function(w, d, s, ...args){
+        var div = d.createElement('div');
+        div.id = 'aichatbot';
+        d.body.appendChild(div);
+        w.chatbotConfig = args;
+        var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s);
+        j.defer = true;
+        j.type = 'module';
+        j.src = 'https://aichatbot.sendbird.com/index.js';
+        f.parentNode.insertBefore(j, f);
+      }(window, document, 'script', '3A5BF9B5-A2DA-4ED6-96EF-BC5D7EA0E102', 'onboarding_bot', {
+        apiHost: 'https://api-cf-us-3.sendbird.com',
+      });
       </script>
   </body>
 </html>
