@@ -2,7 +2,7 @@ import { Checkbox } from "antd";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useAuth } from "../../context/auth";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
 import { AiOutlineBank } from "react-icons/ai";
 import { CiMoneyCheck1 } from "react-icons/ci";
@@ -17,11 +17,13 @@ import AddressForm from "../../components/Form/AddressForm";
 const Checkout = () => {
     const [toggleState, setToggleState] = useState(1);
     const [auth,setAuth] = useAuth();
+    const location = useLocation();
+
 
     const [fullname, setFullName] = useState("");
     const [email, setEmail] = useState("");
     const [phone, setPhone] = useState("");
-
+    const { coupon } = location.state || {};
     // Address
     const [addresses, setAddresses] = useState([]);
     const [address, setAddress] = useState({});
@@ -167,6 +169,15 @@ const Checkout = () => {
         }
      };
 
+    const formatCurrencyWithCoupon = (total) => {
+        var newprice = total;
+        if (coupon && coupon?.discount) {
+            const discountAmount = total * (coupon.discount / 100);
+            newprice -= discountAmount;
+        }
+        return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(newprice);
+    };
+
     const formatCurrency = (total) => {
         return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(total);
     };
@@ -185,32 +196,6 @@ const Checkout = () => {
                         if(phone.length < 10){
                             toast.error("Please Enter A Valid PhoneNumber");
                         }else{
-                            // console.log("Name: " + fullname);
-                            // console.log("Email: " + email);
-                            // console.log("PhoneNumber: " + phone);
-                            // console.log("Province: " + province);
-                            // console.log("Disctrict: " + disctrict);
-                            // console.log("Yard: " + yard);
-                            // console.log(("Note: " + note));
-
-                            // const { data } = await axios.post('https://api-nhaxinh.onrender.com/api/order', 
-                            //     {PaymentMethod: "VNPay", name: fullname, email: email, phoneNumber: phone, addressShipping: {
-                            //         province: province,
-                            //         district: disctrict,
-                            //         ward: yard,
-                            //         note: note,
-                            //     }}
-                            // );
-                            // if (data?.status == "success") {
-                            //     const { payment } = await axios.post("https://api-nhaxinh.onrender.com/api/order/create_payment_url", {
-                            //         amount: total,
-                            //         orderId: data?.data?.orderId
-                            //     })
-                            //     if (payment?.status == "success") {
-                            //         await navigateTo(payment?.vnpUrl);
-                            //     }
-                            // }
-
                             axios.post('https://api-nhaxinh.onrender.com/api/order', {
                                 PaymentMethod: "VNPay",
                                 name: fullname,
@@ -256,7 +241,6 @@ const Checkout = () => {
     };
 
     const navigateTo = async (link) => {
-        //console.log(link);
         window.location.href = link;
     }
 
@@ -274,14 +258,6 @@ const Checkout = () => {
                         if(phone.length < 10){
                             toast.error("Please Enter A Valid PhoneNumber");
                         }else{
-                            // console.log("Name: " + fullname);
-                            // console.log("Email: " + email);
-                            // console.log("PhoneNumber: " + phone);
-                            // console.log("Province: " + province);
-                            // console.log("Disctrict: " + disctrict);
-                            // console.log("Yard: " + yard);
-                            // console.log(("Note: " + note));
-
                             const { data } = await axios.post('https://api-nhaxinh.onrender.com/api/order', 
                                 {PaymentMethod: "COD", name: fullname, email: email, phoneNumber: phone, addressShipping: {
                                     province: province,
@@ -293,9 +269,6 @@ const Checkout = () => {
                             if(data?.status == "success"){
                                 toast.success("Order Successfully!");
                             }
-                            // const {data} = await axios.post("http://localhost:8888/order/create_payment_url",{
-                            //     amount: 20000
-                            // })
                         }
                     } catch (error) {
                         toast.error(error.response.data.message);
@@ -367,81 +340,6 @@ const Checkout = () => {
                                 ></input>
                             </div>
                         </div>
-                        {/* <div className="w-full md:flex justify-between">
-                            <div className="md:w-[48%] mb-3">
-                                <label
-                                    htmlFor=""
-                                    className="block font-Roboto text-xs mb-1"
-                                >
-                                    Tỉnh / Thành phố
-                                    <span className="text-red-600"> *</span>
-                                </label>
-                                <input
-                                    type="text"
-                                    placeholder="Nhập Tỉnh / Thành phố"
-                                    className="w-full h-[40px] border border-[#ddd] px-3 shadow-inner text-base font-Montserrat"
-                                ></input>
-                            </div>
-                            <div className="md:w-1/2 mb-3">
-                                <label
-                                    htmlFor=""
-                                    className="block font-Roboto text-xs mb-1"
-                                >
-                                    Quận / Huyện
-                                    <span className="text-red-600"> *</span>
-                                </label>
-                                <input
-                                    type="text"
-                                    placeholder="Nhập Quận / Huyện"
-                                    className="w-full h-[40px] border border-[#ddd] px-3 shadow-inner text-base font-Montserrat"
-                                ></input>
-                            </div>
-                        </div>
-                        <div className="w-full mb-3">
-                            <label
-                                htmlFor=""
-                                className="block font-Roboto text-xs mb-1"
-                            >
-                                Phường / Xã
-                                <span className="text-red-600"> *</span>
-                            </label>
-                            <input
-                                type="text"
-                                placeholder="Nhập xã"
-                                className="w-full h-[40px] border border-[#ddd] px-3 shadow-inner text-base font-Montserrat"
-                            ></input>
-                        </div>
-                        <div className="w-full mb-3">
-                            <label
-                                htmlFor=""
-                                className="block font-Roboto text-xs mb-1"
-                            >
-                                Địa chỉ
-                                <span className="text-red-600"> *</span>
-                            </label>
-                            <input
-                                type="text"
-                                placeholder="Nhập địa chỉ"
-                                className="w-full h-[38px] border border-[#ddd] px-3 shadow-inner text-base font-Montserrat"
-                            ></input>
-                        </div>
-                        <Checkbox>Create an account?</Checkbox>
-                        <div className="w-full mt-3">
-                            <h3 className="font-Montserrat text-[18px]leading-5 uppercase font-semibold mb-2">
-                                Thông tin thêm
-                            </h3>
-
-                            <h2 className="text-[14px] font-Roboto leading-4 font-semibold mb-2">
-                                Lưu ý đơn cho hàng (tùy chọn)
-                            </h2>
-
-                            <textarea
-                                name=""
-                                id=""
-                                className="w-full h-[120px] border border-[#ddd] px-3 pt-3"
-                                placeholder="Viết các lưu ý cho đơn hàng của bạn, ví dụ: lưu ý đặc biệt khi vận chuyển"
-                            ></textarea>
-                        </div> */}
                         <div className="w-full mb-3">
                             <h3 className="font-Montserrat text-[18px] leading-5 uppercase font-semibold mb-2">
                                 Địa chỉ giao hàng
@@ -754,8 +652,30 @@ const Checkout = () => {
                         </h3>
                         <div className="flex justify-between items-center border-b border-[#ddd] py-2">
                             <p className="text-sm font-Roboto">Thành tiền</p>
-                            <p className="text-sm font-Roboto">{formatCurrency(price)}</p>
+                            {coupon ? (
+                                <>
+                                    <p className="text-sm font-Roboto">{formatCurrencyWithCoupon(price)}</p>
+                                </>
+                            ) : (
+                                <>
+                                    <p className="text-sm font-Roboto">{formatCurrency(price)}</p>
+                                </>
+                            )}
                         </div>
+                        {coupon ? (
+                                <>
+                                    <div className="flex justify-between items-center border-b border-[#ddd] py-2">
+                                    <p className="text-base font-Robot font-mediumo">
+                                        MÃ GIẢM GIÁ ÁP DỤNG
+                                        </p>
+                                    <p className="text-sm font-Roboto">{coupon?.code}</p>
+                                    </div>
+                                </>
+                            ) : (
+                                <>
+                                    
+                                </>
+                            )}
                         <div className="flex justify-between items-center border-b border-[#ddd] py-2">
                             <p className="text-sm font-Roboto">VẬN CHUYỂN</p>
                             <p className="text-sm font-Roboto">
@@ -766,9 +686,16 @@ const Checkout = () => {
                             <p className="text-base font-Robot font-mediumo">
                                 TỔNG CỘNG
                             </p>
-                            <p className="text-sm font-Roboto">{formatCurrency(price)}</p>
+                            {coupon ? (
+                                <>
+                                    <p className="text-sm font-Roboto">{formatCurrencyWithCoupon(price)}</p>
+                                </>
+                            ) : (
+                                <>
+                                    <p className="text-sm font-Roboto">{formatCurrency(price)}</p>
+                                </>
+                            )}
                         </div>
-
                         <div className="flex items-center justify-start py-[9px] mt-3 border-b border-[#ddd]">
                             <h2 className="text-[16px] font-Roboto leading-4 font-semibold">
                                 Sản phẩm
@@ -823,7 +750,6 @@ const Checkout = () => {
             </div>
         </>
         </Layout>
-        
     );
 };
 

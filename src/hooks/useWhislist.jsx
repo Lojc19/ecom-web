@@ -71,7 +71,6 @@ const WishlistProvider = ({ children }) => {
     try {
       const { data } = await axios.get("https://api-nhaxinh.onrender.com/api/user/wishlist");
       setWhisProducts(data?.data);
-      setHasFetched(true);
     } catch (error) {
       console.log(error);
     }

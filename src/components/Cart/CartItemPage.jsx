@@ -45,9 +45,10 @@ const CartItemPage = ({ product, quantity, updateQuantity, productId, images }) 
                             <input type="number" className="w-[35px] h-[35px] pl-2 text-center" inputMode="numeric" min="0" max="10" autoComplete="off"/>
                             <span className="w-[30px] h-[30px] px-2 border bg-[#F3F6F7] hover:bg-slate-400 cursor-pointer ease-in-out duration-300" >+</span> */}
                             <div className="md:flex w-full h-full md:w-auto mb-3">
-                                <span className="border w-[15%] md:w-[40px] h-full px-4 py-2 cursor-pointer text-center hover:bg-slate-200" onClick={decrementCount}>-</span>
+                                {/* <span className="border w-[15%] md:w-[40px] h-full px-4 py-2 cursor-pointer text-center hover:bg-slate-200" onClick={decrementCount}>-</span>
                                 <input className="md:w-[50px] w-[70%] h-full py-2 border text-center" type="text" value={quantity}/>
-                                <span className="border w-[15%] md:w-[40px] h-full px-4 py-2 cursor-pointer text-center hover:bg-slate-200" onClick={incrementCount}>+</span>
+                                <span className="border w-[15%] md:w-[40px] h-full px-4 py-2 cursor-pointer text-center hover:bg-slate-200" onClick={incrementCount}>+</span> */}
+                                <input className="md:w-[50px] w-[70%] h-full py-2  text-center" type="text" value={quantity}/>
                             </div>
                         </div>
                     </div>

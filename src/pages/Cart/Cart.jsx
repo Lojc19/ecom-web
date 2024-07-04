@@ -14,11 +14,31 @@ const Cart = () => {
     const [carts, setCarts] = useState({});
     const [price, setPrice] = useState(0);
     const [total, setTotal] = useState(0);
+    const [coupon, setCoupon] = useState("");
+    const [applycoupon, setApplyCoupon] = useState(null);
 
+    const applyCoupon = async () => {
+        try{
+            const { data } = await axios.get(`https://api-nhaxinh.onrender.com/api/coupon/${coupon}`);
+            if(data?.status == "success"){
+                setSpanDiscount(true);
+                setApplyCoupon(data?.data);
+            }
+        }
+        catch(error){
+            setSpanDiscount(false);
+            setApplyCoupon(null);
+            toast.error(error.response.data.message);
+        }
+    };
 
     const [products, setProducts] = useState([]);
     const submitDiscount = () => {
-        setSpanDiscount(true);
+        if(total === 0){
+            toast.info("Cart is Empty, Please buy something");
+        }else{
+            applyCoupon();
+        }
     };
     const navigate = useNavigate();
 
@@ -70,6 +90,15 @@ const Cart = () => {
         return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(total);
     };
 
+    const formatCurrencyWithCoupon = (total) => {
+        var newprice = total;
+        if (applycoupon && applycoupon?.discount) {
+            const discountAmount = total * (applycoupon.discount / 100);
+            newprice -= discountAmount;
+        }
+        return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(newprice);
+    };
+
     return (
         <Layout title={"Cart"}>
             <>
@@ -103,29 +132,49 @@ const Cart = () => {
                             <h1 className="mb-5 font-Roboto text-2xl font-bold">Tóm tắt đơn hàng</h1>
                             <div className="flex justify-between font-Roboto text-sm">
                                 <p>Thành tiền</p>
-                                <p className="font-bold">{formatCurrency(price)}</p>
+                                {spanDiscount ? (
+                                    <>
+                                      <p className="font-bold">{formatCurrencyWithCoupon(price)}</p>
+                                    </>
+                                ) : (
+                                    <>
+                                      <p className="font-bold">{formatCurrency(price)}</p>
+                                    </>
+                                )}
                             </div>
 
                             <div className="flex justify-between items-center font-Roboto mt-5 pb-4 border-b">
                                 <p className="w-[25%] text-[12px] md:text-[16px]">Vận chuyển</p>
                                 <div className="w-[75%] text-[12px] md:text-[14px] text-right">
                                     <p>Liên hệ phí vận chuyển sau</p>
-                                    <p className="md:whitespace-nowrap">Shipping options will be updated during checkout.</p>
+                                    {/* <p className="md:whitespace-nowrap">Shipping options will be updated during checkout.</p> */}
                                 </div>
                             </div>
 
                             <div className="w-full flex justify-between mt-5 text-[14px]">
-                                <input type="text" className="w-[67%] border border-[#ddd] bg-white shadow-sm pl-4 py-2" placeholder="Mã giảm giá"/>
+                                <input type="text" className="w-[67%] border border-[#ddd] bg-white shadow-sm pl-4 py-2" placeholder="Mã giảm giá" value={coupon} onChange={
+                                    (e) =>{
+                                        setCoupon(e.target.value);
+                                    }
+                                }/>
                                 <button className="w-[30%] px-3 py-2 text-white bg-black" onClick={submitDiscount}>SỬ DỤNG</button>
                             </div>
 
                             {spanDiscount && (
-                                <span className="block mt-3 text-[14px] font-Roboto">Mã giảm giá ABC-XYZ giảm <span className="text-red-600">10%</span></span>)
+                                <span className="block mt-3 text-[14px] font-Roboto">Mã giảm giá {applycoupon?.name} giảm <span className="text-red-600">{applycoupon?.discount}%</span></span>)
                             }
 
                             <div className="flex justify-between font-Roboto text-sm mt-5">
                                 <p>Tổng cộng</p>
-                                <p className="font-bold">{formatCurrency(price)}</p>
+                                {spanDiscount ? (
+                                    <>
+                                      <p className="font-bold">{formatCurrencyWithCoupon(price)}</p>
+                                    </>
+                                ) : (
+                                    <>
+                                      <p className="font-bold">{formatCurrency(price)}</p>
+                                    </>
+                                )}
                             </div>
 
                             <div className="text-[14px] font-Roboto">
@@ -138,13 +187,18 @@ const Cart = () => {
                             <div className="flex justify-between text-sm font-Roboto mt-5">
                                 <button className="w-[48%] border border-black py-2 px-[15px] font-bold hover:text-white hover:bg-black" onClick={()=>{navigate(`/`)}}><LuMoveLeft className="inline-block" />TIẾP TỤC MUA HÀNG</button>
                                 <button className="w-[48%] border py-2 px-[15px] font-bold text-white bg-black" onClick={()=>{
-                                    const hasProductGreaterThanTwo = products.some(product => product.quantity > 2);
+                                    //const hasProductGreaterThanTwo = products.some(product => product.quantity > 2);
                                     if (total === 0) {
                                         toast.error("Cart Is Empty!");
-                                    } else if (hasProductGreaterThanTwo) {
-                                        toast.info("Bạn đang mua hàng với số lượng lớn. Vui lòng liên hệ cửa hàng để đặt hàng");
                                     } else {
-                                        navigate(`/payment/checkout`);
+                                        if(spanDiscount){
+                                            const temp = {
+                                                coupon: applycoupon,
+                                            };
+                                            navigate('/payment/checkout', { state: temp });
+                                        }else{
+                                            navigate(`/payment/checkout`);
+                                        }
                                     }
                                 }} >ĐẶT HÀNG</button>
                             </div>
