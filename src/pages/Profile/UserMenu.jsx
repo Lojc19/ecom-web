@@ -1,8 +1,23 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
+import { useAuth } from "../../context/auth"
+import {toast} from "react-toastify";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const UserMenu = () => {
-    
+    const [auth,setAuth] = useAuth()
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        setAuth({
+          ...auth,
+          user: null,
+          token: "",
+        });
+        localStorage.removeItem("auth");
+        toast.success("Logout Successfully");
+        navigate('/');
+      };
     return (
         <>
         <div>
@@ -29,7 +44,7 @@ const UserMenu = () => {
                             Wishlist
                         </NavLink>
                     </div>
-                    <button className="inline-block m-4 text-lg">Đăng xuất</button>
+                    <button className="inline-block m-4 text-lg"  onClick={()=>{handleLogout()}}>Đăng xuất</button>
         </div>
         </>
     );
