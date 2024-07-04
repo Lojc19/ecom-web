@@ -116,10 +116,10 @@ const UserOrders = () => {
     return (
         <Layout title={"Lịch sử mua hàng"}>
             <div className="flex flex-row h-auto m-8 mx-24">
-                <div class="basis-1/6 h-100% bg-slate-100">
+                <div className="basis-1/6 h-100% bg-slate-100">
                     <UserMenu />
                 </div>
-                <div class="basis-5/6">
+                <div className="basis-5/6">
                     <h2 className="text-3xl font-semibold mb-8 ml-4">Đơn hàng của tôi</h2>
                     <Tabs value={activeTab} className="m-4">
                         <TabsHeader
@@ -167,7 +167,7 @@ const UserOrders = () => {
                             ))}
                         </div> */}
                             {orders?.map((order, index) => (<>
-                                <div className="mt-5 cursor-pointer w-full md:w-3/4">
+                                <div className="mt-5 cursor-pointer w-full md:w-3/4" onClick={() => navigate(`${order._id}`)}>
                                     <div className="mx-3 flex justify-between items-center bg-[#2F5ACF] rounded-t-xl">
                                         <div className="p-3 text-white font-semibold font-Roboto">
                                             <p className="text-lg">Mã đơn hàng: {order.orderId}</p>
