@@ -53,6 +53,7 @@ const ProductDetail = () => {
     const [category, setCategory] = useState({});
     const [room, setRoom] = useState({});
     const [dimensions, setdimensions] = useState({});
+    const [collectiion, setcollection] = useState({});
     const [materials, setmaterials] = useState({});
     const [images, setImages] = useState([]);
     const [products, setProducts] = useState([]);
@@ -165,8 +166,11 @@ const ProductDetail = () => {
             if(specs.length > 0) {
                 setdimensions(data?.data?.specs[0]);
             }
-            if(specs.length > 1) {
-                setmaterials(data?.data?.specs[1])
+            if(specs.length > 2) {
+                setmaterials(data?.data?.specs[2])
+            }
+            if(specs.length > 1){
+                setcollection(data?.data?.specs[1])
             }
             //await getProductReview();
 
@@ -330,6 +334,13 @@ const ProductDetail = () => {
                                 <span className="border border-slate-200 px-2 py-1">
                                     {/* D800 - R800 - C670 mm */}
                                     {dimensions.v}
+                                </span>
+                            </div>
+                            <div className="mb-6">
+                                <span className="font-bold">Collection: </span>
+                                <span className="border border-slate-200 px-2 py-1">
+                                    {/* D800 - R800 - C670 mm */}
+                                    {collectiion.v}
                                 </span>
                             </div>
                         </div>
