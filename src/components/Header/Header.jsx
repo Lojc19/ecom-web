@@ -56,6 +56,7 @@ const Header = () => {
         });
         localStorage.removeItem("auth");
         toast.success("Logout Successfully");
+        navigate('/');
       };
     const [visible, setVisible] = useState(false);
     return (

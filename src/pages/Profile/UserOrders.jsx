@@ -21,6 +21,23 @@ const UserOrders = () => {
     const [activeTab, setActiveTab] = React.useState("html");
     const [orders, setOrders] = useState([]);
 
+    const [searchQuery, setSearchQuery] = useState('');
+    const [foundOrders, setFoundOrders] = useState([]);
+
+    const findOrdersByIdSubstring = (query) => {
+        if (!query) return orders;
+        return orders.filter(order => order.orderId != null && order.orderId.toString().includes(query));
+    };
+
+    const handleSearch = () => {
+        const orders = findOrdersByIdSubstring(searchQuery);
+        setFoundOrders(orders);
+    };
+
+    useEffect(() => {
+        handleSearch();
+    }, [orders]);
+
     useEffect(() => {
         getOrders();
     }, []);
@@ -37,12 +54,14 @@ const UserOrders = () => {
     };
 
     const filterOrder = async (statusOrder) => {
+        setSearchQuery('');
+        handleSearch();
         if (statusOrder != "All") {
-            const { data } = await axios.get(
-                "https://api-nhaxinh.onrender.com/api/order/myOrder"
-            );
-            const filteredOrders = data?.data.filter(order => order.status === statusOrder);
-            setOrders(filteredOrders);
+            // const { data } = await axios.get(
+            //     "https://api-nhaxinh.onrender.com/api/order/myOrder"
+            // );
+            const filteredOrders = orders.filter(order => order.status === statusOrder);
+            setFoundOrders(filteredOrders);
         } else {
             getOrders();
         }
@@ -144,29 +163,25 @@ const UserOrders = () => {
                             ))}
                         </TabsHeader>
                         <TabsBody>
-                            {/* <div className="w-full md:flex md:flex-wrap md:justify-between">
-                            {orders?.map((p, index) => (
-                                <>
-    
-                                <div className="w-full h-44 bg-slate-200 m-4 rounded-lg flex flex-row">
-                                    <button className="basic 1/6 flex items-center" onClick={() => navigate(`${p._id}`)}>
-                                        <img
-                                        src={getProductImage(p)}
-                                        //src={imageUrl}
-                                        alt="Product"
-                                        className="bg-cover h-full w-full group-hover:hidden p-4"
-                                        />
-                                    </button>
-                                    <div className="basic 5/6 flex flex-col m-4 justify-around">
-                                        <h3 className="text-xl font-bold">Status: <span className="text-2xl text-gray-500">{p.status}</span></h3>
-                                        <h3 className="text-xl font-bold">Total Price: <span className="text-2xl">{formatCurrency(p.total)}</span></h3>
-                                        <h3 className="text-xl font-bold">Order Day: <span className="text-2xl">{formatDate(p.orderTime)}</span></h3>
-                                    </div>
+                        <form class="max-w-md mx-auto mt-4 mb-4">   
+                            <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+                            <div class="relative">
+                                <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                                    <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+                                    </svg>
                                 </div>
-                                </>
-                            ))}
-                        </div> */}
-                            {orders?.map((order, index) => (<>
+                                <input type="search" id="default-search" class="block w-full p-4 ps-10 text-sm text-gray-900 borde rounded-lg" placeholder="Search by Order Id" required 
+                                   value={searchQuery}
+                                   onChange={(e) => setSearchQuery(e.target.value)} />
+                                <button onClick={(e) => {
+                                    e.preventDefault();
+                                    handleSearch();  
+                                }}
+                                type="submit" class="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
+                            </div>
+                        </form>
+                            {foundOrders?.map((order, index) => (<>
                                 <div className="mt-5 cursor-pointer w-full md:w-3/4" onClick={() => navigate(`${order._id}`)}>
                                     <div className="mx-3 flex justify-between items-center bg-[#2F5ACF] rounded-t-xl">
                                         <div className="p-3 text-white font-semibold font-Roboto">
@@ -198,52 +213,9 @@ const UserOrders = () => {
                                     </div>
                                 </div>
                             </>))}
-                            {/* <div className="mt-8 flow-root ml-4">
-                            <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-                            <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
-                                <table className="min-w-full divide-y divide-gray-300">
-                                <tbody className="divide-y divide-gray-200 bg-white">
-                                    {orders.map((p) => (
-                                    <tr key={p?._id}>
-                                        <td className="whitespace-nowrap py-5 pl-4 pr-3 text-sm sm:pl-0">
-                                        <div className="flex items-center">
-                                            <div className="h-11 w-11 flex-shrink-0">
-                                            <img className="h-11 w-11 rounded-full cursor-pointer" src={getProductImage(p)} alt="" onClick={() => navigate(`${p._id}`)} />
-                                            </div>
-                                            <div className="ml-4">
-                                            <div className="font-medium text-gray-900">Order Id:</div>
-                                            <div className="mt-1 text-gray-500">{p?.orderId}</div>
-                                            </div>
-                                        </div>
-                                        </td>
-                                        <td className="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
-                                        <div className="text-gray-900">{formatCurrency(p.total)}</div>
-                                        <div className="mt-1 text-gray-500"></div>
-                                        </td>
-                                        <td className="whitespace-nowrap px-3 py-5 text-sm text-gray-500">{formatDate(p.orderTime)}</td>
-                                        <td className="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
-                                        <span 
-                                            className={classNames(statuses[p.status], 'inline-flex items-center rounded-md bg-white px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20')}
-                                        >
-                                            {p.status}
-                                        </span>
-                                        </td>
-                                        <td className="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
-                                        <div className="text-gray-900">{p?.PaymentMethod}</div>
-                                        </td>
-                                    </tr>
-                                    ))}
-                                </tbody>
-                                </table>
-                            </div>
-                            </div>
-                        </div> */}
                         </TabsBody>
                     </Tabs>
                 </div>
-                {/* <div class="basis-2/6 text-center">
-                    <UserWishList />
-                </div> */}
             </div>
         </Layout>
     );
