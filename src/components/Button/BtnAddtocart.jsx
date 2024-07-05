@@ -1,6 +1,7 @@
 import { useAuth } from "../../context/auth"
 import axios from "axios";
 import {toast} from "react-toastify";
+import { trackAddToCart } from "../../gtag"
 
 
 const BtnAddtocart = ({id, quantity}) => {
