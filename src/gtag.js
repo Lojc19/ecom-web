@@ -2,6 +2,7 @@
 export function trackProductView(product) {
     window.gtag('event', 'view_item', {
       items: [{
+        code: product.code,
         name: product.name,
         category: product.category,
         room: product.room,
@@ -15,6 +16,7 @@ export function trackProductView(product) {
   export function trackAddToCart(product) {
     window.gtag('event', 'add_to_cart', {
       items: [{
+        code: product.code,
         name: product.name,
         category: product.category,
         room: product.room,
@@ -32,6 +34,7 @@ export function trackProductView(product) {
       currency: 'VND',
       PaymentMethod: order.PaymentMethod,
       items: order.products.map(item => ({
+        code: item.code,
         name: item.name,
         category: item.category,
         room: item.room,
