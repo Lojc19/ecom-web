@@ -196,23 +196,51 @@ const Checkout = () => {
                         if(phone.length < 10){
                             toast.error("Please Enter A Valid PhoneNumber");
                         }else{
-                            axios.post('https://api-nhaxinh.onrender.com/api/order', {
-                                PaymentMethod: "VNPay",
-                                name: fullname,
-                                email: email,
-                                phoneNumber: phone,
-                                addressShipping: {
-                                    province: province,
-                                    district: disctrict,
-                                    ward: yard,
-                                    note: note,
+                            var request = {};
+                            if(coupon){
+                                request = {
+                                    PaymentMethod: "VNPay",
+                                    name: fullname,
+                                    email: email,
+                                    phoneNumber: phone,
+                                    addressShipping: {
+                                        province: province,
+                                        district: disctrict,
+                                        ward: yard,
+                                        note: note,
+                                    },
+                                    couponApplied: coupon?.code
                                 }
-                            })
+                            }else{
+                                request = {
+                                    PaymentMethod: "VNPay",
+                                    name: fullname,
+                                    email: email,
+                                    phoneNumber: phone,
+                                    addressShipping: {
+                                        province: province,
+                                        district: disctrict,
+                                        ward: yard,
+                                        note: note,
+                                    }
+                                }
+                            }
+                            axios.post('https://api-nhaxinh.onrender.com/api/order', request)
                             .then(response => {
                                 const data = response.data;
                                 if (data?.status === "success") {
+                                    var priceOrder;
+                                    if(coupon){
+                                        priceOrder = price;
+                                        if (coupon && coupon?.discount) {
+                                            const discountAmount = price * (coupon.discount / 100);
+                                            priceOrder -= discountAmount;
+                                        }
+                                    }else{
+                                        priceOrder = price;
+                                    }
                                     return axios.post("https://api-nhaxinh.onrender.com/api/order/create_payment_url", {
-                                        amount: price,
+                                        amount: priceOrder,
                                         orderId: data?.data?.orderId
                                     });
                                 } else {
@@ -258,13 +286,37 @@ const Checkout = () => {
                         if(phone.length < 10){
                             toast.error("Please Enter A Valid PhoneNumber");
                         }else{
+                            const request = {};
+                            if(coupon){
+                                request = {
+                                    PaymentMethod: "COD",
+                                    name: fullname,
+                                    email: email,
+                                    phoneNumber: phone,
+                                    addressShipping: {
+                                        province: province,
+                                        district: disctrict,
+                                        ward: yard,
+                                        note: note,
+                                    },
+                                    couponApplied: coupon?.code
+                                }
+                            }else{
+                                request = {
+                                    PaymentMethod: "COD",
+                                    name: fullname,
+                                    email: email,
+                                    phoneNumber: phone,
+                                    addressShipping: {
+                                        province: province,
+                                        district: disctrict,
+                                        ward: yard,
+                                        note: note,
+                                    }
+                                }
+                            }
                             const { data } = await axios.post('https://api-nhaxinh.onrender.com/api/order', 
-                                {PaymentMethod: "COD", name: fullname, email: email, phoneNumber: phone, addressShipping: {
-                                    province: province,
-                                    district: disctrict,
-                                    ward: yard,
-                                    note: note,
-                                }}
+                                request
                             );
                             if(data?.status == "success"){
                                 toast.success("Order Successfully!");
