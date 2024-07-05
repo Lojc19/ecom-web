@@ -1,34 +1,40 @@
 // Theo dõi khi người dùng xem một sản phẩm
+import ReactGA from 'react-ga';
+
 export function trackProductView(product) {
-    window.gtag('event', 'view_item', {
+    ReactGA.event({
+      category: 'Product',
+      action: 'view_product',
+      label: product.name,
+      value: product.price,
       items: [{
         code: product.code,
         name: product.name,
         category: product.category,
-        room: product.room,
-        specs: product.specs,
         price: product.price
       }]
     });
-  }
+}
   
   // Theo dõi khi người dùng thêm sản phẩm vào giỏ hàng
-  export function trackAddToCart(product) {
-    window.gtag('event', 'add_to_cart', {
-      items: [{
-        code: product.code,
-        name: product.name,
-        category: product.category,
-        room: product.room,
-        specs: product.specs,
-        price: product.price
-      }]
-    });
+export function trackAddToCart(product) {
+    ReactGA.event({
+        category: 'Product',
+        action: 'add_to_cart',
+        label: product.name,
+        value: product.price,
+        items: [{
+            code: product.code,
+          name: product.name,
+          category: product.category,
+          price: product.price
+        }]
+      });
   }
-  
+
   // Theo dõi khi người dùng mua hàng
   export function trackPurchase(order) {
-    window.gtag('event', 'purchase', {
+    ReactGA.event('event', 'purchase', {
       transaction_id: order.orderId,
       value: order.total,
       currency: 'VND',
@@ -36,8 +42,8 @@ export function trackProductView(product) {
       items: order.products.map(item => ({
         code: item.code,
         name: item.name,
-        category: item.category,
-        room: item.room,
+        category: item.category._id,
+        room: item.room._id,
         specs: item.specs,
         price: item.price
       }))
