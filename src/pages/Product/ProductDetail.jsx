@@ -19,6 +19,7 @@ import {toast} from "react-toastify";
 import { IoMdHeart } from "react-icons/io";
 import { Rating } from "@material-tailwind/react";
 import { useWishlist } from "../../hooks/useWhislist"
+import { trackProductView, trackAddToCart } from "../../gtag"
 
 const ProductDetail = () => {
     const data = [
@@ -94,6 +95,7 @@ const ProductDetail = () => {
         try {
             const { data } = await axios.get(`https://api-nhaxinh.onrender.com/api/review/byProduct/${product._id}`);
             setReviews(data.data);
+
         } catch (error) {
             toast.error(error.response.data.message);
         }
@@ -137,13 +139,13 @@ const ProductDetail = () => {
                 if(count <= 0){
                     toast.error("Please enter a valid quanity!");
                 }else{
-                    console.log(product._id , count);
                     const { data } = await axios.post('https://api-nhaxinh.onrender.com/api/cart/addtoCart', {
                         productId: product._id , quantity: count
                     });
                     if(data?.status == "success"){
                         toast.success("Add to Cart Successfully!");
                     }
+                    trackAddToCart(data);
                 }
             }
         } catch (error) {
@@ -173,7 +175,7 @@ const ProductDetail = () => {
                 setcollection(data?.data?.specs[1])
             }
             //await getProductReview();
-
+            trackProductView(data?.data)
         } catch (error) {
             toast.error(error.response.data.message);
         }

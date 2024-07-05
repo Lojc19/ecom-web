@@ -1,31 +1,43 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-    <!-- from cdn -->
-    <script src="https://unpkg.com/@material-tailwind/html@latest/scripts/tabs.js"></script>
-    <script>
-      !function(w, d, s, ...args){
-        var div = d.createElement('div');
-        div.id = 'aichatbot';
-        d.body.appendChild(div);
-        w.chatbotConfig = args;
-        var f = d.getElementsByTagName(s)[0],
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vite + React</title>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-7QX5NDE4X7"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-7QX5NDE4X7');
+  </script>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.jsx"></script>
+  <!-- from cdn -->
+  <script src="https://unpkg.com/@material-tailwind/html@latest/scripts/tabs.js"></script>
+  <script>
+    !function (w, d, s, ...args) {
+      var div = d.createElement('div');
+      div.id = 'aichatbot';
+      d.body.appendChild(div);
+      w.chatbotConfig = args;
+      var f = d.getElementsByTagName(s)[0],
         j = d.createElement(s);
-        j.defer = true;
-        j.type = 'module';
-        j.src = 'https://aichatbot.sendbird.com/index.js';
-        f.parentNode.insertBefore(j, f);
-      }(window, document, 'script', '3A5BF9B5-A2DA-4ED6-96EF-BC5D7EA0E102', 'onboarding_bot', {
-        apiHost: 'https://api-cf-us-3.sendbird.com',
-      });
-      </script>
-  </body>
+      j.defer = true;
+      j.type = 'module';
+      j.src = 'https://aichatbot.sendbird.com/index.js';
+      f.parentNode.insertBefore(j, f);
+    }(window, document, 'script', '3A5BF9B5-A2DA-4ED6-96EF-BC5D7EA0E102', 'onboarding_bot', {
+      apiHost: 'https://api-cf-us-3.sendbird.com',
+    });
+  </script>
+</body>
+
 </html>
