@@ -145,7 +145,6 @@ const ProductDetail = () => {
                     if(data?.status == "success"){
                         toast.success("Add to Cart Successfully!");
                     }
-                    trackAddToCart(data);
                 }
             }
         } catch (error) {
