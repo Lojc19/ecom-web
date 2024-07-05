@@ -22,11 +22,12 @@ import NewPassword from './pages/Profile/ResetPassUser/NewPassword';
 import SubmitOTP from './pages/Profile/ResetPassUser/SubmitOTP';
 import Store360 from './pages/Store360/Store360';
 
-import ReactGA from 'react-ga';
+import ReactGA from "react-ga4";
 
 function initializeReactGA() {
   ReactGA.initialize('G-LFEHG4EDXV'); // Thay 'UA-XXXXXXXXX-X' bằng ID của Google Analytics của bạn
-  ReactGA.pageview(window.location.pathname + window.location.search);
+  // ReactGA.pageview(window.location.pathname + window.location.search);
+  console.log('Google Analytics initialized');
 }
 
 initializeReactGA();

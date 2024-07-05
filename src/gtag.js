@@ -1,35 +1,28 @@
 // Theo dõi khi người dùng xem một sản phẩm
-import ReactGA from 'react-ga';
+import ReactGA from "react-ga4";
 
 export function trackProductView(product) {
-    ReactGA.event({
-      category: 'Product',
-      action: 'view_product',
-      label: product.name,
-      value: product.price,
-      items: [{
-        code: product.code,
-        name: product.name,
-        category: product.category,
-        price: product.price
-      }]
-    });
+  ReactGA.event('view_item', {
+    product_category: product._id,
+    product_room: product.room._id,
+    product_name: product.name,
+    product_code: product.code,
+    currency: 'VNĐ', // hoặc loại tiền tệ bạn đang sử dụng
+    product_price: product.price,
+  });
 }
+
   
   // Theo dõi khi người dùng thêm sản phẩm vào giỏ hàng
 export function trackAddToCart(product) {
-    ReactGA.event({
-        category: 'Product',
-        action: 'add_to_cart',
-        label: product.name,
-        value: product.price,
-        items: [{
-            code: product.code,
-          name: product.name,
-          category: product.category,
-          price: product.price
-        }]
-      });
+    ReactGA.event('add_to_cart', {
+      product_category: product._id,
+      product_room: product.room._id,
+      product_name: product.name,
+      product_code: product.code,
+      currency: 'VNĐ', // hoặc loại tiền tệ bạn đang sử dụng
+      product_price: product.price,
+    })
   }
 
   // Theo dõi khi người dùng mua hàng
