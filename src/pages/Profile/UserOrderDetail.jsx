@@ -61,7 +61,7 @@ const UserOrderDetail = () => {
         return `${day}/${month}/${year}`;
     };
     return (
-        <Layout>
+        <Layout title={"Orders"}>
             <div className="flex flex-row h-auto m-8 mx-24">
                 <div className="basis-1/6 h-100% bg-slate-100">
                     <UserMenu />

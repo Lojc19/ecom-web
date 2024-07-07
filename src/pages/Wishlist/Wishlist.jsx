@@ -14,7 +14,7 @@ const Wishlist = () => {
     const [products, setProducts] = useState([]);
     const { whisProducts, isInWishlist, toogleWishlist } = useWishlist();
     return (
-        <Layout title={"User Profile"}>
+        <Layout title={"User Wislist"}>
             <div className="flex flex-row h-auto m-8 mx-24">
                 <div class="basis-1/6 h-100% bg-slate-100">
                     <UserMenu />

@@ -1,4 +1,3 @@
-// Theo dõi khi người dùng xem một sản phẩm
 import ReactGA from "react-ga4";
 
 export function trackProductView(product) {
@@ -13,7 +12,6 @@ export function trackProductView(product) {
 }
 
   
-  // Theo dõi khi người dùng thêm sản phẩm vào giỏ hàng
 export function trackAddToCart(product) {
     ReactGA.event('add_to_cart', {
       product_category: product._id,
@@ -25,7 +23,6 @@ export function trackAddToCart(product) {
     })
   }
 
-  // Theo dõi khi người dùng mua hàng
   export function trackPurchase(order) {
     ReactGA.event('event', 'purchase', {
       transaction_id: order.orderId,

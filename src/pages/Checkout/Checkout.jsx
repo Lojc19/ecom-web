@@ -286,7 +286,7 @@ const Checkout = () => {
                         if(phone.length < 10){
                             toast.error("Please Enter A Valid PhoneNumber");
                         }else{
-                            const request = {};
+                            var request = {};
                             if(coupon){
                                 request = {
                                     PaymentMethod: "COD",
