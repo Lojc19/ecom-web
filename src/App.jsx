@@ -27,7 +27,6 @@ import ReactGA from "react-ga4";
 function initializeReactGA() {
   ReactGA.initialize('G-LFEHG4EDXV'); // Thay 'UA-XXXXXXXXX-X' bằng ID của Google Analytics của bạn
   // ReactGA.pageview(window.location.pathname + window.location.search);
-  console.log('Google Analytics initialized');
 }
 
 initializeReactGA();

@@ -1,13 +1,10 @@
 import ReactGA from "react-ga4";
 
 export function trackProductView(product) {
-  ReactGA.event('view_item', {
-    product_category: product._id,
-    product_room: product.room._id,
-    product_name: product.name,
-    product_code: product.code,
-    currency: 'VNĐ', // hoặc loại tiền tệ bạn đang sử dụng
-    product_price: product.price,
+  ReactGA.event({
+    category: "View detail Product",
+    action: "click",
+    label: product.code, // optional
   });
 }
 
