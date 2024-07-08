@@ -25,7 +25,7 @@ import Store360 from './pages/Store360/Store360';
 import ReactGA from "react-ga4";
 
 function initializeReactGA() {
-  ReactGA.initialize('G-LFEHG4EDXV'); // Thay 'UA-XXXXXXXXX-X' bằng ID của Google Analytics của bạn
+  ReactGA.initialize('G-RDWGZG06CJ'); // Thay 'UA-XXXXXXXXX-X' bằng ID của Google Analytics của bạn
   // ReactGA.pageview(window.location.pathname + window.location.search);
 }
 
