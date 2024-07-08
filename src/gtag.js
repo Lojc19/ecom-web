@@ -3,21 +3,18 @@ import ReactGA from "react-ga4";
 export function trackProductView(product) {
   ReactGA.event({
     category: "View detail Product",
-    action: "click",
+    action: "view_detail",
     label: product.code, // optional
   });
 }
 
   
 export function trackAddToCart(product) {
-    ReactGA.event('add_to_cart', {
-      product_category: product._id,
-      product_room: product.room._id,
-      product_name: product.name,
-      product_code: product.code,
-      currency: 'VNĐ', // hoặc loại tiền tệ bạn đang sử dụng
-      product_price: product.price,
-    })
+  ReactGA.event({
+    category: "Add to cart",
+    action: "add_to_cart",
+    label: product.code, // optional
+  });
   }
 
   export function trackPurchase(order) {
