@@ -171,7 +171,7 @@ const ProductCategory = () => {
                 </button> */}
             </form>
 
-            <div className="w-full md:w-[1320px] mx-auto md:flex md:flex-wrap md:justify-between mt-10">
+            <div className="w-full md:w-[1320px] mx-auto md:flex md:flex-wrap md:justify-start md:items-start mt-10">
                 {products?.map((p, index) => (
                     <>
                         <ProductItem product={p} images={p.images}/>

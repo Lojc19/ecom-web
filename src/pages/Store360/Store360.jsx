@@ -9,7 +9,7 @@ const Store360 = () => {
                 <p className="text-center text-lg font-Roboto">Trải nghiệm ngay sản phẩm của Home LC một cách chân thực trên tay bạn. Tham quan, xem thông tin sản phẩm chi tiết với góc nhìn 360 độ hoàn chỉnh.</p>
                 <div className="w-full h-[650px]">
                     <p className="text-lg font-Roboto font-semibold mt-4">Không gian mẫu phòng khách</p>
-                    <iframe className="w-full h-full" src='https://my.matterport.com/show/?m=xhcwGXKepWr' frameborder='0' allowfullscreen allow='xr-spatial-tracking'></iframe>
+                    <iframe className="w-full h-full" src='https://my.matterport.com/show/?m=d7PStfGvYeC' frameborder='0' allowfullscreen allow='xr-spatial-tracking'></iframe>
                 </div>
             </div>
         </Layout>

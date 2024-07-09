@@ -65,7 +65,7 @@ const Header = () => {
                 <div className="hidden md:flex justify-between gap-3">
                     <a href="" className="font-bold">
                         <BiSolidPhoneCall className=" inline-block mr-1" /> 1800
-                        7200
+                        xxxx
                     </a>
                     <a href="" className="text-[#666666D9]">
                         Giới thiệu

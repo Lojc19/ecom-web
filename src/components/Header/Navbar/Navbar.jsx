@@ -54,11 +54,11 @@ const Navbar = () => {
             >
                 <div className="container px-4 md:max-w-[1320px] h-[90px] mx-auto flex justify-between items-center relative">
                     <div className="flex items-center">
-                        {/* <IoMenu
+                        <IoMenu
                             size={32}
                             className="mr-4 md:mr-3 cursor-pointer"
                             onClick={openMenu}
-                        /> */}
+                        />
                         <a href="/">
                             <img
                                 src="/assets/imgs/new-logo.png"
@@ -166,7 +166,7 @@ const Navbar = () => {
             </div>
 
             {/* menu */}
-            {activeMenu && <ModalMenu closeMenu={closeMenu} />}
+            {activeMenu && <ModalMenu closeMenu={closeMenu} rooms={rooms} />}
         </>
     );
 };

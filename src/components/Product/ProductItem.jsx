@@ -18,7 +18,7 @@ const ProductItem = ({product, images}) => {
         <div className="group w-full h-auto md:w-1/4 md:h-[400px] hover:border p-4">
             <div className="h-full w-full relative">
                 <a
-                    href="#"
+                    href=""
                     className="cursor-pointer text-[14px] font-Roboto md:w-9/10"
                     onClick={() => navigate(`/product/${product.slug}`)}
                 >
@@ -36,7 +36,6 @@ const ProductItem = ({product, images}) => {
                 </a>
                 <div className="mt-2 md:flex justify-between">
                     <a
-                        href=""
                         className="cursor-pointer text-[14px] font-Roboto md:w-9/10"
                     >
                         {product.name}
