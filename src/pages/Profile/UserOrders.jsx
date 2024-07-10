@@ -182,7 +182,7 @@ const UserOrders = () => {
                             </div>
                         </form>
                             {foundOrders?.map((order, index) => (<>
-                                <div className="mt-5 cursor-pointer w-full md:w-3/4" onClick={() => navigate(`${order._id}`)}>
+                                <div className="mt-5 cursor-pointer w-full md:w-3/4" onClick={() => navigate(`${order.orderId}`)}>
                                     <div className="mx-3 flex justify-between items-center bg-[#2F5ACF] rounded-t-xl">
                                         <div className="p-3 text-white font-semibold font-Roboto">
                                             <p className="text-lg">Mã đơn hàng: {order.orderId}</p>
