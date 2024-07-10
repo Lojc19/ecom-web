@@ -77,8 +77,8 @@ const Home = () => {
         <div className="w-full justify-between h-auto p-3 mx-auto bg-[#ebebeb] md:mt-3">
             <div className="w-full md:h-[600px] md:flex md:mt-8">
                 <div className="p-3 md:w-1/2 md:h-[600px] md:relative">
-                    <div className="md:absolute bg-cover md:w-6/7 h-full md:left-0 overflow-hidden">
-                        <a className="cursor-pointer">
+                    <div className="md:absolute bg-cover md:w-[90%] h-full md:left-0 overflow-hidden">
+                        <a href="/store360" className="cursor-pointer">
                             <img
                                 src="/assets/imgs/nha-xinh-banner-phong-khach-31-1-24.jpg"
                                 alt="img room"
@@ -86,7 +86,7 @@ const Home = () => {
                             />
                         </a>
                     </div>
-                    <div className="mt-4 md:absolute md:w-[270px] md:right-[-300px] md:top-[100px]">
+                    <div className="mt-4 md:absolute md:w-[270px] md:right-[-200px] md:top-[100px]">
                         <h2 className="font-bold font-Montserrat mb-3 text-[25px] leading-10">
                             Không gian phòng khách
                         </h2>
@@ -95,8 +95,8 @@ const Home = () => {
                             nơi sum họp gia đình
                         </p>
                         <a
-                            href=""
-                            className="uppercaste text-[14px] text-[#A9A9B2] flex items-center"
+                            href="/store360"
+                            className="uppercaste text-[14px] text-[#A9A9B2] flex items-center cursor-pointer"
                         >
                             Mẫu thiết kế <FaArrowRight className="ml-1" />
                         </a>
@@ -104,7 +104,7 @@ const Home = () => {
                 </div>
                 <div className="p-3 md:w-1/2 md:h-[600px] md:relative">
                     <div className="md:absolute md:w-3/5 md:h-[500px] md:right-0 md:top-0 overflow-hidden">
-                        <a href="#" className="cursor-pointer">
+                        <a href="/store360" className="cursor-pointer">
                             <img
                                 src="/assets/imgs/nha-xinh-do-trang-tri-banner-31-1-24.jpg"
                                 alt="img room"
@@ -121,7 +121,7 @@ const Home = () => {
                             cho không gian
                         </p>
                         <a
-                            href=""
+                            href="/store360"
                             className="uppercaste text-[14px] text-[#A9A9B2] flex items-center"
                         >
                             Khám phá <FaArrowRight className="ml-1" />
@@ -133,7 +133,7 @@ const Home = () => {
             <div className="w-full md:h-[550px] md:flex md:mt-8">
                 <div className="p-3 md:w-1/2 md:h-[600px] md:relative">
                     <div className="bg-cover h-full md:absolute md:w-3/7 md:h-3/5 md:right-[160px] overflow-hidden">
-                        <a href="#" className="cursor-pointer">
+                        <a href="/store360" className="cursor-pointer">
                             <img
                                 src="/assets/imgs/mau-phong-ngu-16-5-23.jpg"
                                 alt="img room"
@@ -150,7 +150,7 @@ const Home = () => {
                             giác ấm cúng, gần gũi và thoải mái
                         </p>
                         <a
-                            href=""
+                            href="/store360"
                             className="uppercaste text-[14px] text-[#A9A9B2] flex items-center"
                         >
                             Mẫu phòng ngủ <FaArrowRight className="ml-1" />
@@ -159,7 +159,7 @@ const Home = () => {
                 </div>
                 <div className="p-3 md:w-1/2 md:h-[600px] md:relative">
                     <div className="md:left-[100px] md:top-[-50px] md:absolute md:w-3/7 md:h-3/5 overflow-hidden">
-                        <a href="#" className="cursor-pointer">
+                        <a href="/store360" className="cursor-pointer">
                             <img
                                 src="/assets/imgs/banner-phong-an-nha-xinh-12-9-22.jpg"
                                 alt="img room"
@@ -177,7 +177,7 @@ const Home = () => {
                             trọng trong văn hóa Việt
                         </p>
                         <a
-                            href=""
+                            href="/store360"
                             className="uppercaste text-[14px] text-[#A9A9B2] flex items-center"
                         >
                             Mẫu phòng ăn <FaArrowRight className="ml-1" />
@@ -215,7 +215,7 @@ const Home = () => {
             </div>
         </div>
 
-        <div className="p-3 mx-auto w-full md:w-[1200px] md:p-0">
+        {/* <div className="p-3 mx-auto w-full md:w-[1200px] md:p-0">
             <div className="flex w-full">
                 <h2 className="uppercase font-Montserrat font-bold text-[18px]">sản phẩm mới</h2>
                 <a href="#" className="ml-3 text-[14px] font-Montserrat font-light flex items-center">Xem tất cả <FaChevronRight size={12} className="ml-2"/></a>
@@ -229,7 +229,7 @@ const Home = () => {
                     </>
                 ))}
             </div>
-        </div>
+        </div> */}
         </Layout>
     );
 };

@@ -58,7 +58,7 @@ const ProductDetail = () => {
     const [materials, setmaterials] = useState({});
     const [images, setImages] = useState([]);
     const [products, setProducts] = useState([]);
-    const [count, setCount] = useState(0);
+    const [count, setCount] = useState(1);
     const [auth, setAuth] = useAuth();
     const [reviews, setReviews] = useState([]);
     const { whisProducts, isInWishlist, toogleWishlist } = useWishlist();
@@ -83,9 +83,9 @@ const ProductDetail = () => {
         setImgActive(slide); // cập nhật lại ảnh active
     }, [slide]);
 
-    useEffect(() => {
-        getAllProducts();
-    }, []);
+    // useEffect(() => {
+    //     getProductsRecommend();
+    // }, []);
 
     useEffect(() => {
         if (product?._id) getProductReview();
@@ -122,12 +122,13 @@ const ProductDetail = () => {
         }
     };
 
-    const getAllProducts = async () => {
+    const getProductsRecommend = async (category) => {
         try {
             const { data } = await axios.get(
-                "https://api-nhaxinh.onrender.com/api/product"
+                `https://api-nhaxinh.onrender.com/api/product/recommend/${category._id}`
             );
-            setProducts(data.data.product);
+            console.log(data.data)
+            setProducts(data.data);
         } catch (error) {
             toast.error(error.response.data.message);
         }
@@ -181,6 +182,7 @@ const ProductDetail = () => {
             if (specs.length > 1) {
                 setcollection(data?.data?.specs[1]);
             }
+            getProductsRecommend(data?.data?.category);
             //await getProductReview();
             trackProductView(data?.data);
         } catch (error) {
@@ -227,13 +229,13 @@ const ProductDetail = () => {
                         href=""
                         className="cursor-pointer text-[#666666] font-light text-[14px] ml-1"
                     >
-                        Phòng khách <span>/</span>
+                        {room.nameRoom} <span>/</span>
                     </a>
                     <a
                         href=""
                         className="cursor-pointer text-[#666666] font-light text-[14px] ml-1"
                     >
-                        Armchair
+                        {category.nameCate}
                     </a>
                 </div>
 
@@ -398,17 +400,17 @@ const ProductDetail = () => {
                                     {room.nameRoom}
                                 </a>
                             </div>
-                            <div className="mt-6 w-full md:flex md:h-[45px]">
+                            <div className="mt-6 w-full md:flex md:justify-start md:gap-3 md:h-[45px]">
                                 <PlusMinusInput
                                     count={count}
                                     setCount={setCount}
                                 />
-                                <button
+                                {/* <button
                                     className="border w-auto h-full border-black text-[13px] px-4 py-2 uppercase bg-black text-white cursor-pointer md:mx-4 mr-3"
                                     onClick={addToCart}
                                 >
                                     Mua ngay
-                                </button>
+                                </button> */}
                                 <BtnAddtocart
                                     id={product._id}
                                     quantity={count}
@@ -628,7 +630,7 @@ const ProductDetail = () => {
                     <h2 className="text-center font-bold font-Montserrat text-[24px]">
                         Có thể bạn sẽ thích
                     </h2>
-                    <div className="w-full md:flex md:flex-wrap md:justify-between">
+                    <div className="w-full md:flex md:flex-wrap md:justify-start md:items-start mt-5">
                         {products?.map((p, index) => (
                             <>
                                 <ProductItem product={p} images={p.images} />
