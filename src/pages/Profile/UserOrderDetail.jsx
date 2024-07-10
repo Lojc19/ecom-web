@@ -22,7 +22,7 @@ const UserOrderDetail = () => {
         //console.log("closeModal");
         try {
             const { data } = await axios.get(
-                `https://api-nhaxinh.onrender.com/api/order/detail/${params.orderId}`
+                `https://api-nhaxinh.onrender.com/api/order/detail/${params.id}`
             );
             setOrder(data.data);
             setUpdateStatus(data.data?.status);
