@@ -626,7 +626,7 @@ const Checkout = () => {
                             </h3>
 
                             <div className="flex justify-start">
-                                <div
+                                {/* <div
                                     className={`w-[110px] h-[140px] md:w-[200px] md:h-[120px] text-center pt-5 px-[5px] border border-[#ddd] text-[13px] text-[#4b4e51] font-Roboto mr-5 cursor-pointer ${
                                         toggleState === 1 ? "border-black" : ""
                                     }`}
@@ -639,12 +639,12 @@ const Checkout = () => {
                                     <span className="block">
                                         Chuyển khoản ngân hàng
                                     </span>
-                                </div>
+                                </div> */}
                                 <div
                                     className={`w-[110px] h-[140px] md:w-[200px] md:h-[120px] text-center pt-5 px-[5px] border border-[#ddd] text-[13px] text-[#4b4e51] font-Roboto mr-5 cursor-pointer ${
-                                        toggleState === 2 ? "border-black" : ""
+                                        toggleState === 1 ? "border-black" : ""
                                     }`}
-                                    onClick={() => toggleTab(2)}
+                                    onClick={() => toggleTab(1)}
                                 >
                                     <CiMoneyCheck1
                                         size={44}
@@ -656,18 +656,19 @@ const Checkout = () => {
                                 </div>
                                 <div
                                     className={`w-[110px] h-[140px] md:w-[200px] md:h-[120px] text-center pt-5 px-[5px] border border-[#ddd] text-[13px] text-[#4b4e51] font-Roboto mr-5 cursor-pointer ${
-                                        toggleState === 3 ? "border-black" : ""
+                                        toggleState === 2 ? "border-black" : ""
                                     }`}
-                                    onClick={() => toggleTab(3)}
+                                    onClick={() => toggleTab(2)}
                                 >
-                                    <FaCcPaypal size={44} className="mx-auto" />
+                                    <img src="/assets/imgs/vnpay-logo.jpg" alt="" className="w-11 h-11 mx-auto"/>
+                                    {/* <AiOutlineBank size={44} className="mx-auto" /> */}
                                     <span className="block">
-                                        Thanh toán Paypal
+                                        Thanh toán VNPAY
                                     </span>
                                 </div>
                             </div>
                         </div>
-                        {toggleState === 1 && (
+                        {/* {toggleState === 1 && (
                             <div className="mb-5">
                                 <h3 className="font-Montserrat text-[18px]leading-5 uppercase font-semibold mb-2">
                                     Ngân hàng Abc
@@ -680,9 +681,9 @@ const Checkout = () => {
                                     ABC-XYZ.
                                 </p>
                             </div>
-                        )}
+                        )} */}
 
-                        {toggleState === 2 && (
+                        {toggleState === 1 && (
                             <div className="mb-5">
                                 <p className="text-[15px] font-Roboto">
                                     Pay with cash upon delivery.
@@ -690,10 +691,10 @@ const Checkout = () => {
                             </div>
                         )}
 
-                        {toggleState === 3 && (
+                        {toggleState === 2 && (
                             <div className="mb-5">
                                 <p className="text-[15px] font-Roboto">
-                                    Coming soon
+                                    Thanh toán qua VNPAY
                                 </p>
                             </div>
                         )}
