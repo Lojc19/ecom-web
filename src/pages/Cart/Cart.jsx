@@ -37,7 +37,13 @@ const Cart = () => {
         if(total === 0){
             toast.info("Cart is Empty, Please buy something");
         }else{
-            applyCoupon();
+            if(coupon)
+            {
+                applyCoupon();
+            }
+            else {
+                toast.error("Vui lòng điền mã giảm giá");
+            }
         }
     };
     const navigate = useNavigate();
@@ -132,15 +138,7 @@ const Cart = () => {
                             <h1 className="mb-5 font-Roboto text-2xl font-bold">Tóm tắt đơn hàng</h1>
                             <div className="flex justify-between font-Roboto text-sm">
                                 <p>Thành tiền</p>
-                                {spanDiscount ? (
-                                    <>
-                                      <p className="font-bold">{formatCurrencyWithCoupon(price)}</p>
-                                    </>
-                                ) : (
-                                    <>
                                       <p className="font-bold">{formatCurrency(price)}</p>
-                                    </>
-                                )}
                             </div>
 
                             <div className="flex justify-between items-center font-Roboto mt-5 pb-4 border-b">
