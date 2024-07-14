@@ -147,7 +147,7 @@ const Navbar = () => {
                         </ul>
                     </div>
 
-                    <div className="md:hidden flex justify-between items-center gap-3">
+                    {/* <div className="md:hidden flex justify-between items-center gap-3">
                         <a href="">
                             <IoCartOutline size={22} />
                         </a>
@@ -157,7 +157,7 @@ const Navbar = () => {
                                 size={20}
                             />
                         </a>
-                    </div>
+                    </div> */}
 
                     <div className="w-[273px] h-auto hidden md:block">
                         <SearchInput />
