@@ -18,7 +18,7 @@ const Checkout = () => {
     const [toggleState, setToggleState] = useState(1);
     const [auth,setAuth] = useAuth();
     const location = useLocation();
-
+    const navigate = useNavigate();
 
     const [fullname, setFullName] = useState("");
     const [email, setEmail] = useState("");
@@ -319,7 +319,8 @@ const Checkout = () => {
                                 request
                             );
                             if(data?.status == "success"){
-                                toast.success("Order Successfully!");
+                                navigate("/payment/thank")
+                                //toast.success("Order Successfully!");
                             }
                         }
                     } catch (error) {
