@@ -21,7 +21,7 @@ import Resetpassword from "./pages/Profile/ResetPassUser/ResetPassword"
 import NewPassword from './pages/Profile/ResetPassUser/NewPassword';
 import SubmitOTP from './pages/Profile/ResetPassUser/SubmitOTP';
 import Store360 from './pages/Store360/Store360';
-
+import Design from './pages/Design/Design';
 import ReactGA from "react-ga4";
 
 function initializeReactGA() {
@@ -37,6 +37,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/store360" element={<Store360 />} />
+        <Route path="/design" element={<Design />} />
         <Route path="/dashboard" element={<PrivateRoute />}>
           <Route path="profile" element={<UserProfile />} />
           <Route path="orders" element={<UserOrders />} />
