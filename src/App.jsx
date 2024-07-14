@@ -22,6 +22,7 @@ import NewPassword from './pages/Profile/ResetPassUser/NewPassword';
 import SubmitOTP from './pages/Profile/ResetPassUser/SubmitOTP';
 import Store360 from './pages/Store360/Store360';
 import Design from './pages/Design/Design';
+import ProductSale from './pages/Product/ProductSale';
 import ReactGA from "react-ga4";
 
 function initializeReactGA() {
@@ -52,6 +53,8 @@ function App() {
         <Route path="/cart" element={<Cart />} />
         <Route path="/product/:slug" element={<ProductDetail />} />
         <Route path="/category/:id" element={<ProductCategory />} />
+        <Route path="/sale" element={<ProductSale />} />
+
         <Route path="/search/:key" element={<SearchProduct />} />
         <Route path="/register" element={<Register />} />
         <Route path="/resetpassword" element={<Resetpassword />} />

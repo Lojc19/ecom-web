@@ -110,7 +110,7 @@ const Navbar = () => {
                                     </div>
                                 </div>
                             </li>
-                            <li className="hover:text-[#FFB236] relative group py-9">
+                            {/* <li className="hover:text-[#FFB236] relative group py-9">
                                 <a href="">
                                     PHÒNG{" "}
                                     <FaChevronDown className="inline-block" />
@@ -131,10 +131,10 @@ const Navbar = () => {
                                         ))}
                                     </ul>
                                 </div>
-                            </li>
-                            <li className="hover:text-[#FFB236]">
+                            </li> */}
+                            {/* <li className="hover:text-[#FFB236]">
                                 <a href="">BỘ SƯU TẬP</a>
-                            </li>
+                            </li> */}
                             <li className="hover:text-[#FFB236]">
                                 <a href="/design">THIẾT KẾ NỘI THẤT</a>
                             </li>{" "}

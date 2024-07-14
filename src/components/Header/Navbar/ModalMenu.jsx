@@ -9,10 +9,10 @@ const ModalMenu = (props) => {
         // Initialize dropdowns based on rooms length
         const initialDropdowns = {};
         props.rooms.forEach((room, index) => {
-          initialDropdowns[`item${index + 1}`] = false;
+            initialDropdowns[`item${index + 1}`] = false;
         });
         setDropdowns(initialDropdowns);
-      }, [props.rooms]);
+    }, [props.rooms]);
 
     const toggleDropdown = (itemName) => {
         setDropdowns({
@@ -48,11 +48,10 @@ const ModalMenu = (props) => {
                                 >
                                     <div className="py-[6px]">{p.nameRoom}</div>
                                     <FaChevronDown
-                                        className={`inline-block ${
-                                            dropdowns[`item${index + 1}`]
+                                        className={`inline-block ${dropdowns[`item${index + 1}`]
                                                 ? "rotate-[-180deg] transition ease-in duration-300"
                                                 : "transition ease-in duration-300"
-                                        }`}
+                                            }`}
                                     />
                                 </div>
                                 {dropdowns[`item${index + 1}`] && (
@@ -105,7 +104,14 @@ const ModalMenu = (props) => {
                         // </div>
                     ))}
                 </ul>
-                <div className="px-5 py-1 h-auto md:hidden">
+                <div className="px-5 py-1 h-auto md:hidden mt-2 text-base font-normal font-Roboto">
+                    <a href="/design">Thiết kế nội thất</a>
+                </div>
+
+                <div className="px-5 py-1 h-auto md:hidden mt-2 text-base font-normal font-Roboto">
+                    <a href="/store360">Cửa hàng 360 độ</a>
+                </div>
+                <div className="px-5 py-1 h-auto md:hidden mt-2 text-base font-normal font-Roboto">
                     <SearchInput />
                 </div>
             </div>

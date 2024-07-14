@@ -67,10 +67,10 @@ const Header = () => {
                         <BiSolidPhoneCall className=" inline-block mr-1" /> 1800
                         xxxx
                     </a>
-                    <a href="" className="text-[#666666D9]">
+                    {/* <a href="" className="text-[#666666D9]">
                         Giới thiệu
-                    </a>
-                    <a href="" className="text-[#FE0808]">
+                    </a> */}
+                    <a href="/sale" className="text-[#FE0808]">
                         Giảm giá đặc biệt
                     </a>
                 </div>

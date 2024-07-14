@@ -30,13 +30,13 @@ const Design = () => {
                 </div>
             </div>
 
-            <div className="mt-6 w-full md:w-[1320px] mx-auto max-h-screen mb-6">
+            <div className="mt-6 w-full md:w-[1320px] mx-auto h-fit mb-6">
                 <div className="text-center font-Montserrat mx-2">
                     <h1 className='text-2xl font-bold'>03 lý do nên chọn LC Home</h1>
                     <p className='text-base'>Với kinh nghiệm hơn 25 năm trong thiết kế và hoàn thiện nội thất cùng đội ngũ thiết kế chuyên nghiệp, LC Home mang đến giải pháp toàn diện trong nội thất.</p>
                 </div>
                 <div className="w-full px-2 h-auto md:flex justify-between font-Montserrat cursor-pointer mt-5">
-                    <div className='border rounded-sm px-11 py-2 md:w-[400px] w-full h-fit' onClick={toggle1}>
+                    <div className='mt-3 border rounded-sm px-11 py-2 md:w-[400px] w-full h-fit' onClick={toggle1}>
                         <div className='w-full flex justify-between'>
                             <p className='ml-3 text-lg mr-3'>Thực tế giống với 3D</p>
                             <FaChevronDown
@@ -55,7 +55,7 @@ const Design = () => {
                                 </div>
                             </>}
                     </div>
-                    <div className='border rounded-sm px-11 py-2 md:w-[400px] w-full h-fit' onClick={toggle2}>
+                    <div className='mt-3 border rounded-sm px-11 py-2 md:w-[400px] w-full h-fit' onClick={toggle2}>
                         <div className='w-full flex justify-between'>
                             <p className='ml-3 text-lg mr-3'>Luôn cá nhân hóa</p>
                             <FaChevronDown
@@ -74,7 +74,7 @@ const Design = () => {
                                 </div>
                             </>}
                     </div>
-                    <div className='border rounded-sm px-11 py-2 md:w-[400px] w-full h-fit' onClick={toggle3}>
+                    <div className='mt-3 border rounded-sm px-11 py-2 md:w-[400px] w-full h-fit' onClick={toggle3}>
                         <div className='w-full flex justify-between'>
                             <p className='ml-3 text-lg mr-3'>Dịch vụ cao cấp</p>
                             <FaChevronDown
