@@ -795,7 +795,13 @@ const Checkout = () => {
                         <button className="py-[10px] px[25px] w-full border bg-black text-white text-[21px] leading-5 font-Roboto uppercase mt-3"
                             onClick={(e) => {
                                 e.preventDefault();
-                                placeOrderVNPay();
+                                if (toggleState === 1) {
+                                    placeOrder(); // cod
+                                } 
+                                if(toggleState === 2) 
+                                {
+                                    placeOrderVNPay(); // vnpay
+                                }
                             }}
                         >Đặt mua</button>
                     </div>
