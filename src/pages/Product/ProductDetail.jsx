@@ -10,6 +10,7 @@ import { CiHeart } from "react-icons/ci";
 import BtnAddtocart from "../../components/Button/BtnAddtocart";
 import PlusMinusInput from "../../components/Input/PlusMinusInput";
 import ReviewProduct from "../../components/Review/ReviewProduct";
+import StarRatting from "../../components/Review/StarRatting";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import ProductItem from "../../components/Product/ProductItem";
@@ -400,6 +401,7 @@ const ProductDetail = () => {
                                     {room.nameRoom}
                                 </a>
                             </div>
+                            <div className="mt-4 flex"><span>Đánh giá: </span> <StarRatting rate={product.totalrating}></StarRatting></div>
                             <div className="mt-6 w-full md:flex md:justify-start md:gap-3 md:h-[45px]">
                                 <PlusMinusInput
                                     count={count}
@@ -492,6 +494,7 @@ const ProductDetail = () => {
                                         Đánh giá
                                     </span>
                                 </div>
+                                
                             </div>
 
                             {/* tab */}
@@ -587,7 +590,7 @@ const ProductDetail = () => {
                                 className={`py-4 text-[14px] font font-Roboto md:py-8 ${
                                     toggleState === 4 ? "block" : "hidden"
                                 }`}
-                            >
+                            >   
                                 <Rating
                                     value={4}
                                     onChange={(value) => setRated(value)}
