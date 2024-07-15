@@ -7,14 +7,26 @@ import Spinner from "./Spinner"
 export default function PrivateRoute() {
   const [ok, setOk] = useState(false);
   const [auth, setAuth] = useAuth();
+  const handleLogout = () => {
+    setAuth({
+      ...auth,
+      user: null,
+      token: "",
+    });
+  };
   useEffect(() => {
     const authCheck = async () => {
-      const res = await axios.get("https://api-nhaxinh.onrender.com/api/user/info-user");
-      if (res.data.status == "success") {
-        setOk(true);
-      } else {
-        setOk(false);
-      }
+      try{
+        const res = await axios.get("https://api-nhaxinh.onrender.com/api/user/info-user");
+        if (res.data.status == "success") {
+          setOk(true);
+        } else {
+          setOk(false);
+          handleLogout();
+        }
+      }catch (error){
+        handleLogout();
+      }      
     };
     if (auth?.token) authCheck();
   }, [auth?.token]);

@@ -56,7 +56,7 @@ const UserOrderDetail = () => {
     const formatDate = (orderTime) => {
         const date = new Date(orderTime);
         const day = date.getDate();
-        const month = date.getMonth() + 1; // Tháng bắt đầu từ 0
+        const month = date.getMonth() + 1;
         const year = date.getFullYear();
         return `${day}/${month}/${year}`;
     };
@@ -98,7 +98,16 @@ const UserOrderDetail = () => {
                             Phương thức thanh toán : {order?.PaymentMethod}
                         </h1>
                         <h1 className="text-left w-full text-lg my-2">
+                            Trạng thái thanh toán : {order?.PaymentStatus}
+                        </h1>
+                        <h1 className="text-left w-full text-lg my-2">
+                            Họ tên người đặt hàng : {order?.name}
+                        </h1>
+                        <h1 className="text-left w-full text-lg my-2">
                             Số điện thoại đặt hàng : {order?.phoneNumber}
+                        </h1>
+                        <h1 className="text-left w-full text-lg my-2">
+                            Email đặt hàng : {order?.email}
                         </h1>
                         <div className="flex flex-col justify-center items-center my-8">
                             {order?.products?.map((c) => (
