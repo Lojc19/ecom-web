@@ -195,11 +195,11 @@ const ProductDetail = () => {
     };
 
     const nextSlide = () => {
-        setSlide(slide === data.length - 1 ? 0 : slide + 1);
+        setSlide(slide === images.length - 1 ? 0 : slide + 1);
     };
 
     const prevSlide = () => {
-        setSlide(slide === 0 ? data.length - 1 : slide - 1);
+        setSlide(slide === 0 ? images.length - 1 : slide - 1);
     };
 
     const clickSlide = (index) => {
@@ -282,7 +282,7 @@ const ProductDetail = () => {
                         <div className="w-full h-full md:h-[400px] overflow-hidden">
                             <div
                                 className={`flex justify-between flex-wrap transition-transform ease-in-out duration-500 md:flex-col ${
-                                    slide === data.length - 2
+                                    slide === images.length - 2
                                         ? "md:translate-y-[-20%]"
                                         : ""
                                 }`}
