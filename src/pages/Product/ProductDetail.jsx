@@ -65,6 +65,7 @@ const ProductDetail = () => {
     const { whisProducts, isInWishlist, toogleWishlist } = useWishlist();
     const [rated, setRated] = useState(4);
     const [commment, setComment] = useState("");
+    const navigate = useNavigate();
 
     const formatCurrency = (total) => {
         return new Intl.NumberFormat("vi-VN", {
@@ -81,12 +82,8 @@ const ProductDetail = () => {
     }, [params?.slug]);
 
     useEffect(() => {
-        setImgActive(slide); // cập nhật lại ảnh active
+        setImgActive(slide);
     }, [slide]);
-
-    // useEffect(() => {
-    //     getProductsRecommend();
-    // }, []);
 
     useEffect(() => {
         if (product?._id) getProductReview();
@@ -167,7 +164,7 @@ const ProductDetail = () => {
         //console.log("closeModal");
         try {
             const { data } = await axios.get(
-                `https://api-nhaxinh.onrender.com/api/product/${params.slug}`
+                `https://api-nhaxinh.onrender.com/api/product/detail/${params.slug}`
             );
             setProduct(data?.data);
             setImages(data?.data?.images);
@@ -183,9 +180,11 @@ const ProductDetail = () => {
             if (specs.length > 1) {
                 setcollection(data?.data?.specs[1]);
             }
-            getProductsRecommend(data?.data?.category);
+            if(data?.data){
+                getProductsRecommend(data?.data?.category);
+                trackProductView(data?.data);
+            }
             //await getProductReview();
-            trackProductView(data?.data);
         } catch (error) {
             toast.error(error.response.data.message);
         }
@@ -217,8 +216,11 @@ const ProductDetail = () => {
         setIsModalOpen(false);
     };
     return (
-        <Layout title={"Product"}>
-            <>
+        <>
+            {product ? (
+                <>
+                    <Layout title={"Product"}>
+                    <>
                 <div className="container md:max-w-[1280px] flex mx-auto p-3">
                     <a
                         href=""
@@ -652,7 +654,26 @@ const ProductDetail = () => {
                     )}
                 </div>
             </>
-        </Layout>
+                    </Layout>
+                </>
+            ) : (
+                <>
+                    <Layout title={"Order Fail"}>
+                        <div className="flex flex-row w-full h-screen mt-12">
+                            <div className='w-full flex flex-col items-center'>
+                                <h1 className="text-5xl text-center font-semibold">404 Page Not Found</h1>
+                                <h1 className="text-3xl text-center mt-8">Please try again!</h1>
+                                <button className="bg-black border border-black text-[20px] px-6 py-2 uppercase text-white cursor-pointer mt-6 w-54"
+                                    onClick={() => navigate("/")}
+                                >
+                                    Go to homepage
+                                </button>
+                            </div>
+                        </div>
+                    </Layout>
+                </>
+            )}
+        </>
     );
 };
 

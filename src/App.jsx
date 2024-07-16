@@ -24,6 +24,7 @@ import Store360 from './pages/Store360/Store360';
 import Design from './pages/Design/Design';
 import ProductSale from './pages/Product/ProductSale';
 import ReactGA from "react-ga4";
+import PageNotFound from './pages/404/PageNotFound';
 
 function initializeReactGA() {
   ReactGA.initialize('G-RDWGZG06CJ'); // Thay 'UA-XXXXXXXXX-X' bằng ID của Google Analytics của bạn
@@ -60,7 +61,7 @@ function App() {
         <Route path="/resetpassword" element={<Resetpassword />} />
         <Route path="/newpassword" element={<NewPassword />} />
         <Route path="/submitOtp" element={<SubmitOTP />} />
-
+        <Route path="*" element={<PageNotFound />} />
 
 
 
