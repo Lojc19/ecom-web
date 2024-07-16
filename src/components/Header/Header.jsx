@@ -9,14 +9,12 @@ import { useNavigate, useLocation } from "react-router-dom";
 import {toast} from "react-toastify";
 import axios from "axios";
 import Navbar from "../Header/Navbar/Navbar"
-
-
-
+import { useLoading } from "../../context/loading";
 const Header = () => {
     const [auth,setAuth] = useAuth()
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-
+    const { showLoading, hideLoading } = useLoading();
     const navigate = useNavigate();
     const location = useLocation();
     const onClickRegister = () => {
@@ -27,6 +25,7 @@ const Header = () => {
       navigate("/resetpassword");
     };
     const handleSubmit = async (e) => {
+      showLoading();
         try {
           const res = await axios.post("https://api-nhaxinh.onrender.com/api/user/loginUser", {
             username,
@@ -44,7 +43,9 @@ const Header = () => {
           } else {
             toast.error(res.data.message);
           }
+          hideLoading();
         } catch (error) {
+          hideLoading();
           toast.error(error.response.data.message);
         }
       };

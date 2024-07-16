@@ -12,10 +12,11 @@ import Chatbot from 'react-chatbot-kit'
 import 'react-chatbot-kit/build/main.css'
 import '../../App.css'
 import { FaRegMessage } from "react-icons/fa6";
+import { useLoading } from "../../context/loading";
 
 const Layout = ({ children, title, description}) => {
     const [showChatbot, setShowChatbot] = useState(false);
-
+    const { loading } = useLoading();
     const toggleChatbot = () => {
         setShowChatbot(prevState => !prevState);
     };
@@ -28,24 +29,26 @@ const Layout = ({ children, title, description}) => {
             <Navbar/>
         <main>
             <ToastContainer />
-        {children}
+            {children}
         </main>
-        {/* {showChatbot && (
-            <div className="fixed bottom-4 right-4">
-                <div className="mb-24">
-                    <Chatbot
-                    config={config}
-                    messageParser={MessageParser}
-                    actionProvider={ActionProvider}
-                    />
-                </div>
+        {loading && (
+            <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50 z-500">
+            <div
+                className="inline-block h-12 w-12 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"
+                role="status">
+                <span
+                className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]"
+                >Loading...</span>
             </div>
-        )} */}
-        {/* <div className="fixed bottom-4 right-4">
-            <div className=" bg-blue-500 p-6 rounded-full  cursor-pointer" onClick={toggleChatbot}>
-                <FaRegMessage className=""/>
+            <div
+                className="inline-block h-12 w-12 animate-[spinner-grow_0.75s_linear_infinite] rounded-full bg-current align-[-0.125em] opacity-0 motion-reduce:animate-[spinner-grow_1.5s_linear_infinite]"
+                role="status">
+                <span
+                className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]"
+                >Loading...</span>
             </div>
-        </div> */}
+            </div>
+        )}    
         <Footer />
         </>   
     );

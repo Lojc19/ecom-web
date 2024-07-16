@@ -11,11 +11,12 @@ import ProductItemCheckOut from "../../components/Checkout/ProductItemCheckOut";
 import Layout from "../../components/Layout/Layout";
 import { Modal } from "antd";
 import AddressForm from "../../components/Form/AddressForm";
-
+import { useLoading } from "../../context/loading";
 
 
 const Checkout = () => {
     const [toggleState, setToggleState] = useState(1);
+    const { showLoading, hideLoading } = useLoading();
     const [auth,setAuth] = useAuth();
     const location = useLocation();
     const navigate = useNavigate();
@@ -225,6 +226,7 @@ const Checkout = () => {
                                     }
                                 }
                             }
+                            showLoading();
                             axios.post('https://api-nhaxinh.onrender.com/api/order', request)
                             .then(response => {
                                 const data = response.data;
@@ -244,22 +246,27 @@ const Checkout = () => {
                                         orderId: data?.data?.orderId
                                     });
                                 } else {
+                                    hideLoading();
                                     return Promise.reject("Order creation failed");
                                 }
                             })
                             .then(response => {
                                 const payment = response.data;
                                 if (payment?.status === "success") {
+                                    hideLoading();
                                     return navigateTo(payment?.vnpUrl);
                                 } else {
+                                    hideLoading();
                                     return Promise.reject("Failed to create payment URL");
                                 }
                             })
                             .catch(error => {
+                                hideLoading();
                                 toast.error(error.response.data.message);
                             });
                         }
                     } catch (error) {
+                        hideLoading();
                         toast.error(error.response.data.message);
 
                     }
@@ -315,6 +322,7 @@ const Checkout = () => {
                                     }
                                 }
                             }
+                            showLoading();
                             const { data } = await axios.post('https://api-nhaxinh.onrender.com/api/order', 
                                 request
                             );
@@ -322,8 +330,10 @@ const Checkout = () => {
                                 navigate("/payment/thank")
                                 //toast.success("Order Successfully!");
                             }
+                            hideLoading();
                         }
                     } catch (error) {
+                        hideLoading();
                         toast.error(error.response.data.message);
                     }
                 }

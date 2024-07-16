@@ -6,10 +6,11 @@ import { useNavigate, useParams } from "react-router-dom";
 import {toast} from "react-toastify";
 import Layout from "../../components/Layout/Layout";
 import ProductItem from "../../components/Product/ProductItem";
-
+import { useLoading } from "../../context/loading.jsx";
 
 const SearchProduct = () => {
     const [dropdowns, setDropdowns] = useState(false);
+    const { showLoading, hideLoading } = useLoading();
     const [textFilter, setTextFilter] = useState("Theo mức độ phổ biến");
     const navigate = useNavigate();
     const [auth,setAuth] = useAuth();
@@ -40,10 +41,13 @@ const SearchProduct = () => {
     }
 
     const searchProduct = async (key) => {
+        showLoading();
         try {
             const { data } = await axios.get(`https://api-nhaxinh.onrender.com/api/product/search/${key}`);
             setProducts(data.data);
+            hideLoading();
         } catch (error) {
+            hideLoading();
             toast.error(error.response.data.message);
         }
     };

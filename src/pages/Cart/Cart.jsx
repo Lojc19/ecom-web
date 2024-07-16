@@ -6,10 +6,11 @@ import { useNavigate } from "react-router-dom";
 import {toast} from "react-toastify";
 import axios from "axios";
 import { useAuth } from "../../context/auth";
-
+import { useLoading } from "../../context/loading";
 
 const Cart = () => {
     const [spanDiscount, setSpanDiscount] = useState(false);
+    const { showLoading, hideLoading } = useLoading();
     const [auth,setAuth] = useAuth();
     const [carts, setCarts] = useState({});
     const [price, setPrice] = useState(0);
@@ -18,14 +19,17 @@ const Cart = () => {
     const [applycoupon, setApplyCoupon] = useState(null);
 
     const applyCoupon = async () => {
+        showLoading();
         try{
             const { data } = await axios.get(`https://api-nhaxinh.onrender.com/api/coupon/${coupon}`);
             if(data?.status == "success"){
                 setSpanDiscount(true);
                 setApplyCoupon(data?.data);
             }
+            hideLoading();
         }
         catch(error){
+            hideLoading();
             setSpanDiscount(false);
             setApplyCoupon(null);
             toast.error(error.response.data.message);
@@ -61,6 +65,7 @@ const Cart = () => {
     }, [products]);
 
     const updateQuantity = async (productId, newQuantity) => {
+        showLoading();
         try{
             const { data } = await axios.put('https://api-nhaxinh.onrender.com/api/cart/updateCart', {
                 productId: productId , quantity: newQuantity
@@ -69,8 +74,10 @@ const Cart = () => {
                 toast.success("Update Successfully!");
                 getCarts();
             }
+            hideLoading();
         }
         catch(error){
+            hideLoading();
             toast.error(error.response.data.message);
         }
     };

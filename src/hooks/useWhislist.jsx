@@ -60,13 +60,13 @@ import React, { createContext, useState, useContext, useEffect } from "react";
 import axios from "axios";
 import { useAuth } from "../context/auth";
 import { toast } from "react-toastify";
-
+import { useLoading } from "../context/loading";
 const WishlistContext = createContext();
 
 const WishlistProvider = ({ children }) => {
   const [whisProducts, setWhisProducts] = useState([]);
   const [auth, setAuth] = useAuth();
-
+  const { showLoading, hideLoading } = useLoading();
   const getWishlists = async () => {
     try {
       const { data } = await axios.get("https://api-nhaxinh.onrender.com/api/user/wishlist");
@@ -83,6 +83,7 @@ const WishlistProvider = ({ children }) => {
 
   const toogleWishlist = async (productId) => {
     if (auth?.user) {
+      showLoading();
       try {
         const { data } = await axios.post("https://api-nhaxinh.onrender.com/api/user/wishlist", {
           prodId: productId,
@@ -91,7 +92,9 @@ const WishlistProvider = ({ children }) => {
           toast.success("Change Successfully");
           await getWishlists();
         }
+        hideLoading();
       } catch (error) {
+        hideLoading();
         console.log(error);
       }
     } else {

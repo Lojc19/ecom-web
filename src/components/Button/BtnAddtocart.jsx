@@ -2,9 +2,10 @@ import { useAuth } from "../../context/auth"
 import axios from "axios";
 import {toast} from "react-toastify";
 import { trackAddToCart } from "../../gtag"
-
+import { useLoading } from "../../context/loading";
 
 const BtnAddtocart = ({id, quantity}) => {
+  const { showLoading, hideLoading } = useLoading();
   const [auth,setAuth] = useAuth()
 
     const addToCart = async () => {
@@ -13,6 +14,7 @@ const BtnAddtocart = ({id, quantity}) => {
                 toast.error("Please Login to Add To Cart");
             }
             else{
+              showLoading();
               const { data } = await axios.post('https://api-nhaxinh.onrender.com/api/cart/addtoCart', {
                 productId: id , quantity: quantity
               });
@@ -20,8 +22,10 @@ const BtnAddtocart = ({id, quantity}) => {
                   toast.success("Add to Cart Successfully!");
                   trackAddToCart(data);
               }
+              hideLoading();
             }
         } catch (error) {
+            hideLoading();
             toast.error(error.response.data.message);
         }
      };

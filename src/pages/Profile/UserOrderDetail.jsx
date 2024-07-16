@@ -4,9 +4,10 @@ import { toast } from "react-toastify";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Layout from "../../components/Layout/Layout";
-
+import { useLoading } from "../../context/loading";
 const UserOrderDetail = () => {
     const params = useParams();
+    const { showLoading, hideLoading } = useLoading();
     const [order, setOrder] = useState({});
     const [updateStatus, setUpdateStatus] = useState("");
     const [initStatus, setInitStatus] = useState("");
@@ -33,6 +34,7 @@ const UserOrderDetail = () => {
     };
 
     const updateOrder = async () => {
+        showLoading();
         try {
             const { data } = await axios.put(
                 `https://api-nhaxinh.onrender.com/api/order/user/${params.id}`,
@@ -40,8 +42,10 @@ const UserOrderDetail = () => {
                     status: "Cancelled",
                 }
             );
+            hideLoading();
             await getOrder();
         } catch (error) {
+            hideLoading();
             toast.error(error.response.data.message);
         }
     };

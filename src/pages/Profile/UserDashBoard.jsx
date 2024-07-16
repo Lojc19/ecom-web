@@ -9,10 +9,11 @@ import UserMenu from "./UserMenu";
 import UserWishList from "./UserWishlist";
 import { Modal } from "antd";
 import AddressForm from "../../components/Form/AddressForm";
-
+import { useLoading } from "../../context/loading";
 const UserProfile = () => {
     const navigate = useNavigate();
     const [auth, setAuth] = useAuth();
+    const { showLoading, hideLoading } = useLoading();
     //Profile
     const [username, setUsername] = useState("");
     const [firstName, setFirstName] = useState("");
@@ -128,6 +129,7 @@ const UserProfile = () => {
         // console.log(disctrict);
         // console.log(yard);
         // console.log(check);
+        showLoading();
         try {
             const { data } = await axios.put(
                 `https://api-nhaxinh.onrender.com/api/address/${address?._id}`,
@@ -145,7 +147,9 @@ const UserProfile = () => {
                 setAddress(null);
                 getAddresses();
             }
+            hideLoading();
         } catch (error) {
+            hideLoading();
             toast.error(error.response.data.message);
         }
     };
@@ -157,6 +161,7 @@ const UserProfile = () => {
         // console.log(disctrict);
         // console.log(yard);
         // console.log(check);
+        showLoading();
         try {
             if (address?.default) {
                 toast.error("Cannot Delete Default Address!");
@@ -169,8 +174,10 @@ const UserProfile = () => {
                     setAddress(null);
                     getAddresses();
                 }
+                hideLoading();
             }
         } catch (error) {
+            hideLoading();
             toast.error(error.response.data.message);
         }
     };
@@ -207,6 +214,7 @@ const UserProfile = () => {
             if (!emailRegex.test(email)) {
                 toast.error("Error! you have entered invalid email.");
             } else {
+                showLoading();
                 const { data } = await axios.put(
                     "https://api-nhaxinh.onrender.com/api/user/update-user",
                     {
@@ -219,8 +227,10 @@ const UserProfile = () => {
                 if (data?.status == "success") {
                     toast.success("Update Profile Successfully!");
                 }
+                hideLoading();
             }
         } catch (error) {
+            hideLoading();
             toast.error(error.response.data.message);
             
         }
@@ -230,6 +240,7 @@ const UserProfile = () => {
         try {
             if (passwordNew != passwordNow) {
                 if (passwordNew == cfpassWord) {
+                    showLoading();
                     const { data } = await axios.put(
                         "https://api-nhaxinh.onrender.com/api/user/updatepass",
                         { passwordNow: passwordNow, passwordNew: passwordNew }
@@ -242,6 +253,7 @@ const UserProfile = () => {
                     } else {
                         toast.error(data.data?.message);
                     }
+                    hideLoading();
                 } else {
                     toast.warn("Password does not match!");
                 }
@@ -249,6 +261,7 @@ const UserProfile = () => {
                 toast.warn("Please Enter A New Password");
             }
         } catch (error) {
+            hideLoading();
             toast.error(error.response.data.message);
 
         }

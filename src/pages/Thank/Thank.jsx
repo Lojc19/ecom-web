@@ -5,7 +5,7 @@ const Thank = () => {
   const navigate = useNavigate();
   return (
     <Layout title={"Thank for Order"}>
-        <div className="flex flex-row w-full h-screen mt-12">
+        <div className="flex flex-row w-full h-96 mt-12">
             <div className='w-full flex flex-col items-center'>
                 <h1 className="text-5xl text-center font-semibold">Thank you</h1>
                 <h1 className="text-3xl text-center mt-8">Your order was completeted Successfully</h1>

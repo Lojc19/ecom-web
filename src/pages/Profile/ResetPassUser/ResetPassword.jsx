@@ -4,9 +4,11 @@ import { toast } from "react-toastify";
 import Layout from "../../../components/Layout/Layout";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useLoading } from "../../../context/loading";
 // 6LfR9AEqAAAAAHuFWmkoKdaSaHe2LBOQavQpGM2E
 const ResetPassword = () => {
     const navigate = useNavigate();
+    const { showLoading, hideLoading } = useLoading();
     const [capVal, SetCapVal] = useState(null);
     const [email, setEmail] = useState("");
     const handleClick = () => {
@@ -20,6 +22,7 @@ const ResetPassword = () => {
     };
 
     const forgotPass = async () => {
+        showLoading();
         try {
             const { data } = await axios.post(
                 "https://api-nhaxinh.onrender.com/api/user/forgot-password",
@@ -31,11 +34,14 @@ const ResetPassword = () => {
                 const temp = {
                     email: email,
                 };
+                hideLoading();
                 navigate('/submitOtp', { state: temp });
             }else{
+                hideLoading();
                 toast.error("Email Not Found!");
             }
         } catch (error) {
+            hideLoading();
             toast.error(error.response.data.message);
         }
     };

@@ -21,7 +21,7 @@ import { IoMdHeart } from "react-icons/io";
 import { Rating } from "@material-tailwind/react";
 import { useWishlist } from "../../hooks/useWhislist";
 import { trackProductView, trackAddToCart } from "../../gtag";
-
+import { useLoading } from "../../context/loading";
 const ProductDetail = () => {
     const data = [
         {
@@ -50,6 +50,7 @@ const ProductDetail = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [clickedImgModal, setClickedImgModal] = useState(null);
     const [toggleState, setToggleState] = useState(1);
+    const { showLoading, hideLoading } = useLoading();
     const params = useParams();
     const [product, setProduct] = useState({});
     const [category, setCategory] = useState({});
@@ -102,6 +103,7 @@ const ProductDetail = () => {
     };
 
     const createReview = async () => {
+        showLoading();
         try {
             const { data } = await axios.post(
                 "https://api-nhaxinh.onrender.com/api/review",
@@ -114,8 +116,10 @@ const ProductDetail = () => {
             if (data.status == "success") {
                 toast.success(data.message);
             }
+            hideLoading();
             //setProducts(data.data.product);
         } catch (error) {
+            hideLoading();
             toast.error(error.response.data.message);
         }
     };

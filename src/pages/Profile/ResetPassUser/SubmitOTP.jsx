@@ -5,9 +5,11 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from 'react-router-dom';
 import { el } from "date-fns/locale";
+import { useLoading } from "../../../context/loading";
 const SubmitOTP = () => {
     const navigate = useNavigate();
     const location = useLocation();
+    const { showLoading, hideLoading } = useLoading();
     const { email } = location.state || {};
     const [otp, setOtp] = useState("");
 
@@ -21,6 +23,7 @@ const SubmitOTP = () => {
     };
 
       const checkOtp = async () => {
+        showLoading();
         try {
             const { data } = await axios.post(
                 "https://api-nhaxinh.onrender.com/api/user/checkOtpResetPass/",
@@ -39,11 +42,14 @@ const SubmitOTP = () => {
                 //         navigate('/newpassword', { state: temp });
                 //     }
                 // });
+                hideLoading();
                 navigate('/newpassword', { state: temp });
             }else{
+                hideLoading();
                 toast.error("Please try again!")
             }
         } catch (error) {
+            hideLoading();
             toast.error(error.response.data.message);
         }
     };  

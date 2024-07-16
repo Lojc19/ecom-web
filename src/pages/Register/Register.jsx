@@ -3,9 +3,10 @@ import { toast } from "react-toastify";
 import Layout from "../../components/Layout/Layout";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-
+import { useLoading } from "../../context/loading";
 const Register = () => {
     const navigate = useNavigate();
+    const { showLoading, hideLoading } = useLoading();
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [userName, setUserName] = useState("");
@@ -31,6 +32,7 @@ const Register = () => {
                 toast.error("Please Enter A Valid PhoneNumber");
             }else{
                 if(ValidateEmail(email)){
+                    showLoading();
                     axios.post('https://api-nhaxinh.onrender.com/api/user/register', {
                         firstname: firstName,
                         lastname: lastName,
@@ -42,17 +44,20 @@ const Register = () => {
                     .then(response => {
                         const data = response.data;
                         if (data?.status === "success") {
+                            hideLoading();
                             toast.success(data?.message, {
                                 onClose: () => {
                                     navigate(`/`);
                                 }
                             });
                         } else {
+                            hideLoading();
                             toast.error(data?.message);
                             return Promise.reject("Order creation failed");
                         }
                     })
                     .catch(error => {
+                        hideLoading();
                         toast.error(error.response.data.message);
                     });
                 }else{

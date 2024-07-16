@@ -6,10 +6,11 @@ import Layout from "../../../components/Layout/Layout";
 import axios from "axios";
 import { useLocation } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
-
+import { useLoading } from "../../../context/loading";
 const NewPassword = () => {
     const location = useLocation();
     const navigate = useNavigate();
+    const { showLoading, hideLoading } = useLoading();
     const { email, otp } = location.state || {};
     const [showPassword, setShowPassword] = useState(false);
     const [password, setPassword] = useState("");
@@ -24,6 +25,7 @@ const NewPassword = () => {
     };
 
     const resetPass = async () => {
+        showLoading();
         try {
             const { data } = await axios.put(
                 "https://api-nhaxinh.onrender.com/api/user/reset-password/",
@@ -34,13 +36,16 @@ const NewPassword = () => {
                 }
             );
             if(data.status === "success"){
+                hideLoading();
                 toast.success(data?.message, {
                     onClose: () => {
                         navigate(`/`);
                     }
                 });
             }
+            hideLoading();
         } catch (error) {
+            hideLoading();
             toast.error(error.response.data.message);
         }
     };
