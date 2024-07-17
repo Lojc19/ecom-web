@@ -141,9 +141,9 @@ const Navbar = () => {
                             <li className="hover:text-[#FFB236]">
                                 <a href="/store360">CỬA HÀNG 360 ĐỘ</a>
                             </li>
-                            <li className="hover:text-[#FFB236]">
+                            {/* <li className="hover:text-[#FFB236]">
                                 <a href="">GÓC CẢM HỨNG</a>
-                            </li>{" "}
+                            </li>{" "} */}
                         </ul>
                     </div>
 
